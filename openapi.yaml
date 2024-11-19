@@ -1,0 +1,714 @@
+---
+openapi: "3.0.3"
+info:
+  title: "Plomer API"
+  description: "API for Plomer"
+  version: "1.0.0"
+  license:
+    name: "Plomer"
+    url: "https://plomer.app"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: "http"
+      scheme: "bearer"
+      bearerFormat: "JWT"
+  schemas:
+    Account:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+        appleId:
+          type: "string"
+        email:
+          type: "string"
+          format: "email"
+        name:
+          type: "string"
+        enablePushNotifications:
+          type: "boolean"
+          default: "false"
+        createdAt:
+          anyOf:
+            - type: "string"
+            - type: "string"
+        updatedAt:
+          anyOf:
+            - type: "string"
+            - type: "string"
+      required:
+        - "id"
+        - "appleId"
+        - "email"
+        - "name"
+        - "enablePushNotifications"
+        - "createdAt"
+        - "updatedAt"
+      description: "Account represents a user account in the system"
+      example:
+        id: "1"
+        appleId: "auth0|123456789"
+        email: "user@example.com"
+        name: "John Doe"
+        enablePushNotifications: "true"
+        createdAt: "2024-03-20T10:00:00.000Z"
+        updatedAt: "2024-03-20T10:00:00.000Z"
+    MonitoringProfile:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+        accountId:
+          type: "integer"
+        contentChangeDetection:
+          type: "boolean"
+          default: "false"
+        createdAt:
+          anyOf:
+            - type: "string"
+            - type: "string"
+        description:
+          type: "string"
+        domainExpiresAt:
+          anyOf:
+            - type: "string"
+            - type: "string"
+        domainExpiryCheck:
+          type: "boolean"
+          default: "false"
+        healthyThresholdCount:
+          type: "number"
+          default: "3"
+        httpStatusChecks:
+          type: "boolean"
+          default: "true"
+        iconUrl:
+          type: "string"
+        intervalSeconds:
+          type: "number"
+          default: "60"
+        isDomainExpired:
+          type: "boolean"
+          default: "false"
+        isSslValid:
+          type: "boolean"
+          default: "true"
+        isWebsiteReachable:
+          type: "boolean"
+          default: "true"
+        registrarDataId:
+          type: "integer"
+        sslExpiresAt:
+          anyOf:
+            - type: "string"
+            - type: "string"
+        sslExpiryCheck:
+          type: "boolean"
+          default: "false"
+        tags:
+          type: "array"
+          items:
+            type: "string"
+        timeoutSeconds:
+          type: "number"
+          default: "30"
+        unhealthyThresholdCount:
+          type: "number"
+          default: "3"
+        updatedAt:
+          anyOf:
+            - type: "string"
+            - type: "string"
+        url:
+          type: "string"
+          format: "uri"
+      required:
+        - "id"
+        - "accountId"
+        - "contentChangeDetection"
+        - "createdAt"
+        - "description"
+        - "domainExpiresAt"
+        - "domainExpiryCheck"
+        - "healthyThresholdCount"
+        - "httpStatusChecks"
+        - "iconUrl"
+        - "intervalSeconds"
+        - "isDomainExpired"
+        - "isSslValid"
+        - "isWebsiteReachable"
+        - "registrarDataId"
+        - "sslExpiresAt"
+        - "sslExpiryCheck"
+        - "tags"
+        - "timeoutSeconds"
+        - "unhealthyThresholdCount"
+        - "updatedAt"
+        - "url"
+      description: "MonitoringProfile represents a website monitoring configuration with various health checks and thresholds"
+      example:
+        id: "1"
+        accountId: "1"
+        contentChangeDetection: "false"
+        createdAt: "2024-03-20T10:00:00.000Z"
+        description: "My Company Website Monitor"
+        domainExpiresAt: "2025-03-20T10:00:00.000Z"
+        domainExpiryCheck: "true"
+        healthyThresholdCount: "3"
+        httpStatusChecks: "true"
+        iconUrl: "https://example.com/favicon.ico"
+        intervalSeconds: "60"
+        isDomainExpired: "false"
+        isSslValid: "true"
+        isWebsiteReachable: "true"
+        registrarDataId: "1"
+        sslExpiresAt: "2025-03-20T10:00:00.000Z"
+        sslExpiryCheck: "true"
+        tags:
+          - "production"
+          - "website"
+        timeoutSeconds: "30"
+        unhealthyThresholdCount: "3"
+        updatedAt: "2024-03-20T10:00:00.000Z"
+        url: "https://example.com"
+    CreateMonitoringProfile:
+      type: "object"
+      properties:
+        url:
+          type: "string"
+          format: "uri"
+        account:
+          type: "string"
+        httpStatusChecks:
+          type: "boolean"
+          default: "true"
+        timeoutSeconds:
+          type: "number"
+          default: "5"
+        intervalSeconds:
+          type: "number"
+          default: "30"
+        healthyThresholdCount:
+          type: "number"
+          default: "3"
+        unhealthyThresholdCount:
+          type: "number"
+          default: "5"
+        domainExpiryCheck:
+          type: "boolean"
+          default: "false"
+        sslExpiryCheck:
+          type: "boolean"
+          default: "false"
+        contentChangeDetection:
+          type: "boolean"
+          default: "false"
+        description:
+          type: "string"
+        tags:
+          type: "array"
+          items:
+            type: "string"
+      required:
+        - "url"
+        - "account"
+        - "tags"
+      description: "Input schema for creating a new monitoring profile"
+      example:
+        url: "https://example.com"
+        account: "account123"
+        description: "My Company Website Monitor"
+        tags:
+          - "production"
+          - "website"
+        intervalSeconds: "30"
+        timeoutSeconds: "5"
+        healthyThresholdCount: "3"
+        unhealthyThresholdCount: "5"
+    UpdateMonitoringProfile:
+      type: "object"
+      properties:
+        url:
+          type: "string"
+          format: "uri"
+        account:
+          type: "string"
+        httpStatusChecks:
+          type: "boolean"
+          default: "true"
+        timeoutSeconds:
+          type: "number"
+          default: "5"
+        intervalSeconds:
+          type: "number"
+          default: "30"
+        healthyThresholdCount:
+          type: "number"
+          default: "3"
+        unhealthyThresholdCount:
+          type: "number"
+          default: "5"
+        domainExpiryCheck:
+          type: "boolean"
+          default: "false"
+        sslExpiryCheck:
+          type: "boolean"
+          default: "false"
+        contentChangeDetection:
+          type: "boolean"
+          default: "false"
+        description:
+          type: "string"
+        tags:
+          type: "array"
+          items:
+            type: "string"
+      description: "Input schema for updating a monitoring profile"
+    Notification:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+        accountId:
+          type: "integer"
+        text:
+          type: "string"
+        type:
+          type: "string"
+          enum:
+            - "DOMAIN_EXPIRY"
+            - "SSL_EXPIRY"
+            - "WEBSITE_DOWN"
+            - "CONTENT_CHANGE"
+            - "SYSTEM"
+        read:
+          type: "boolean"
+          default: "false"
+        createdAt:
+          anyOf:
+            - type: "string"
+            - type: "string"
+        updatedAt:
+          anyOf:
+            - type: "string"
+            - type: "string"
+      required:
+        - "id"
+        - "accountId"
+        - "text"
+        - "type"
+        - "read"
+        - "createdAt"
+        - "updatedAt"
+      description: "Notification represents a system message or alert for a user"
+      example:
+        id: "1"
+        accountId: "1"
+        text: "Your domain example.com will expire in 30 days"
+        type: "DOMAIN_EXPIRY"
+        read: "false"
+        createdAt: "2024-03-20T10:00:00.000Z"
+        updatedAt: "2024-03-20T10:00:00.000Z"
+    UptimeItem:
+      type: "object"
+      properties:
+        id:
+          type: "integer"
+        accountId:
+          type: "integer"
+        date:
+          type: "string"
+        failedRequests:
+          type: "string"
+        monitoringProfile:
+          type: "string"
+        p95:
+          type: "string"
+        successfulRequests:
+          type: "string"
+        totalRequests:
+          type: "string"
+      required:
+        - "id"
+        - "accountId"
+        - "date"
+        - "failedRequests"
+        - "monitoringProfile"
+        - "p95"
+        - "successfulRequests"
+        - "totalRequests"
+      description: "UptimeItem represents a monitoring period's uptime statistics for a website"
+      example:
+        id: "1"
+        accountId: "1"
+        date: "2024-03-20T00:00:00.000Z"
+        failedRequests: "2"
+        monitoringProfile: "example.com"
+        p95: "350"
+        successfulRequests: "98"
+        totalRequests: "100"
+paths:
+  /account/:
+    get:
+      operationId: "getAccount"
+      summary: "Get account"
+      tags:
+        - "Account"
+      description: "Get account"
+      parameters:
+        - schema:
+            type: "string"
+          in: "path"
+          name: "appleId"
+          required: "true"
+      responses:
+        200:
+          description: "Default Response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+        404:
+          description: "Default Response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  error:
+                    type: "string"
+                required:
+                  - "error"
+    post:
+      operationId: "createAccount"
+      summary: "Create account"
+      tags:
+        - "Account"
+      description: "Create account"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                appleId:
+                  type: "string"
+                email:
+                  type: "string"
+                  format: "email"
+                name:
+                  type: "string"
+                enablePushNotifications:
+                  type: "boolean"
+                  default: "false"
+              required:
+                - "appleId"
+                - "email"
+                - "name"
+        required: "true"
+      responses:
+        200:
+          description: "Default Response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+  /monitoring-profile/:
+    get:
+      operationId: "getMonitoringProfiles"
+      summary: "Get monitoring profiles"
+      tags:
+        - "MonitoringProfile"
+      parameters:
+        - schema:
+            type: "number"
+          in: "query"
+          name: "accountId"
+          required: "true"
+      responses:
+        200:
+          description: "Default Response"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/MonitoringProfile"
+    post:
+      operationId: "createMonitoringProfile"
+      summary: "Create monitoring profile"
+      tags:
+        - "MonitoringProfile"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMonitoringProfile"
+      parameters:
+        - schema:
+            type: "number"
+          in: "query"
+          name: "accountId"
+          required: "true"
+      responses:
+        200:
+          description: "Default Response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MonitoringProfile"
+  /monitoring-profile/{id}:
+    get:
+      operationId: "getMonitoringProfile"
+      summary: "Get monitoring profile"
+      tags:
+        - "MonitoringProfile"
+      parameters:
+        - schema:
+            type: "number"
+          in: "query"
+          name: "accountId"
+          required: "true"
+        - schema:
+            type: "number"
+          in: "path"
+          name: "id"
+          required: "true"
+      responses:
+        200:
+          description: "Default Response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MonitoringProfile"
+    patch:
+      operationId: "updateMonitoringProfile"
+      summary: "Update monitoring profile"
+      tags:
+        - "MonitoringProfile"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateMonitoringProfile"
+      parameters:
+        - schema:
+            type: "number"
+          in: "query"
+          name: "accountId"
+          required: "true"
+        - schema:
+            type: "number"
+          in: "path"
+          name: "id"
+          required: "true"
+      responses:
+        200:
+          description: "Default Response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MonitoringProfile"
+    delete:
+      operationId: "deleteMonitoringProfile"
+      summary: "Delete monitoring profile"
+      tags:
+        - "MonitoringProfile"
+      parameters:
+        - schema:
+            type: "number"
+          in: "query"
+          name: "accountId"
+          required: "true"
+        - schema:
+            type: "number"
+          in: "path"
+          name: "id"
+          required: "true"
+      responses:
+        200:
+          description: "Default Response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message:
+                    type: "string"
+                required:
+                  - "message"
+  /notification/:
+    get:
+      operationId: "getNotifications"
+      summary: "Get notifications"
+      tags:
+        - "Notification"
+      parameters:
+        - schema:
+            type: "number"
+          in: "query"
+          name: "accountId"
+          required: "true"
+        - schema:
+            type: "number"
+            default: "10"
+          in: "query"
+          name: "limit"
+        - schema:
+            type: "number"
+            default: "0"
+          in: "query"
+          name: "page"
+      responses:
+        200:
+          description: "Default Response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  data:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/Notification"
+                  pagination:
+                    type: "object"
+                    properties:
+                      page:
+                        type: "number"
+                      totalPages:
+                        type: "number"
+                      totalItems:
+                        type: "number"
+                      hasMore:
+                        type: "boolean"
+                    required:
+                      - "page"
+                      - "totalPages"
+                      - "totalItems"
+                      - "hasMore"
+                required:
+                  - "data"
+                  - "pagination"
+  /notification/{id}:
+    get:
+      operationId: "getNotification"
+      summary: "Get notification"
+      tags:
+        - "Notification"
+      parameters:
+        - schema:
+            type: "number"
+          in: "query"
+          name: "accountId"
+          required: "true"
+        - schema:
+            type: "number"
+          in: "path"
+          name: "id"
+          required: "true"
+      responses:
+        200:
+          description: "Default Response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notification"
+    delete:
+      operationId: "deleteNotification"
+      summary: "Delete notification"
+      tags:
+        - "Notification"
+      parameters:
+        - schema:
+            type: "number"
+          in: "query"
+          name: "accountId"
+          required: "true"
+        - schema:
+            type: "number"
+          in: "path"
+          name: "id"
+          required: "true"
+      responses:
+        200:
+          description: "Default Response"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message:
+                    type: "string"
+                required:
+                  - "message"
+    patch:
+      operationId: "updateNotification"
+      summary: "Update notification"
+      tags:
+        - "Notification"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                read:
+                  type: "boolean"
+              required:
+                - "read"
+        required: "true"
+      parameters:
+        - schema:
+            type: "number"
+          in: "query"
+          name: "accountId"
+          required: "true"
+        - schema:
+            type: "number"
+          in: "path"
+          name: "id"
+          required: "true"
+      responses:
+        200:
+          description: "Default Response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notification"
+  /uptime/:
+    get:
+      operationId: "getUptime"
+      summary: "Get uptime"
+      tags:
+        - "Uptime"
+      parameters:
+        - schema:
+            type: "string"
+          in: "query"
+          name: "monitoringProfile"
+          required: "true"
+        - schema:
+            type: "number"
+          in: "query"
+          name: "accountId"
+          required: "true"
+      responses:
+        200:
+          description: "Default Response"
+          content:
+            application/json:
+              schema:
+                type: "array"
+                items:
+                  $ref: "#/components/schemas/UptimeItem"
+servers:
+  - url: "http://localhost:3000"
+    description: "local server"
+  - url: "http://localhost:3000"
+    description: "development server"
+  - url: "https://api.plomer.app"
+    description: "production server"
+security:
+  - bearerAuth:
