@@ -1,10 +1,10 @@
-name: plomer-swift-sdk
+name: PlomerSwiftSdk
 targets:
-  plomer-swift-sdk:
+  PlomerSwiftSdk:
     type: framework
     platform: iOS
     deploymentTarget: "11.0"
-    sources: [plomer-swift-sdk]
+    sources: [PlomerSwiftSdk]
     info:
       path: ./Info.plist
       version: 1.0.0
