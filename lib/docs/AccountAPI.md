@@ -20,7 +20,7 @@ Create account
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import plomer-swift-sdk
+import PlomerSwiftSdk
 
 let createAccountRequest = createAccount_request(appleId: "appleId_example", email: "email_example", name: "name_example", enablePushNotifications: false) // CreateAccountRequest | 
 
@@ -70,7 +70,7 @@ Get account
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import plomer-swift-sdk
+import PlomerSwiftSdk
 
 let appleId = "appleId_example" // String | 
 
