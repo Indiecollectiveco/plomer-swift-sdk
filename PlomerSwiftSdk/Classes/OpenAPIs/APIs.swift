@@ -12,7 +12,7 @@ open class PlomerSwiftSdkAPI {
     public static var basePath = "http://localhost:3000"
     public static var customHeaders: [String: String] = [:]
     public static var credential: URLCredential?
-    public static var requestBuilderFactory: RequestBuilderFactory = URLSessionRequestBuilderFactory()
+    public static var requestBuilderFactory: RequestBuilderFactory = AlamofireRequestBuilderFactory()
     public static var apiResponseQueue: DispatchQueue = .main
 }
 

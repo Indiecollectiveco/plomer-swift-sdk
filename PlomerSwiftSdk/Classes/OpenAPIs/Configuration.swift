@@ -8,6 +8,7 @@ import Foundation
 #if canImport(FoundationNetworking)
 import FoundationNetworking
 #endif
+import Alamofire
 
 open class Configuration {
     
@@ -15,4 +16,28 @@ open class Configuration {
     ///
     /// If a HTTP status code is outside of this range the response will be interpreted as failed.
     public static var successfulStatusCodeRange: Range = 200..<300
+    /// ResponseSerializer that will be used by the generator for `Data` responses
+    ///
+    /// If unchanged, Alamofires default `DataResponseSerializer` will be used. 
+    public static var dataResponseSerializer: AnyResponseSerializer<Data> = AnyResponseSerializer(DataResponseSerializer())
+    /// ResponseSerializer that will be used by the generator for `String` responses
+    ///
+    /// If unchanged, Alamofires default `StringResponseSerializer` will be used. 
+    public static var stringResponseSerializer: AnyResponseSerializer<String> = AnyResponseSerializer(StringResponseSerializer())
+}
+
+/// Type-erased ResponseSerializer
+///
+/// This is needed in order to use `ResponseSerializer` as a Type in `Configuration`. Obsolete with `any` keyword in Swift >= 5.7
+public struct AnyResponseSerializer<T>: ResponseSerializer {
+    
+    let _serialize: (URLRequest?, HTTPURLResponse?, Data?, Error?) throws -> T
+    
+    public init<V: ResponseSerializer>(_ delegatee: V) where V.SerializedObject == T {
+        _serialize = delegatee.serialize
+    }
+    
+    public func serialize(request: URLRequest?, response: HTTPURLResponse?, data: Data?, error: Error?) throws -> T {
+        try _serialize(request, response, data, error)
+    }
 }
