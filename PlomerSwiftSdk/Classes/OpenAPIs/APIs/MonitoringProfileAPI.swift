@@ -17,11 +17,19 @@ open class MonitoringProfileAPI {
      
      - parameter accountId: (query)  
      - parameter createMonitoringProfile: (body)  (optional)
-     - returns: MonitoringProfile
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func createMonitoringProfile(accountId: Double, createMonitoringProfile: CreateMonitoringProfile? = nil) async throws -> MonitoringProfile {
-        return try await createMonitoringProfileWithRequestBuilder(accountId: accountId, createMonitoringProfile: createMonitoringProfile).execute().body
+    @discardableResult
+    open class func createMonitoringProfile(accountId: Double, createMonitoringProfile: CreateMonitoringProfile? = nil, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<MonitoringProfile, ErrorResponse>) -> Void)) -> RequestTask {
+        return createMonitoringProfileWithRequestBuilder(accountId: accountId, createMonitoringProfile: createMonitoringProfile).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
     }
 
     /**
@@ -60,11 +68,19 @@ open class MonitoringProfileAPI {
      
      - parameter accountId: (query)  
      - parameter id: (path)  
-     - returns: DeleteMonitoringProfile200Response
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func deleteMonitoringProfile(accountId: Double, id: Double) async throws -> DeleteMonitoringProfile200Response {
-        return try await deleteMonitoringProfileWithRequestBuilder(accountId: accountId, id: id).execute().body
+    @discardableResult
+    open class func deleteMonitoringProfile(accountId: Double, id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeleteMonitoringProfile200Response, ErrorResponse>) -> Void)) -> RequestTask {
+        return deleteMonitoringProfileWithRequestBuilder(accountId: accountId, id: id).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
     }
 
     /**
@@ -106,11 +122,19 @@ open class MonitoringProfileAPI {
      
      - parameter accountId: (query)  
      - parameter id: (path)  
-     - returns: MonitoringProfile
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMonitoringProfile(accountId: Double, id: Double) async throws -> MonitoringProfile {
-        return try await getMonitoringProfileWithRequestBuilder(accountId: accountId, id: id).execute().body
+    @discardableResult
+    open class func getMonitoringProfile(accountId: Double, id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<MonitoringProfile, ErrorResponse>) -> Void)) -> RequestTask {
+        return getMonitoringProfileWithRequestBuilder(accountId: accountId, id: id).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
     }
 
     /**
@@ -152,11 +176,19 @@ open class MonitoringProfileAPI {
      
      - parameter accountId: (query)  
      - parameter id: (path)  
-     - returns: RegistrarData
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMonitoringProfileRegistrarData(accountId: Double, id: Double) async throws -> RegistrarData {
-        return try await getMonitoringProfileRegistrarDataWithRequestBuilder(accountId: accountId, id: id).execute().body
+    @discardableResult
+    open class func getMonitoringProfileRegistrarData(accountId: Double, id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<RegistrarData, ErrorResponse>) -> Void)) -> RequestTask {
+        return getMonitoringProfileRegistrarDataWithRequestBuilder(accountId: accountId, id: id).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
     }
 
     /**
@@ -197,11 +229,19 @@ open class MonitoringProfileAPI {
      Get monitoring profiles
      
      - parameter accountId: (query)  
-     - returns: [MonitoringProfile]
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getMonitoringProfiles(accountId: Double) async throws -> [MonitoringProfile] {
-        return try await getMonitoringProfilesWithRequestBuilder(accountId: accountId).execute().body
+    @discardableResult
+    open class func getMonitoringProfiles(accountId: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[MonitoringProfile], ErrorResponse>) -> Void)) -> RequestTask {
+        return getMonitoringProfilesWithRequestBuilder(accountId: accountId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
     }
 
     /**
@@ -240,11 +280,19 @@ open class MonitoringProfileAPI {
      - parameter accountId: (query)  
      - parameter id: (path)  
      - parameter updateMonitoringProfile: (body)  (optional)
-     - returns: MonitoringProfile
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateMonitoringProfile(accountId: Double, id: Double, updateMonitoringProfile: UpdateMonitoringProfile? = nil) async throws -> MonitoringProfile {
-        return try await updateMonitoringProfileWithRequestBuilder(accountId: accountId, id: id, updateMonitoringProfile: updateMonitoringProfile).execute().body
+    @discardableResult
+    open class func updateMonitoringProfile(accountId: Double, id: Double, updateMonitoringProfile: UpdateMonitoringProfile? = nil, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<MonitoringProfile, ErrorResponse>) -> Void)) -> RequestTask {
+        return updateMonitoringProfileWithRequestBuilder(accountId: accountId, id: id, updateMonitoringProfile: updateMonitoringProfile).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
     }
 
     /**

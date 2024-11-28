@@ -17,11 +17,19 @@ open class UptimeAPI {
      
      - parameter monitoringProfileId: (query)  
      - parameter days: (query)  (optional)
-     - returns: [UptimeItem]
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getUptime(monitoringProfileId: Double, days: Double? = nil) async throws -> [UptimeItem] {
-        return try await getUptimeWithRequestBuilder(monitoringProfileId: monitoringProfileId, days: days).execute().body
+    @discardableResult
+    open class func getUptime(monitoringProfileId: Double, days: Double? = nil, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[UptimeItem], ErrorResponse>) -> Void)) -> RequestTask {
+        return getUptimeWithRequestBuilder(monitoringProfileId: monitoringProfileId, days: days).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
     }
 
     /**
