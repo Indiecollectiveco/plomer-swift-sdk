@@ -17,11 +17,19 @@ open class NotificationAPI {
      
      - parameter accountId: (query)  
      - parameter id: (path)  
-     - returns: DeleteMonitoringProfile200Response
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func deleteNotification(accountId: Double, id: Double) async throws -> DeleteMonitoringProfile200Response {
-        return try await deleteNotificationWithRequestBuilder(accountId: accountId, id: id).execute().body
+    @discardableResult
+    open class func deleteNotification(accountId: Double, id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeleteMonitoringProfile200Response, ErrorResponse>) -> Void)) -> RequestTask {
+        return deleteNotificationWithRequestBuilder(accountId: accountId, id: id).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
     }
 
     /**
@@ -63,11 +71,19 @@ open class NotificationAPI {
      
      - parameter accountId: (query)  
      - parameter id: (path)  
-     - returns: Notification
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getNotification(accountId: Double, id: Double) async throws -> Notification {
-        return try await getNotificationWithRequestBuilder(accountId: accountId, id: id).execute().body
+    @discardableResult
+    open class func getNotification(accountId: Double, id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Notification, ErrorResponse>) -> Void)) -> RequestTask {
+        return getNotificationWithRequestBuilder(accountId: accountId, id: id).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
     }
 
     /**
@@ -110,11 +126,19 @@ open class NotificationAPI {
      - parameter accountId: (query)  
      - parameter limit: (query)  (optional, default to 10)
      - parameter page: (query)  (optional, default to 0)
-     - returns: GetNotifications200Response
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func getNotifications(accountId: Double, limit: Double? = nil, page: Double? = nil) async throws -> GetNotifications200Response {
-        return try await getNotificationsWithRequestBuilder(accountId: accountId, limit: limit, page: page).execute().body
+    @discardableResult
+    open class func getNotifications(accountId: Double, limit: Double? = nil, page: Double? = nil, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<GetNotifications200Response, ErrorResponse>) -> Void)) -> RequestTask {
+        return getNotificationsWithRequestBuilder(accountId: accountId, limit: limit, page: page).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
     }
 
     /**
@@ -157,11 +181,19 @@ open class NotificationAPI {
      - parameter accountId: (query)  
      - parameter id: (path)  
      - parameter updateNotificationRequest: (body)  
-     - returns: Notification
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
      */
-    @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-    open class func updateNotification(accountId: Double, id: Double, updateNotificationRequest: UpdateNotificationRequest) async throws -> Notification {
-        return try await updateNotificationWithRequestBuilder(accountId: accountId, id: id, updateNotificationRequest: updateNotificationRequest).execute().body
+    @discardableResult
+    open class func updateNotification(accountId: Double, id: Double, updateNotificationRequest: UpdateNotificationRequest, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Notification, ErrorResponse>) -> Void)) -> RequestTask {
+        return updateNotificationWithRequestBuilder(accountId: accountId, id: id, updateNotificationRequest: updateNotificationRequest).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
     }
 
     /**
