@@ -12,7 +12,7 @@ open class PlomerSwiftSdkAPI {
     public static var basePath = "http://devapi.plomer.app"
     public static var customHeaders: [String: String] = [:]
     public static var credential: URLCredential?
-    public static var requestBuilderFactory: RequestBuilderFactory = URLSessionRequestBuilderFactory()
+    public static var requestBuilderFactory: RequestBuilderFactory = AlamofireRequestBuilderFactory()
     public static var apiResponseQueue: DispatchQueue = .main
 }
 

@@ -9,6 +9,7 @@ PlomerSwiftSdk/Classes/OpenAPIs/APIs/AccountAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/MonitoringProfileAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/NotificationAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/UptimeAPI.swift
+PlomerSwiftSdk/Classes/OpenAPIs/AlamofireImplementations.swift
 PlomerSwiftSdk/Classes/OpenAPIs/CodableHelper.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Configuration.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Extensions.swift
@@ -31,7 +32,6 @@ PlomerSwiftSdk/Classes/OpenAPIs/Models/UpdateNotificationRequest.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/UptimeItem.swift
 PlomerSwiftSdk/Classes/OpenAPIs/OpenISO8601DateFormatter.swift
 PlomerSwiftSdk/Classes/OpenAPIs/SynchronizedDictionary.swift
-PlomerSwiftSdk/Classes/OpenAPIs/URLSessionImplementations.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Validation.swift
 README.md
 docs/Account.md

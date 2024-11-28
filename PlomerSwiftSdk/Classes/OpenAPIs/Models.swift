@@ -8,6 +8,7 @@ import Foundation
 #if canImport(FoundationNetworking)
 import FoundationNetworking
 #endif
+import Alamofire
 
 protocol JSONEncodable {
     func encodeToJSON() -> Any
@@ -112,18 +113,18 @@ open class Response<T> {
 
 public final class RequestTask {
     private let lock = NSRecursiveLock()
-    private var task: URLSessionDataTaskProtocol?
+    private var request: Request?
 
-    internal func set(task: URLSessionDataTaskProtocol) {
+    internal func set(request: Request) {
         lock.lock()
         defer { lock.unlock() }
-        self.task = task
+        self.request = request
     }
 
     public func cancel() {
         lock.lock()
         defer { lock.unlock() }
-        task?.cancel()
-        task = nil
+        request?.cancel()
+        request = nil
     }
 }

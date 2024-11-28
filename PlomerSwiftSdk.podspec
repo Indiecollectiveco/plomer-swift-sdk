@@ -12,4 +12,5 @@ Pod::Spec.new do |s|
   s.summary = 'PlomerSwiftSdk Swift SDK'
   s.source_files = 'PlomerSwiftSdk/Classes/**/*.swift'
   s.dependency 'AnyCodable-FlightSchool', '~> 0.6'
+  s.dependency 'Alamofire', '~> 5.7'
 end
