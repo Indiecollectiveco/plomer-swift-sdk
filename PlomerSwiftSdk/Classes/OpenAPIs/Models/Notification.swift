@@ -25,10 +25,10 @@ public struct Notification: Codable, JSONEncodable, Hashable {
     public var text: String
     public var type: ModelType
     public var read: Bool = false
-    public var createdAt: AccountCreatedAt
-    public var updatedAt: AccountCreatedAt
+    public var createdAt: String
+    public var updatedAt: String
 
-    public init(id: Int, accountId: Int, text: String, type: ModelType, read: Bool = false, createdAt: AccountCreatedAt, updatedAt: AccountCreatedAt) {
+    public init(id: Int, accountId: Int, text: String, type: ModelType, read: Bool = false, createdAt: String, updatedAt: String) {
         self.id = id
         self.accountId = accountId
         self.text = text

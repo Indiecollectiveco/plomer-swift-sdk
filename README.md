@@ -44,7 +44,6 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [Account](docs/Account.md)
- - [AccountCreatedAt](docs/AccountCreatedAt.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
  - [CreateMonitoringProfile](docs/CreateMonitoringProfile.md)
  - [DeleteMonitoringProfile200Response](docs/DeleteMonitoringProfile200Response.md)

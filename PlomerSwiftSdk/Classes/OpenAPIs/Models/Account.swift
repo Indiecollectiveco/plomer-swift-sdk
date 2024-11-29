@@ -20,10 +20,10 @@ public struct Account: Codable, JSONEncodable, Hashable {
     public var enablePushNotifications: Bool = false
     public var identityToken: String?
     public var authCode: String?
-    public var createdAt: AccountCreatedAt
-    public var updatedAt: AccountCreatedAt
+    public var createdAt: String
+    public var updatedAt: String
 
-    public init(id: Int, appleId: String, email: String, name: String, enablePushNotifications: Bool = false, identityToken: String?, authCode: String?, createdAt: AccountCreatedAt, updatedAt: AccountCreatedAt) {
+    public init(id: Int, appleId: String, email: String, name: String, enablePushNotifications: Bool = false, identityToken: String?, authCode: String?, createdAt: String, updatedAt: String) {
         self.id = id
         self.appleId = appleId
         self.email = email

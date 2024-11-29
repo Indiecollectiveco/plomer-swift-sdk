@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **enablePushNotifications** | **Bool** |  | [default to false]
 **identityToken** | **String** |  | 
 **authCode** | **String** |  | 
-**createdAt** | [**AccountCreatedAt**](AccountCreatedAt.md) |  | 
-**updatedAt** | [**AccountCreatedAt**](AccountCreatedAt.md) |  | 
+**createdAt** | **String** |  | 
+**updatedAt** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

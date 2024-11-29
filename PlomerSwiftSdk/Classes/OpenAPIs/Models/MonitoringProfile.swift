@@ -16,9 +16,9 @@ public struct MonitoringProfile: Codable, JSONEncodable, Hashable {
     public var id: Int
     public var accountId: Int
     public var contentChangeDetection: Bool = false
-    public var createdAt: AccountCreatedAt
+    public var createdAt: String
     public var description: String
-    public var domainExpiresAt: AccountCreatedAt
+    public var domainExpiresAt: String
     public var domainExpiryCheck: Bool = false
     public var healthyThresholdCount: Double = 3
     public var httpStatusChecks: Bool = true
@@ -28,15 +28,15 @@ public struct MonitoringProfile: Codable, JSONEncodable, Hashable {
     public var isSslValid: Bool = true
     public var isWebsiteReachable: Bool = true
     public var registrarDataId: Int
-    public var sslExpiresAt: AccountCreatedAt
+    public var sslExpiresAt: String
     public var sslExpiryCheck: Bool = false
     public var tags: [String]
     public var timeoutSeconds: Double = 30
     public var unhealthyThresholdCount: Double = 3
-    public var updatedAt: AccountCreatedAt
+    public var updatedAt: String
     public var url: String
 
-    public init(id: Int, accountId: Int, contentChangeDetection: Bool = false, createdAt: AccountCreatedAt, description: String, domainExpiresAt: AccountCreatedAt, domainExpiryCheck: Bool = false, healthyThresholdCount: Double = 3, httpStatusChecks: Bool = true, iconUrl: String, intervalSeconds: Double = 60, isDomainExpired: Bool = false, isSslValid: Bool = true, isWebsiteReachable: Bool = true, registrarDataId: Int, sslExpiresAt: AccountCreatedAt, sslExpiryCheck: Bool = false, tags: [String], timeoutSeconds: Double = 30, unhealthyThresholdCount: Double = 3, updatedAt: AccountCreatedAt, url: String) {
+    public init(id: Int, accountId: Int, contentChangeDetection: Bool = false, createdAt: String, description: String, domainExpiresAt: String, domainExpiryCheck: Bool = false, healthyThresholdCount: Double = 3, httpStatusChecks: Bool = true, iconUrl: String, intervalSeconds: Double = 60, isDomainExpired: Bool = false, isSslValid: Bool = true, isWebsiteReachable: Bool = true, registrarDataId: Int, sslExpiresAt: String, sslExpiryCheck: Bool = false, tags: [String], timeoutSeconds: Double = 30, unhealthyThresholdCount: Double = 3, updatedAt: String, url: String) {
         self.id = id
         self.accountId = accountId
         self.contentChangeDetection = contentChangeDetection

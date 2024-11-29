@@ -16,7 +16,7 @@ public struct RegistrarData: Codable, JSONEncodable, Hashable {
     public var id: Int
     public var accountId: Int
     public var domain: String
-    public var registrarRegistrationExpirationDate: AccountCreatedAt
+    public var registrarRegistrationExpirationDate: String
     public var registrantName: String
     public var registrantOrganization: String
     public var registrantEmail: String
@@ -31,10 +31,10 @@ public struct RegistrarData: Codable, JSONEncodable, Hashable {
     public var registrarAbuseContactEmail: String
     public var registrarAbuseContactPhone: String
     public var reseller: String
-    public var createdAt: AccountCreatedAt
-    public var updatedAt: AccountCreatedAt
+    public var createdAt: String
+    public var updatedAt: String
 
-    public init(id: Int, accountId: Int, domain: String, registrarRegistrationExpirationDate: AccountCreatedAt, registrantName: String, registrantOrganization: String, registrantEmail: String, registrantPhone: String, registrantStreet: String, registrantCity: String, registrantStateProvince: String, registrantPostalCode: String, registrantCountry: String, registrar: String, registrarWhoisServer: String, registrarAbuseContactEmail: String, registrarAbuseContactPhone: String, reseller: String, createdAt: AccountCreatedAt, updatedAt: AccountCreatedAt) {
+    public init(id: Int, accountId: Int, domain: String, registrarRegistrationExpirationDate: String, registrantName: String, registrantOrganization: String, registrantEmail: String, registrantPhone: String, registrantStreet: String, registrantCity: String, registrantStateProvince: String, registrantPostalCode: String, registrantCountry: String, registrar: String, registrarWhoisServer: String, registrarAbuseContactEmail: String, registrarAbuseContactPhone: String, reseller: String, createdAt: String, updatedAt: String) {
         self.id = id
         self.accountId = accountId
         self.domain = domain
