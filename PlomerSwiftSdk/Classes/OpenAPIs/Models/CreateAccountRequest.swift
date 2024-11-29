@@ -16,12 +16,16 @@ public struct CreateAccountRequest: Codable, JSONEncodable, Hashable {
     public var email: String
     public var name: String
     public var enablePushNotifications: Bool? = false
+    public var identityToken: String?
+    public var authCode: String?
 
-    public init(appleId: String, email: String, name: String, enablePushNotifications: Bool? = false) {
+    public init(appleId: String, email: String, name: String, enablePushNotifications: Bool? = false, identityToken: String?, authCode: String?) {
         self.appleId = appleId
         self.email = email
         self.name = name
         self.enablePushNotifications = enablePushNotifications
+        self.identityToken = identityToken
+        self.authCode = authCode
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -29,6 +33,8 @@ public struct CreateAccountRequest: Codable, JSONEncodable, Hashable {
         case email
         case name
         case enablePushNotifications
+        case identityToken
+        case authCode
     }
 
     // Encodable protocol methods
@@ -39,6 +45,8 @@ public struct CreateAccountRequest: Codable, JSONEncodable, Hashable {
         try container.encode(email, forKey: .email)
         try container.encode(name, forKey: .name)
         try container.encodeIfPresent(enablePushNotifications, forKey: .enablePushNotifications)
+        try container.encode(identityToken, forKey: .identityToken)
+        try container.encode(authCode, forKey: .authCode)
     }
 }
 
