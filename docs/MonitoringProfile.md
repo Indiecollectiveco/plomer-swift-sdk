@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 **id** | **Int** |  | 
 **accountId** | **Int** |  | 
 **contentChangeDetection** | **Bool** |  | [default to false]
-**createdAt** | [**AccountCreatedAt**](AccountCreatedAt.md) |  | 
+**createdAt** | **String** |  | 
 **description** | **String** |  | 
-**domainExpiresAt** | [**AccountCreatedAt**](AccountCreatedAt.md) |  | 
+**domainExpiresAt** | **String** |  | 
 **domainExpiryCheck** | **Bool** |  | [default to false]
 **healthyThresholdCount** | **Double** |  | [default to 3]
 **httpStatusChecks** | **Bool** |  | [default to true]
@@ -18,12 +18,12 @@ Name | Type | Description | Notes
 **isSslValid** | **Bool** |  | [default to true]
 **isWebsiteReachable** | **Bool** |  | [default to true]
 **registrarDataId** | **Int** |  | 
-**sslExpiresAt** | [**AccountCreatedAt**](AccountCreatedAt.md) |  | 
+**sslExpiresAt** | **String** |  | 
 **sslExpiryCheck** | **Bool** |  | [default to false]
 **tags** | **[String]** |  | 
 **timeoutSeconds** | **Double** |  | [default to 30]
 **unhealthyThresholdCount** | **Double** |  | [default to 3]
-**updatedAt** | [**AccountCreatedAt**](AccountCreatedAt.md) |  | 
+**updatedAt** | **String** |  | 
 **url** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

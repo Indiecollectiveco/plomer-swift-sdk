@@ -29,21 +29,15 @@ components:
           type: boolean
           default: false
         identityToken:
-          anyOf:
-            - type: string
-            - type: "null"
+          type: string
+          nullable: true
         authCode:
-          anyOf:
-            - type: string
-            - type: "null"
+          type: string
+          nullable: true
         createdAt:
-          anyOf:
-            - type: string
-            - type: string
+          type: string
         updatedAt:
-          anyOf:
-            - type: string
-            - type: string
+          type: string
       required:
         - id
         - appleId
@@ -86,15 +80,11 @@ components:
           type: boolean
           default: false
         createdAt:
-          anyOf:
-            - type: string
-            - type: string
+          type: string
         description:
           type: string
         domainExpiresAt:
-          anyOf:
-            - type: string
-            - type: string
+          type: string
         domainExpiryCheck:
           type: boolean
           default: false
@@ -121,9 +111,7 @@ components:
         registrarDataId:
           type: integer
         sslExpiresAt:
-          anyOf:
-            - type: string
-            - type: string
+          type: string
         sslExpiryCheck:
           type: boolean
           default: false
@@ -138,9 +126,7 @@ components:
           type: number
           default: 3
         updatedAt:
-          anyOf:
-            - type: string
-            - type: string
+          type: string
         url:
           type: string
           format: uri
@@ -205,9 +191,7 @@ components:
         domain:
           type: string
         registrarRegistrationExpirationDate:
-          anyOf:
-            - type: string
-            - type: string
+          type: string
         registrantName:
           type: string
         registrantOrganization:
@@ -239,13 +223,9 @@ components:
         reseller:
           type: string
         createdAt:
-          anyOf:
-            - type: string
-            - type: string
+          type: string
         updatedAt:
-          anyOf:
-            - type: string
-            - type: string
+          type: string
       required:
         - id
         - accountId
@@ -399,13 +379,9 @@ components:
           type: boolean
           default: false
         createdAt:
-          anyOf:
-            - type: string
-            - type: string
+          type: string
         updatedAt:
-          anyOf:
-            - type: string
-            - type: string
+          type: string
       required:
         - id
         - accountId
@@ -510,13 +486,11 @@ paths:
                   type: boolean
                   default: false
                 identityToken:
-                  anyOf:
-                    - type: string
-                    - type: "null"
+                  type: string
+                  nullable: true
                 authCode:
-                  anyOf:
-                    - type: string
-                    - type: "null"
+                  type: string
+                  nullable: true
               required:
                 - appleId
                 - email

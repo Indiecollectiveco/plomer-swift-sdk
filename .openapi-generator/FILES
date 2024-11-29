@@ -17,7 +17,6 @@ PlomerSwiftSdk/Classes/OpenAPIs/JSONDataEncoding.swift
 PlomerSwiftSdk/Classes/OpenAPIs/JSONEncodingHelper.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/Account.swift
-PlomerSwiftSdk/Classes/OpenAPIs/Models/AccountCreatedAt.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateAccountRequest.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateMonitoringProfile.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/DeleteMonitoringProfile200Response.swift
@@ -36,7 +35,6 @@ PlomerSwiftSdk/Classes/OpenAPIs/Validation.swift
 README.md
 docs/Account.md
 docs/AccountAPI.md
-docs/AccountCreatedAt.md
 docs/CreateAccountRequest.md
 docs/CreateMonitoringProfile.md
 docs/DeleteMonitoringProfile200Response.md
