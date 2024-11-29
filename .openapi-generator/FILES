@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 .swiftformat
 Cartfile
 Package.swift
@@ -22,9 +21,9 @@ PlomerSwiftSdk/Classes/OpenAPIs/Models/AccountCreatedAt.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateAccountRequest.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateMonitoringProfile.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/DeleteMonitoringProfile200Response.swift
-PlomerSwiftSdk/Classes/OpenAPIs/Models/GetAccount404Response.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/GetNotifications200Response.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/GetNotifications200ResponsePagination.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/ModelError.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/MonitoringProfile.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/Notification.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/RegistrarData.swift
@@ -41,9 +40,9 @@ docs/AccountCreatedAt.md
 docs/CreateAccountRequest.md
 docs/CreateMonitoringProfile.md
 docs/DeleteMonitoringProfile200Response.md
-docs/GetAccount404Response.md
 docs/GetNotifications200Response.md
 docs/GetNotifications200ResponsePagination.md
+docs/ModelError.md
 docs/MonitoringProfile.md
 docs/MonitoringProfileAPI.md
 docs/Notification.md

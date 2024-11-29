@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **email** | **String** |  | 
 **name** | **String** |  | 
 **enablePushNotifications** | **Bool** |  | [default to false]
+**identityToken** | **String** |  | 
+**authCode** | **String** |  | 
 **createdAt** | [**AccountCreatedAt**](AccountCreatedAt.md) |  | 
 **updatedAt** | [**AccountCreatedAt**](AccountCreatedAt.md) |  | 
 

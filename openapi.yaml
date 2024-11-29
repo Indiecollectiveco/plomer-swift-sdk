@@ -28,6 +28,14 @@ components:
         enablePushNotifications:
           type: boolean
           default: false
+        identityToken:
+          anyOf:
+            - type: string
+            - type: "null"
+        authCode:
+          anyOf:
+            - type: string
+            - type: "null"
         createdAt:
           anyOf:
             - type: string
@@ -42,6 +50,8 @@ components:
         - email
         - name
         - enablePushNotifications
+        - identityToken
+        - authCode
         - createdAt
         - updatedAt
       description: Account represents a user account in the system
@@ -51,8 +61,20 @@ components:
         email: user@example.com
         name: John Doe
         enablePushNotifications: true
+        identityToken: some-token
+        authCode: some-code
         createdAt: "2024-03-20T10:00:00.000Z"
         updatedAt: "2024-03-20T10:00:00.000Z"
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error
+      description: Error
+      example:
+        error: Not found
     MonitoringProfile:
       type: object
       properties:
@@ -463,12 +485,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                required:
-                  - error
+                $ref: "#/components/schemas/Error"
   /account:
     post:
       operationId: createAccount
@@ -492,10 +509,20 @@ paths:
                 enablePushNotifications:
                   type: boolean
                   default: false
+                identityToken:
+                  anyOf:
+                    - type: string
+                    - type: "null"
+                authCode:
+                  anyOf:
+                    - type: string
+                    - type: "null"
               required:
                 - appleId
                 - email
                 - name
+                - identityToken
+                - authCode
         required: true
       responses:
         "200":

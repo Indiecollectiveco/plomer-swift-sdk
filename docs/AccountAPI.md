@@ -22,7 +22,7 @@ Create account
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let createAccountRequest = createAccount_request(appleId: "appleId_example", email: "email_example", name: "name_example", enablePushNotifications: false) // CreateAccountRequest | 
+let createAccountRequest = createAccount_request(appleId: "appleId_example", email: "email_example", name: "name_example", enablePushNotifications: false, identityToken: "identityToken_example", authCode: "authCode_example") // CreateAccountRequest | 
 
 // Create account
 AccountAPI.createAccount(createAccountRequest: createAccountRequest) { (response, error) in
