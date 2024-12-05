@@ -15,14 +15,13 @@ open class MonitoringProfileAPI {
     /**
      Create monitoring profile
      
-     - parameter accountId: (query)  
      - parameter createMonitoringProfile: (body)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func createMonitoringProfile(accountId: Double, createMonitoringProfile: CreateMonitoringProfile? = nil, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<MonitoringProfile, ErrorResponse>) -> Void)) -> RequestTask {
-        return createMonitoringProfileWithRequestBuilder(accountId: accountId, createMonitoringProfile: createMonitoringProfile).execute(apiResponseQueue) { result in
+    open class func createMonitoringProfile(createMonitoringProfile: CreateMonitoringProfile? = nil, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<MonitoringProfile, ErrorResponse>) -> Void)) -> RequestTask {
+        return createMonitoringProfileWithRequestBuilder(createMonitoringProfile: createMonitoringProfile).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -38,19 +37,15 @@ open class MonitoringProfileAPI {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter accountId: (query)  
      - parameter createMonitoringProfile: (body)  (optional)
      - returns: RequestBuilder<MonitoringProfile> 
      */
-    open class func createMonitoringProfileWithRequestBuilder(accountId: Double, createMonitoringProfile: CreateMonitoringProfile? = nil) -> RequestBuilder<MonitoringProfile> {
+    open class func createMonitoringProfileWithRequestBuilder(createMonitoringProfile: CreateMonitoringProfile? = nil) -> RequestBuilder<MonitoringProfile> {
         let localVariablePath = "/monitoring-profile"
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createMonitoringProfile)
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "accountId": (wrappedValue: accountId.encodeToJSON(), isExplode: true),
-        ])
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",
@@ -66,14 +61,13 @@ open class MonitoringProfileAPI {
     /**
      Delete monitoring profile
      
-     - parameter accountId: (query)  
      - parameter id: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func deleteMonitoringProfile(accountId: Double, id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeleteMonitoringProfile200Response, ErrorResponse>) -> Void)) -> RequestTask {
-        return deleteMonitoringProfileWithRequestBuilder(accountId: accountId, id: id).execute(apiResponseQueue) { result in
+    open class func deleteMonitoringProfile(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeleteCollection200Response, ErrorResponse>) -> Void)) -> RequestTask {
+        return deleteMonitoringProfileWithRequestBuilder(id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -89,11 +83,10 @@ open class MonitoringProfileAPI {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter accountId: (query)  
      - parameter id: (path)  
-     - returns: RequestBuilder<DeleteMonitoringProfile200Response> 
+     - returns: RequestBuilder<DeleteCollection200Response> 
      */
-    open class func deleteMonitoringProfileWithRequestBuilder(accountId: Double, id: Double) -> RequestBuilder<DeleteMonitoringProfile200Response> {
+    open class func deleteMonitoringProfileWithRequestBuilder(id: Double) -> RequestBuilder<DeleteCollection200Response> {
         var localVariablePath = "/monitoring-profile/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -101,10 +94,7 @@ open class MonitoringProfileAPI {
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "accountId": (wrappedValue: accountId.encodeToJSON(), isExplode: true),
-        ])
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
@@ -112,7 +102,7 @@ open class MonitoringProfileAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DeleteMonitoringProfile200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DeleteCollection200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
@@ -120,14 +110,13 @@ open class MonitoringProfileAPI {
     /**
      Get monitoring profile
      
-     - parameter accountId: (query)  
      - parameter id: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getMonitoringProfile(accountId: Double, id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<MonitoringProfile, ErrorResponse>) -> Void)) -> RequestTask {
-        return getMonitoringProfileWithRequestBuilder(accountId: accountId, id: id).execute(apiResponseQueue) { result in
+    open class func getMonitoringProfile(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<GetMonitoringProfile200Response, ErrorResponse>) -> Void)) -> RequestTask {
+        return getMonitoringProfileWithRequestBuilder(id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -143,11 +132,10 @@ open class MonitoringProfileAPI {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter accountId: (query)  
      - parameter id: (path)  
-     - returns: RequestBuilder<MonitoringProfile> 
+     - returns: RequestBuilder<GetMonitoringProfile200Response> 
      */
-    open class func getMonitoringProfileWithRequestBuilder(accountId: Double, id: Double) -> RequestBuilder<MonitoringProfile> {
+    open class func getMonitoringProfileWithRequestBuilder(id: Double) -> RequestBuilder<GetMonitoringProfile200Response> {
         var localVariablePath = "/monitoring-profile/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -155,10 +143,7 @@ open class MonitoringProfileAPI {
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "accountId": (wrappedValue: accountId.encodeToJSON(), isExplode: true),
-        ])
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
@@ -166,7 +151,7 @@ open class MonitoringProfileAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<MonitoringProfile>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GetMonitoringProfile200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
@@ -174,14 +159,13 @@ open class MonitoringProfileAPI {
     /**
      Get monitoring profile registrar data
      
-     - parameter accountId: (query)  
      - parameter id: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getMonitoringProfileRegistrarData(accountId: Double, id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<RegistrarData, ErrorResponse>) -> Void)) -> RequestTask {
-        return getMonitoringProfileRegistrarDataWithRequestBuilder(accountId: accountId, id: id).execute(apiResponseQueue) { result in
+    open class func getMonitoringProfileRegistrarData(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<GetMonitoringProfileRegistrarData200Response, ErrorResponse>) -> Void)) -> RequestTask {
+        return getMonitoringProfileRegistrarDataWithRequestBuilder(id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -197,11 +181,10 @@ open class MonitoringProfileAPI {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter accountId: (query)  
      - parameter id: (path)  
-     - returns: RequestBuilder<RegistrarData> 
+     - returns: RequestBuilder<GetMonitoringProfileRegistrarData200Response> 
      */
-    open class func getMonitoringProfileRegistrarDataWithRequestBuilder(accountId: Double, id: Double) -> RequestBuilder<RegistrarData> {
+    open class func getMonitoringProfileRegistrarDataWithRequestBuilder(id: Double) -> RequestBuilder<GetMonitoringProfileRegistrarData200Response> {
         var localVariablePath = "/monitoring-profile/{id}/registrar-data"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -209,10 +192,7 @@ open class MonitoringProfileAPI {
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "accountId": (wrappedValue: accountId.encodeToJSON(), isExplode: true),
-        ])
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
@@ -220,7 +200,7 @@ open class MonitoringProfileAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<RegistrarData>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<GetMonitoringProfileRegistrarData200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
@@ -228,13 +208,12 @@ open class MonitoringProfileAPI {
     /**
      Get monitoring profiles
      
-     - parameter accountId: (query)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getMonitoringProfiles(accountId: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[MonitoringProfile], ErrorResponse>) -> Void)) -> RequestTask {
-        return getMonitoringProfilesWithRequestBuilder(accountId: accountId).execute(apiResponseQueue) { result in
+    open class func getMonitoringProfiles(apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[MonitoringProfile], ErrorResponse>) -> Void)) -> RequestTask {
+        return getMonitoringProfilesWithRequestBuilder().execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -250,18 +229,14 @@ open class MonitoringProfileAPI {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter accountId: (query)  
      - returns: RequestBuilder<[MonitoringProfile]> 
      */
-    open class func getMonitoringProfilesWithRequestBuilder(accountId: Double) -> RequestBuilder<[MonitoringProfile]> {
+    open class func getMonitoringProfilesWithRequestBuilder() -> RequestBuilder<[MonitoringProfile]> {
         let localVariablePath = "/monitoring-profile"
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "accountId": (wrappedValue: accountId.encodeToJSON(), isExplode: true),
-        ])
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             :
@@ -277,15 +252,14 @@ open class MonitoringProfileAPI {
     /**
      Update monitoring profile
      
-     - parameter accountId: (query)  
      - parameter id: (path)  
      - parameter updateMonitoringProfile: (body)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func updateMonitoringProfile(accountId: Double, id: Double, updateMonitoringProfile: UpdateMonitoringProfile? = nil, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<MonitoringProfile, ErrorResponse>) -> Void)) -> RequestTask {
-        return updateMonitoringProfileWithRequestBuilder(accountId: accountId, id: id, updateMonitoringProfile: updateMonitoringProfile).execute(apiResponseQueue) { result in
+    open class func updateMonitoringProfile(id: Double, updateMonitoringProfile: UpdateMonitoringProfile? = nil, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<MonitoringProfile, ErrorResponse>) -> Void)) -> RequestTask {
+        return updateMonitoringProfileWithRequestBuilder(id: id, updateMonitoringProfile: updateMonitoringProfile).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -301,12 +275,11 @@ open class MonitoringProfileAPI {
      - Bearer Token:
        - type: http
        - name: bearerAuth
-     - parameter accountId: (query)  
      - parameter id: (path)  
      - parameter updateMonitoringProfile: (body)  (optional)
      - returns: RequestBuilder<MonitoringProfile> 
      */
-    open class func updateMonitoringProfileWithRequestBuilder(accountId: Double, id: Double, updateMonitoringProfile: UpdateMonitoringProfile? = nil) -> RequestBuilder<MonitoringProfile> {
+    open class func updateMonitoringProfileWithRequestBuilder(id: Double, updateMonitoringProfile: UpdateMonitoringProfile? = nil) -> RequestBuilder<MonitoringProfile> {
         var localVariablePath = "/monitoring-profile/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -314,10 +287,7 @@ open class MonitoringProfileAPI {
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateMonitoringProfile)
 
-        var localVariableUrlComponents = URLComponents(string: localVariableURLString)
-        localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
-            "accountId": (wrappedValue: accountId.encodeToJSON(), isExplode: true),
-        ])
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
 
         let localVariableNillableHeaders: [String: Any?] = [
             "Content-Type": "application/json",

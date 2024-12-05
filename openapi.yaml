@@ -13,6 +13,16 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
+    AccountWithTokens:
+      allOf:
+        - $ref: "#/components/schemas/Account"
+      type: object
+      properties:
+        tokens:
+          $ref: "#/components/schemas/TokenResponse"
+      required:
+        - tokens
+      description: Account with authentication tokens
     Account:
       type: object
       properties:
@@ -59,6 +69,20 @@ components:
         authCode: some-code
         createdAt: "2024-03-20T10:00:00.000Z"
         updatedAt: "2024-03-20T10:00:00.000Z"
+    TokenResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+      required:
+        - accessToken
+        - refreshToken
+      description: Authentication tokens
+      example:
+        accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
     Error:
       type: object
       properties:
@@ -69,6 +93,42 @@ components:
       description: Error
       example:
         error: Not found
+    Collection:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        accountId:
+          type: integer
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - name
+        - description
+        - accountId
+        - createdAt
+        - updatedAt
+      description: Collection of monitoring profiles
+    CollectionWithProfiles:
+      allOf:
+        - $ref: "#/components/schemas/Collection"
+      type: object
+      properties:
+        profiles:
+          type: array
+          items:
+            $ref: "#/components/schemas/MonitoringProfile"
+      required:
+        - profiles
+      description: Collection with its monitoring profiles
     MonitoringProfile:
       type: object
       properties:
@@ -76,6 +136,9 @@ components:
           type: integer
         accountId:
           type: integer
+        registrarDataId:
+          type: integer
+          nullable: true
         contentChangeDetection:
           type: boolean
           default: false
@@ -85,6 +148,7 @@ components:
           type: string
         domainExpiresAt:
           type: string
+          nullable: true
         domainExpiryCheck:
           type: boolean
           default: false
@@ -108,10 +172,9 @@ components:
         isWebsiteReachable:
           type: boolean
           default: true
-        registrarDataId:
-          type: integer
         sslExpiresAt:
           type: string
+          nullable: true
         sslExpiryCheck:
           type: boolean
           default: false
@@ -130,9 +193,19 @@ components:
         url:
           type: string
           format: uri
+        nextDomainCheckAt:
+          type: string
+          nullable: true
+        nextHttpStatusCheckAt:
+          type: string
+          nullable: true
+        nextSslCheckAt:
+          type: string
+          nullable: true
       required:
         - id
         - accountId
+        - registrarDataId
         - contentChangeDetection
         - createdAt
         - description
@@ -145,7 +218,6 @@ components:
         - isDomainExpired
         - isSslValid
         - isWebsiteReachable
-        - registrarDataId
         - sslExpiresAt
         - sslExpiryCheck
         - tags
@@ -153,6 +225,9 @@ components:
         - unhealthyThresholdCount
         - updatedAt
         - url
+        - nextDomainCheckAt
+        - nextHttpStatusCheckAt
+        - nextSslCheckAt
       description: >-
         MonitoringProfile represents a website monitoring configuration with
         various health checks and thresholds
@@ -181,6 +256,27 @@ components:
         unhealthyThresholdCount: 3
         updatedAt: "2024-03-20T10:00:00.000Z"
         url: https://example.com
+        nextDomainCheckAt: "2024-03-20T10:00:00.000Z"
+        nextHttpStatusCheckAt: "2024-03-20T10:00:00.000Z"
+        nextSslCheckAt: "2024-03-20T10:00:00.000Z"
+    CreateCollection:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      required:
+        - name
+      description: Input schema for creating a new collection
+    UpdateCollection:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      description: Input schema for updating a collection
     RegistrarData:
       type: object
       properties:
@@ -438,11 +534,11 @@ components:
 paths:
   /account/{appleId}:
     get:
-      operationId: getAccount
-      summary: Get account
+      operationId: getAccountWithTokens
+      summary: Get account with tokens
       tags:
         - Account
-      description: Get account
+      description: Get account and generate authentication tokens
       parameters:
         - schema:
             type: string
@@ -455,7 +551,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Account"
+                $ref: "#/components/schemas/AccountWithTokens"
         "404":
           description: Default Response
           content:
@@ -505,18 +601,198 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Account"
+  /account/refresh-token:
+    post:
+      operationId: refreshTokens
+      summary: Refresh authentication tokens
+      tags:
+        - Account
+      description: Generate new access and refresh tokens using a refresh token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken:
+                  type: string
+              required:
+                - refreshToken
+        required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenResponse"
+        "401":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /collection:
+    get:
+      operationId: getCollections
+      summary: Get collections
+      tags:
+        - Collection
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Collection"
+    post:
+      operationId: createCollection
+      summary: Create collection
+      tags:
+        - Collection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCollection"
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Collection"
+  /collection/{id}:
+    get:
+      operationId: getCollection
+      summary: Get collection with profiles
+      tags:
+        - Collection
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/CollectionWithProfiles"
+    patch:
+      operationId: updateCollection
+      summary: Update collection
+      tags:
+        - Collection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateCollection"
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Collection"
+    delete:
+      operationId: deleteCollection
+      summary: Delete collection
+      tags:
+        - Collection
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /collection/{id}/profiles/{profileId}:
+    post:
+      operationId: addProfileToCollection
+      summary: Add monitoring profile to collection
+      tags:
+        - Collection
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+        - schema:
+            type: number
+          in: path
+          name: profileId
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+    delete:
+      operationId: removeProfileFromCollection
+      summary: Remove monitoring profile from collection
+      tags:
+        - Collection
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+        - schema:
+            type: number
+          in: path
+          name: profileId
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
   /monitoring-profile:
     get:
       operationId: getMonitoringProfiles
       summary: Get monitoring profiles
       tags:
         - MonitoringProfile
-      parameters:
-        - schema:
-            type: number
-          in: query
-          name: accountId
-          required: true
       responses:
         "200":
           description: Default Response
@@ -536,12 +812,6 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/CreateMonitoringProfile"
-      parameters:
-        - schema:
-            type: number
-          in: query
-          name: accountId
-          required: true
       responses:
         "200":
           description: Default Response
@@ -558,11 +828,6 @@ paths:
       parameters:
         - schema:
             type: number
-          in: query
-          name: accountId
-          required: true
-        - schema:
-            type: number
           in: path
           name: id
           required: true
@@ -572,7 +837,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/MonitoringProfile"
+                oneOf:
+                  - $ref: "#/components/schemas/MonitoringProfile"
     patch:
       operationId: updateMonitoringProfile
       summary: Update monitoring profile
@@ -584,11 +850,6 @@ paths:
             schema:
               $ref: "#/components/schemas/UpdateMonitoringProfile"
       parameters:
-        - schema:
-            type: number
-          in: query
-          name: accountId
-          required: true
         - schema:
             type: number
           in: path
@@ -607,11 +868,6 @@ paths:
       tags:
         - MonitoringProfile
       parameters:
-        - schema:
-            type: number
-          in: query
-          name: accountId
-          required: true
         - schema:
             type: number
           in: path
@@ -638,11 +894,6 @@ paths:
       parameters:
         - schema:
             type: number
-          in: query
-          name: accountId
-          required: true
-        - schema:
-            type: number
           in: path
           name: id
           required: true
@@ -652,7 +903,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RegistrarData"
+                oneOf:
+                  - $ref: "#/components/schemas/RegistrarData"
   /notification:
     get:
       operationId: getNotifications
@@ -660,11 +912,6 @@ paths:
       tags:
         - Notification
       parameters:
-        - schema:
-            type: number
-          in: query
-          name: accountId
-          required: true
         - schema:
             type: number
             default: 10
@@ -715,11 +962,6 @@ paths:
       parameters:
         - schema:
             type: number
-          in: query
-          name: accountId
-          required: true
-        - schema:
-            type: number
           in: path
           name: id
           required: true
@@ -729,18 +971,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Notification"
+                oneOf:
+                  - $ref: "#/components/schemas/Notification"
     delete:
       operationId: deleteNotification
       summary: Delete notification
       tags:
         - Notification
       parameters:
-        - schema:
-            type: number
-          in: query
-          name: accountId
-          required: true
         - schema:
             type: number
           in: path
@@ -775,11 +1013,6 @@ paths:
                 - read
         required: true
       parameters:
-        - schema:
-            type: number
-          in: query
-          name: accountId
-          required: true
         - schema:
             type: number
           in: path

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **deleteNotification**
 ```swift
-    open class func deleteNotification(accountId: Double, id: Double, completion: @escaping (_ data: DeleteMonitoringProfile200Response?, _ error: Error?) -> Void)
+    open class func deleteNotification(id: Double, completion: @escaping (_ data: DeleteCollection200Response?, _ error: Error?) -> Void)
 ```
 
 Delete notification
@@ -22,11 +22,10 @@ Delete notification
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let accountId = 987 // Double | 
 let id = 987 // Double | 
 
 // Delete notification
-NotificationAPI.deleteNotification(accountId: accountId, id: id) { (response, error) in
+NotificationAPI.deleteNotification(id: id) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -42,12 +41,11 @@ NotificationAPI.deleteNotification(accountId: accountId, id: id) { (response, er
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **Double** |  | 
  **id** | **Double** |  | 
 
 ### Return type
 
-[**DeleteMonitoringProfile200Response**](DeleteMonitoringProfile200Response.md)
+[**DeleteCollection200Response**](DeleteCollection200Response.md)
 
 ### Authorization
 
@@ -62,7 +60,7 @@ Name | Type | Description  | Notes
 
 # **getNotification**
 ```swift
-    open class func getNotification(accountId: Double, id: Double, completion: @escaping (_ data: Notification?, _ error: Error?) -> Void)
+    open class func getNotification(id: Double, completion: @escaping (_ data: GetNotification200Response?, _ error: Error?) -> Void)
 ```
 
 Get notification
@@ -72,11 +70,10 @@ Get notification
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let accountId = 987 // Double | 
 let id = 987 // Double | 
 
 // Get notification
-NotificationAPI.getNotification(accountId: accountId, id: id) { (response, error) in
+NotificationAPI.getNotification(id: id) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -92,12 +89,11 @@ NotificationAPI.getNotification(accountId: accountId, id: id) { (response, error
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **Double** |  | 
  **id** | **Double** |  | 
 
 ### Return type
 
-[**Notification**](Notification.md)
+[**GetNotification200Response**](GetNotification200Response.md)
 
 ### Authorization
 
@@ -112,7 +108,7 @@ Name | Type | Description  | Notes
 
 # **getNotifications**
 ```swift
-    open class func getNotifications(accountId: Double, limit: Double? = nil, page: Double? = nil, completion: @escaping (_ data: GetNotifications200Response?, _ error: Error?) -> Void)
+    open class func getNotifications(limit: Double? = nil, page: Double? = nil, completion: @escaping (_ data: GetNotifications200Response?, _ error: Error?) -> Void)
 ```
 
 Get notifications
@@ -122,12 +118,11 @@ Get notifications
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let accountId = 987 // Double | 
 let limit = 987 // Double |  (optional) (default to 10)
 let page = 987 // Double |  (optional) (default to 0)
 
 // Get notifications
-NotificationAPI.getNotifications(accountId: accountId, limit: limit, page: page) { (response, error) in
+NotificationAPI.getNotifications(limit: limit, page: page) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -143,7 +138,6 @@ NotificationAPI.getNotifications(accountId: accountId, limit: limit, page: page)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **Double** |  | 
  **limit** | **Double** |  | [optional] [default to 10]
  **page** | **Double** |  | [optional] [default to 0]
 
@@ -164,7 +158,7 @@ Name | Type | Description  | Notes
 
 # **updateNotification**
 ```swift
-    open class func updateNotification(accountId: Double, id: Double, updateNotificationRequest: UpdateNotificationRequest, completion: @escaping (_ data: Notification?, _ error: Error?) -> Void)
+    open class func updateNotification(id: Double, updateNotificationRequest: UpdateNotificationRequest, completion: @escaping (_ data: Notification?, _ error: Error?) -> Void)
 ```
 
 Update notification
@@ -174,12 +168,11 @@ Update notification
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let accountId = 987 // Double | 
 let id = 987 // Double | 
 let updateNotificationRequest = updateNotification_request(read: false) // UpdateNotificationRequest | 
 
 // Update notification
-NotificationAPI.updateNotification(accountId: accountId, id: id, updateNotificationRequest: updateNotificationRequest) { (response, error) in
+NotificationAPI.updateNotification(id: id, updateNotificationRequest: updateNotificationRequest) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -195,7 +188,6 @@ NotificationAPI.updateNotification(accountId: accountId, id: id, updateNotificat
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **accountId** | **Double** |  | 
  **id** | **Double** |  | 
  **updateNotificationRequest** | [**UpdateNotificationRequest**](UpdateNotificationRequest.md) |  | 
 

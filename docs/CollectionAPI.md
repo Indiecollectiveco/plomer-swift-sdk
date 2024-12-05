@@ -1,33 +1,35 @@
-# MonitoringProfileAPI
+# CollectionAPI
 
 All URIs are relative to *http://localhost:3000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createMonitoringProfile**](MonitoringProfileAPI.md#createmonitoringprofile) | **POST** /monitoring-profile | Create monitoring profile
-[**deleteMonitoringProfile**](MonitoringProfileAPI.md#deletemonitoringprofile) | **DELETE** /monitoring-profile/{id} | Delete monitoring profile
-[**getMonitoringProfile**](MonitoringProfileAPI.md#getmonitoringprofile) | **GET** /monitoring-profile/{id} | Get monitoring profile
-[**getMonitoringProfileRegistrarData**](MonitoringProfileAPI.md#getmonitoringprofileregistrardata) | **GET** /monitoring-profile/{id}/registrar-data | Get monitoring profile registrar data
-[**getMonitoringProfiles**](MonitoringProfileAPI.md#getmonitoringprofiles) | **GET** /monitoring-profile | Get monitoring profiles
-[**updateMonitoringProfile**](MonitoringProfileAPI.md#updatemonitoringprofile) | **PATCH** /monitoring-profile/{id} | Update monitoring profile
+[**addProfileToCollection**](CollectionAPI.md#addprofiletocollection) | **POST** /collection/{id}/profiles/{profileId} | Add monitoring profile to collection
+[**createCollection**](CollectionAPI.md#createcollection) | **POST** /collection | Create collection
+[**deleteCollection**](CollectionAPI.md#deletecollection) | **DELETE** /collection/{id} | Delete collection
+[**getCollection**](CollectionAPI.md#getcollection) | **GET** /collection/{id} | Get collection with profiles
+[**getCollections**](CollectionAPI.md#getcollections) | **GET** /collection | Get collections
+[**removeProfileFromCollection**](CollectionAPI.md#removeprofilefromcollection) | **DELETE** /collection/{id}/profiles/{profileId} | Remove monitoring profile from collection
+[**updateCollection**](CollectionAPI.md#updatecollection) | **PATCH** /collection/{id} | Update collection
 
 
-# **createMonitoringProfile**
+# **addProfileToCollection**
 ```swift
-    open class func createMonitoringProfile(createMonitoringProfile: CreateMonitoringProfile? = nil, completion: @escaping (_ data: MonitoringProfile?, _ error: Error?) -> Void)
+    open class func addProfileToCollection(id: Double, profileId: Double, completion: @escaping (_ data: DeleteCollection200Response?, _ error: Error?) -> Void)
 ```
 
-Create monitoring profile
+Add monitoring profile to collection
 
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let createMonitoringProfile = CreateMonitoringProfile(url: "url_example", httpStatusChecks: false, timeoutSeconds: 123, intervalSeconds: 123, healthyThresholdCount: 123, unhealthyThresholdCount: 123, domainExpiryCheck: false, sslExpiryCheck: false, contentChangeDetection: false, description: "description_example", tags: ["tags_example"]) // CreateMonitoringProfile |  (optional)
+let id = 987 // Double | 
+let profileId = 987 // Double | 
 
-// Create monitoring profile
-MonitoringProfileAPI.createMonitoringProfile(createMonitoringProfile: createMonitoringProfile) { (response, error) in
+// Add monitoring profile to collection
+CollectionAPI.addProfileToCollection(id: id, profileId: profileId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -43,11 +45,60 @@ MonitoringProfileAPI.createMonitoringProfile(createMonitoringProfile: createMoni
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createMonitoringProfile** | [**CreateMonitoringProfile**](CreateMonitoringProfile.md) |  | [optional] 
+ **id** | **Double** |  | 
+ **profileId** | **Double** |  | 
 
 ### Return type
 
-[**MonitoringProfile**](MonitoringProfile.md)
+[**DeleteCollection200Response**](DeleteCollection200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **createCollection**
+```swift
+    open class func createCollection(createCollection: CreateCollection? = nil, completion: @escaping (_ data: Collection?, _ error: Error?) -> Void)
+```
+
+Create collection
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import PlomerSwiftSdk
+
+let createCollection = CreateCollection(name: "name_example", description: "description_example") // CreateCollection |  (optional)
+
+// Create collection
+CollectionAPI.createCollection(createCollection: createCollection) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createCollection** | [**CreateCollection**](CreateCollection.md) |  | [optional] 
+
+### Return type
+
+[**Collection**](Collection.md)
 
 ### Authorization
 
@@ -60,12 +111,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deleteMonitoringProfile**
+# **deleteCollection**
 ```swift
-    open class func deleteMonitoringProfile(id: Double, completion: @escaping (_ data: DeleteCollection200Response?, _ error: Error?) -> Void)
+    open class func deleteCollection(id: Double, completion: @escaping (_ data: DeleteCollection200Response?, _ error: Error?) -> Void)
 ```
 
-Delete monitoring profile
+Delete collection
 
 ### Example
 ```swift
@@ -74,8 +125,8 @@ import PlomerSwiftSdk
 
 let id = 987 // Double | 
 
-// Delete monitoring profile
-MonitoringProfileAPI.deleteMonitoringProfile(id: id) { (response, error) in
+// Delete collection
+CollectionAPI.deleteCollection(id: id) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -108,12 +159,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getMonitoringProfile**
+# **getCollection**
 ```swift
-    open class func getMonitoringProfile(id: Double, completion: @escaping (_ data: GetMonitoringProfile200Response?, _ error: Error?) -> Void)
+    open class func getCollection(id: Double, completion: @escaping (_ data: GetCollection200Response?, _ error: Error?) -> Void)
 ```
 
-Get monitoring profile
+Get collection with profiles
 
 ### Example
 ```swift
@@ -122,8 +173,8 @@ import PlomerSwiftSdk
 
 let id = 987 // Double | 
 
-// Get monitoring profile
-MonitoringProfileAPI.getMonitoringProfile(id: id) { (response, error) in
+// Get collection with profiles
+CollectionAPI.getCollection(id: id) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -143,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetMonitoringProfile200Response**](GetMonitoringProfile200Response.md)
+[**GetCollection200Response**](GetCollection200Response.md)
 
 ### Authorization
 
@@ -156,60 +207,12 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getMonitoringProfileRegistrarData**
+# **getCollections**
 ```swift
-    open class func getMonitoringProfileRegistrarData(id: Double, completion: @escaping (_ data: GetMonitoringProfileRegistrarData200Response?, _ error: Error?) -> Void)
+    open class func getCollections(completion: @escaping (_ data: [Collection]?, _ error: Error?) -> Void)
 ```
 
-Get monitoring profile registrar data
-
-### Example
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
-
-let id = 987 // Double | 
-
-// Get monitoring profile registrar data
-MonitoringProfileAPI.getMonitoringProfileRegistrarData(id: id) { (response, error) in
-    guard error == nil else {
-        print(error)
-        return
-    }
-
-    if (response) {
-        dump(response)
-    }
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Double** |  | 
-
-### Return type
-
-[**GetMonitoringProfileRegistrarData200Response**](GetMonitoringProfileRegistrarData200Response.md)
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getMonitoringProfiles**
-```swift
-    open class func getMonitoringProfiles(completion: @escaping (_ data: [MonitoringProfile]?, _ error: Error?) -> Void)
-```
-
-Get monitoring profiles
+Get collections
 
 ### Example
 ```swift
@@ -217,8 +220,8 @@ Get monitoring profiles
 import PlomerSwiftSdk
 
 
-// Get monitoring profiles
-MonitoringProfileAPI.getMonitoringProfiles() { (response, error) in
+// Get collections
+CollectionAPI.getCollections() { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -235,7 +238,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**[MonitoringProfile]**](MonitoringProfile.md)
+[**[Collection]**](Collection.md)
 
 ### Authorization
 
@@ -248,12 +251,12 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **updateMonitoringProfile**
+# **removeProfileFromCollection**
 ```swift
-    open class func updateMonitoringProfile(id: Double, updateMonitoringProfile: UpdateMonitoringProfile? = nil, completion: @escaping (_ data: MonitoringProfile?, _ error: Error?) -> Void)
+    open class func removeProfileFromCollection(id: Double, profileId: Double, completion: @escaping (_ data: DeleteCollection200Response?, _ error: Error?) -> Void)
 ```
 
-Update monitoring profile
+Remove monitoring profile from collection
 
 ### Example
 ```swift
@@ -261,10 +264,10 @@ Update monitoring profile
 import PlomerSwiftSdk
 
 let id = 987 // Double | 
-let updateMonitoringProfile = UpdateMonitoringProfile(url: "url_example", httpStatusChecks: false, timeoutSeconds: 123, intervalSeconds: 123, healthyThresholdCount: 123, unhealthyThresholdCount: 123, domainExpiryCheck: false, sslExpiryCheck: false, contentChangeDetection: false, description: "description_example", tags: ["tags_example"]) // UpdateMonitoringProfile |  (optional)
+let profileId = 987 // Double | 
 
-// Update monitoring profile
-MonitoringProfileAPI.updateMonitoringProfile(id: id, updateMonitoringProfile: updateMonitoringProfile) { (response, error) in
+// Remove monitoring profile from collection
+CollectionAPI.removeProfileFromCollection(id: id, profileId: profileId) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -281,11 +284,61 @@ MonitoringProfileAPI.updateMonitoringProfile(id: id, updateMonitoringProfile: up
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Double** |  | 
- **updateMonitoringProfile** | [**UpdateMonitoringProfile**](UpdateMonitoringProfile.md) |  | [optional] 
+ **profileId** | **Double** |  | 
 
 ### Return type
 
-[**MonitoringProfile**](MonitoringProfile.md)
+[**DeleteCollection200Response**](DeleteCollection200Response.md)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateCollection**
+```swift
+    open class func updateCollection(id: Double, updateCollection: UpdateCollection? = nil, completion: @escaping (_ data: Collection?, _ error: Error?) -> Void)
+```
+
+Update collection
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import PlomerSwiftSdk
+
+let id = 987 // Double | 
+let updateCollection = UpdateCollection(name: "name_example", description: "description_example") // UpdateCollection |  (optional)
+
+// Update collection
+CollectionAPI.updateCollection(id: id, updateCollection: updateCollection) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Double** |  | 
+ **updateCollection** | [**UpdateCollection**](UpdateCollection.md) |  | [optional] 
+
+### Return type
+
+[**Collection**](Collection.md)
 
 ### Authorization
 
