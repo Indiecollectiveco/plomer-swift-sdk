@@ -27,7 +27,15 @@ All URIs are relative to *http://localhost:3000*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccountAPI* | [**createAccount**](docs/AccountAPI.md#createaccount) | **POST** /account | Create account
-*AccountAPI* | [**getAccount**](docs/AccountAPI.md#getaccount) | **GET** /account/{appleId} | Get account
+*AccountAPI* | [**getAccountWithTokens**](docs/AccountAPI.md#getaccountwithtokens) | **GET** /account/{appleId} | Get account with tokens
+*AccountAPI* | [**refreshTokens**](docs/AccountAPI.md#refreshtokens) | **POST** /account/refresh-token | Refresh authentication tokens
+*CollectionAPI* | [**addProfileToCollection**](docs/CollectionAPI.md#addprofiletocollection) | **POST** /collection/{id}/profiles/{profileId} | Add monitoring profile to collection
+*CollectionAPI* | [**createCollection**](docs/CollectionAPI.md#createcollection) | **POST** /collection | Create collection
+*CollectionAPI* | [**deleteCollection**](docs/CollectionAPI.md#deletecollection) | **DELETE** /collection/{id} | Delete collection
+*CollectionAPI* | [**getCollection**](docs/CollectionAPI.md#getcollection) | **GET** /collection/{id} | Get collection with profiles
+*CollectionAPI* | [**getCollections**](docs/CollectionAPI.md#getcollections) | **GET** /collection | Get collections
+*CollectionAPI* | [**removeProfileFromCollection**](docs/CollectionAPI.md#removeprofilefromcollection) | **DELETE** /collection/{id}/profiles/{profileId} | Remove monitoring profile from collection
+*CollectionAPI* | [**updateCollection**](docs/CollectionAPI.md#updatecollection) | **PATCH** /collection/{id} | Update collection
 *MonitoringProfileAPI* | [**createMonitoringProfile**](docs/MonitoringProfileAPI.md#createmonitoringprofile) | **POST** /monitoring-profile | Create monitoring profile
 *MonitoringProfileAPI* | [**deleteMonitoringProfile**](docs/MonitoringProfileAPI.md#deletemonitoringprofile) | **DELETE** /monitoring-profile/{id} | Delete monitoring profile
 *MonitoringProfileAPI* | [**getMonitoringProfile**](docs/MonitoringProfileAPI.md#getmonitoringprofile) | **GET** /monitoring-profile/{id} | Get monitoring profile
@@ -44,15 +52,26 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [Account](docs/Account.md)
+ - [AccountWithTokens](docs/AccountWithTokens.md)
+ - [Collection](docs/Collection.md)
+ - [CollectionWithProfiles](docs/CollectionWithProfiles.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
+ - [CreateCollection](docs/CreateCollection.md)
  - [CreateMonitoringProfile](docs/CreateMonitoringProfile.md)
- - [DeleteMonitoringProfile200Response](docs/DeleteMonitoringProfile200Response.md)
+ - [DeleteCollection200Response](docs/DeleteCollection200Response.md)
+ - [GetCollection200Response](docs/GetCollection200Response.md)
+ - [GetMonitoringProfile200Response](docs/GetMonitoringProfile200Response.md)
+ - [GetMonitoringProfileRegistrarData200Response](docs/GetMonitoringProfileRegistrarData200Response.md)
+ - [GetNotification200Response](docs/GetNotification200Response.md)
  - [GetNotifications200Response](docs/GetNotifications200Response.md)
  - [GetNotifications200ResponsePagination](docs/GetNotifications200ResponsePagination.md)
  - [ModelError](docs/ModelError.md)
  - [MonitoringProfile](docs/MonitoringProfile.md)
  - [Notification](docs/Notification.md)
+ - [RefreshTokensRequest](docs/RefreshTokensRequest.md)
  - [RegistrarData](docs/RegistrarData.md)
+ - [TokenResponse](docs/TokenResponse.md)
+ - [UpdateCollection](docs/UpdateCollection.md)
  - [UpdateMonitoringProfile](docs/UpdateMonitoringProfile.md)
  - [UpdateNotificationRequest](docs/UpdateNotificationRequest.md)
  - [UptimeItem](docs/UptimeItem.md)

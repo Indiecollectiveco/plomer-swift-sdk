@@ -15,10 +15,11 @@ public struct MonitoringProfile: Codable, JSONEncodable, Hashable {
 
     public var id: Int
     public var accountId: Int
+    public var registrarDataId: Int?
     public var contentChangeDetection: Bool = false
     public var createdAt: String
     public var description: String
-    public var domainExpiresAt: String
+    public var domainExpiresAt: String?
     public var domainExpiryCheck: Bool = false
     public var healthyThresholdCount: Double = 3
     public var httpStatusChecks: Bool = true
@@ -27,18 +28,21 @@ public struct MonitoringProfile: Codable, JSONEncodable, Hashable {
     public var isDomainExpired: Bool = false
     public var isSslValid: Bool = true
     public var isWebsiteReachable: Bool = true
-    public var registrarDataId: Int
-    public var sslExpiresAt: String
+    public var sslExpiresAt: String?
     public var sslExpiryCheck: Bool = false
     public var tags: [String]
     public var timeoutSeconds: Double = 30
     public var unhealthyThresholdCount: Double = 3
     public var updatedAt: String
     public var url: String
+    public var nextDomainCheckAt: String?
+    public var nextHttpStatusCheckAt: String?
+    public var nextSslCheckAt: String?
 
-    public init(id: Int, accountId: Int, contentChangeDetection: Bool = false, createdAt: String, description: String, domainExpiresAt: String, domainExpiryCheck: Bool = false, healthyThresholdCount: Double = 3, httpStatusChecks: Bool = true, iconUrl: String, intervalSeconds: Double = 60, isDomainExpired: Bool = false, isSslValid: Bool = true, isWebsiteReachable: Bool = true, registrarDataId: Int, sslExpiresAt: String, sslExpiryCheck: Bool = false, tags: [String], timeoutSeconds: Double = 30, unhealthyThresholdCount: Double = 3, updatedAt: String, url: String) {
+    public init(id: Int, accountId: Int, registrarDataId: Int?, contentChangeDetection: Bool = false, createdAt: String, description: String, domainExpiresAt: String?, domainExpiryCheck: Bool = false, healthyThresholdCount: Double = 3, httpStatusChecks: Bool = true, iconUrl: String, intervalSeconds: Double = 60, isDomainExpired: Bool = false, isSslValid: Bool = true, isWebsiteReachable: Bool = true, sslExpiresAt: String?, sslExpiryCheck: Bool = false, tags: [String], timeoutSeconds: Double = 30, unhealthyThresholdCount: Double = 3, updatedAt: String, url: String, nextDomainCheckAt: String?, nextHttpStatusCheckAt: String?, nextSslCheckAt: String?) {
         self.id = id
         self.accountId = accountId
+        self.registrarDataId = registrarDataId
         self.contentChangeDetection = contentChangeDetection
         self.createdAt = createdAt
         self.description = description
@@ -51,7 +55,6 @@ public struct MonitoringProfile: Codable, JSONEncodable, Hashable {
         self.isDomainExpired = isDomainExpired
         self.isSslValid = isSslValid
         self.isWebsiteReachable = isWebsiteReachable
-        self.registrarDataId = registrarDataId
         self.sslExpiresAt = sslExpiresAt
         self.sslExpiryCheck = sslExpiryCheck
         self.tags = tags
@@ -59,11 +62,15 @@ public struct MonitoringProfile: Codable, JSONEncodable, Hashable {
         self.unhealthyThresholdCount = unhealthyThresholdCount
         self.updatedAt = updatedAt
         self.url = url
+        self.nextDomainCheckAt = nextDomainCheckAt
+        self.nextHttpStatusCheckAt = nextHttpStatusCheckAt
+        self.nextSslCheckAt = nextSslCheckAt
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case id
         case accountId
+        case registrarDataId
         case contentChangeDetection
         case createdAt
         case description
@@ -76,7 +83,6 @@ public struct MonitoringProfile: Codable, JSONEncodable, Hashable {
         case isDomainExpired
         case isSslValid
         case isWebsiteReachable
-        case registrarDataId
         case sslExpiresAt
         case sslExpiryCheck
         case tags
@@ -84,6 +90,9 @@ public struct MonitoringProfile: Codable, JSONEncodable, Hashable {
         case unhealthyThresholdCount
         case updatedAt
         case url
+        case nextDomainCheckAt
+        case nextHttpStatusCheckAt
+        case nextSslCheckAt
     }
 
     // Encodable protocol methods
@@ -92,6 +101,7 @@ public struct MonitoringProfile: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(accountId, forKey: .accountId)
+        try container.encode(registrarDataId, forKey: .registrarDataId)
         try container.encode(contentChangeDetection, forKey: .contentChangeDetection)
         try container.encode(createdAt, forKey: .createdAt)
         try container.encode(description, forKey: .description)
@@ -104,7 +114,6 @@ public struct MonitoringProfile: Codable, JSONEncodable, Hashable {
         try container.encode(isDomainExpired, forKey: .isDomainExpired)
         try container.encode(isSslValid, forKey: .isSslValid)
         try container.encode(isWebsiteReachable, forKey: .isWebsiteReachable)
-        try container.encode(registrarDataId, forKey: .registrarDataId)
         try container.encode(sslExpiresAt, forKey: .sslExpiresAt)
         try container.encode(sslExpiryCheck, forKey: .sslExpiryCheck)
         try container.encode(tags, forKey: .tags)
@@ -112,6 +121,9 @@ public struct MonitoringProfile: Codable, JSONEncodable, Hashable {
         try container.encode(unhealthyThresholdCount, forKey: .unhealthyThresholdCount)
         try container.encode(updatedAt, forKey: .updatedAt)
         try container.encode(url, forKey: .url)
+        try container.encode(nextDomainCheckAt, forKey: .nextDomainCheckAt)
+        try container.encode(nextHttpStatusCheckAt, forKey: .nextHttpStatusCheckAt)
+        try container.encode(nextSslCheckAt, forKey: .nextSslCheckAt)
     }
 }
 

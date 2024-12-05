@@ -60,15 +60,15 @@ open class AccountAPI {
     }
 
     /**
-     Get account
+     Get account with tokens
      
      - parameter appleId: (path)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getAccount(appleId: String, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Account, ErrorResponse>) -> Void)) -> RequestTask {
-        return getAccountWithRequestBuilder(appleId: appleId).execute(apiResponseQueue) { result in
+    open class func getAccountWithTokens(appleId: String, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AccountWithTokens, ErrorResponse>) -> Void)) -> RequestTask {
+        return getAccountWithTokensWithRequestBuilder(appleId: appleId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -79,16 +79,16 @@ open class AccountAPI {
     }
 
     /**
-     Get account
+     Get account with tokens
      - GET /account/{appleId}
-     - Get account
+     - Get account and generate authentication tokens
      - Bearer Token:
        - type: http
        - name: bearerAuth
      - parameter appleId: (path)  
-     - returns: RequestBuilder<Account> 
+     - returns: RequestBuilder<AccountWithTokens> 
      */
-    open class func getAccountWithRequestBuilder(appleId: String) -> RequestBuilder<Account> {
+    open class func getAccountWithTokensWithRequestBuilder(appleId: String) -> RequestBuilder<AccountWithTokens> {
         var localVariablePath = "/account/{appleId}"
         let appleIdPreEscape = "\(APIHelper.mapValueToPathItem(appleId))"
         let appleIdPostEscape = appleIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -104,8 +104,55 @@ open class AccountAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Account>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AccountWithTokens>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     Refresh authentication tokens
+     
+     - parameter refreshTokensRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func refreshTokens(refreshTokensRequest: RefreshTokensRequest, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<TokenResponse, ErrorResponse>) -> Void)) -> RequestTask {
+        return refreshTokensWithRequestBuilder(refreshTokensRequest: refreshTokensRequest).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Refresh authentication tokens
+     - POST /account/refresh-token
+     - Generate new access and refresh tokens using a refresh token
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter refreshTokensRequest: (body)  
+     - returns: RequestBuilder<TokenResponse> 
+     */
+    open class func refreshTokensWithRequestBuilder(refreshTokensRequest: RefreshTokensRequest) -> RequestBuilder<TokenResponse> {
+        let localVariablePath = "/account/refresh-token"
+        let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: refreshTokensRequest)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<TokenResponse>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }
