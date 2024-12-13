@@ -454,7 +454,7 @@ components:
           items:
             type: string
       description: Input schema for updating a monitoring profile
-    Notification:
+    PlomerNotification:
       type: object
       properties:
         id:
@@ -486,7 +486,7 @@ components:
         - read
         - createdAt
         - updatedAt
-      description: Notification represents a system message or alert for a user
+      description: PlomerNotification represents a system message or alert for a user
       example:
         id: 1
         accountId: 1
@@ -910,7 +910,7 @@ paths:
       operationId: getNotifications
       summary: Get notifications
       tags:
-        - Notification
+        - PlomerNotification
       parameters:
         - schema:
             type: number
@@ -933,7 +933,7 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: "#/components/schemas/Notification"
+                      $ref: "#/components/schemas/PlomerNotification"
                   pagination:
                     type: object
                     properties:
@@ -958,7 +958,7 @@ paths:
       operationId: getNotification
       summary: Get notification
       tags:
-        - Notification
+        - PlomerNotification
       parameters:
         - schema:
             type: number
@@ -972,12 +972,12 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: "#/components/schemas/Notification"
+                  - $ref: "#/components/schemas/PlomerNotification"
     delete:
       operationId: deleteNotification
       summary: Delete notification
       tags:
-        - Notification
+        - PlomerNotification
       parameters:
         - schema:
             type: number
@@ -1000,7 +1000,7 @@ paths:
       operationId: updateNotification
       summary: Update notification
       tags:
-        - Notification
+        - PlomerNotification
       requestBody:
         content:
           application/json:
@@ -1024,7 +1024,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Notification"
+                $ref: "#/components/schemas/PlomerNotification"
   /uptime:
     get:
       operationId: getUptime
