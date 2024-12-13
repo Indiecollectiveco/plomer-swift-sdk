@@ -69,7 +69,7 @@ open class NotificationAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getNotification(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<GetNotification200Response, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func getNotification(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Notification, ErrorResponse>) -> Void)) -> RequestTask {
         return getNotificationWithRequestBuilder(id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -87,9 +87,9 @@ open class NotificationAPI {
        - type: http
        - name: bearerAuth
      - parameter id: (path)  
-     - returns: RequestBuilder<GetNotification200Response> 
+     - returns: RequestBuilder<Notification> 
      */
-    open class func getNotificationWithRequestBuilder(id: Double) -> RequestBuilder<GetNotification200Response> {
+    open class func getNotificationWithRequestBuilder(id: Double) -> RequestBuilder<Notification> {
         var localVariablePath = "/notification/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -105,7 +105,7 @@ open class NotificationAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GetNotification200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<Notification>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }

@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 # **getCollection**
 ```swift
-    open class func getCollection(id: Double, completion: @escaping (_ data: GetCollection200Response?, _ error: Error?) -> Void)
+    open class func getCollection(id: Double, completion: @escaping (_ data: CollectionWithProfiles?, _ error: Error?) -> Void)
 ```
 
 Get collection with profiles
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetCollection200Response**](GetCollection200Response.md)
+[**CollectionWithProfiles**](CollectionWithProfiles.md)
 
 ### Authorization
 

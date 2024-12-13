@@ -138,7 +138,6 @@ components:
           type: integer
         registrarDataId:
           type: integer
-          nullable: true
         contentChangeDetection:
           type: boolean
           default: false
@@ -148,7 +147,6 @@ components:
           type: string
         domainExpiresAt:
           type: string
-          nullable: true
         domainExpiryCheck:
           type: boolean
           default: false
@@ -193,15 +191,6 @@ components:
         url:
           type: string
           format: uri
-        nextDomainCheckAt:
-          type: string
-          nullable: true
-        nextHttpStatusCheckAt:
-          type: string
-          nullable: true
-        nextSslCheckAt:
-          type: string
-          nullable: true
       required:
         - id
         - accountId
@@ -225,9 +214,6 @@ components:
         - unhealthyThresholdCount
         - updatedAt
         - url
-        - nextDomainCheckAt
-        - nextHttpStatusCheckAt
-        - nextSslCheckAt
       description: >-
         MonitoringProfile represents a website monitoring configuration with
         various health checks and thresholds
@@ -256,9 +242,6 @@ components:
         unhealthyThresholdCount: 3
         updatedAt: "2024-03-20T10:00:00.000Z"
         url: https://example.com
-        nextDomainCheckAt: "2024-03-20T10:00:00.000Z"
-        nextHttpStatusCheckAt: "2024-03-20T10:00:00.000Z"
-        nextSslCheckAt: "2024-03-20T10:00:00.000Z"
     CreateCollection:
       type: object
       properties:
@@ -684,6 +667,7 @@ paths:
               schema:
                 oneOf:
                   - $ref: "#/components/schemas/CollectionWithProfiles"
+                  - type: "null"
     patch:
       operationId: updateCollection
       summary: Update collection
@@ -839,6 +823,7 @@ paths:
               schema:
                 oneOf:
                   - $ref: "#/components/schemas/MonitoringProfile"
+                  - type: "null"
     patch:
       operationId: updateMonitoringProfile
       summary: Update monitoring profile
@@ -903,8 +888,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/RegistrarData"
+                $ref: "#/components/schemas/RegistrarData"
   /notification:
     get:
       operationId: getNotifications
@@ -973,6 +957,7 @@ paths:
               schema:
                 oneOf:
                   - $ref: "#/components/schemas/PlomerNotification"
+                  - type: "null"
     delete:
       operationId: deleteNotification
       summary: Delete notification

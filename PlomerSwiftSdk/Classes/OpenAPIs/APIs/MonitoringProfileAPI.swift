@@ -115,7 +115,7 @@ open class MonitoringProfileAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getMonitoringProfile(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<GetMonitoringProfile200Response, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func getMonitoringProfile(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<MonitoringProfile, ErrorResponse>) -> Void)) -> RequestTask {
         return getMonitoringProfileWithRequestBuilder(id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -133,9 +133,9 @@ open class MonitoringProfileAPI {
        - type: http
        - name: bearerAuth
      - parameter id: (path)  
-     - returns: RequestBuilder<GetMonitoringProfile200Response> 
+     - returns: RequestBuilder<MonitoringProfile> 
      */
-    open class func getMonitoringProfileWithRequestBuilder(id: Double) -> RequestBuilder<GetMonitoringProfile200Response> {
+    open class func getMonitoringProfileWithRequestBuilder(id: Double) -> RequestBuilder<MonitoringProfile> {
         var localVariablePath = "/monitoring-profile/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -151,7 +151,7 @@ open class MonitoringProfileAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GetMonitoringProfile200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<MonitoringProfile>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
@@ -164,7 +164,7 @@ open class MonitoringProfileAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getMonitoringProfileRegistrarData(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<GetMonitoringProfileRegistrarData200Response, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func getMonitoringProfileRegistrarData(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<RegistrarData, ErrorResponse>) -> Void)) -> RequestTask {
         return getMonitoringProfileRegistrarDataWithRequestBuilder(id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -182,9 +182,9 @@ open class MonitoringProfileAPI {
        - type: http
        - name: bearerAuth
      - parameter id: (path)  
-     - returns: RequestBuilder<GetMonitoringProfileRegistrarData200Response> 
+     - returns: RequestBuilder<RegistrarData> 
      */
-    open class func getMonitoringProfileRegistrarDataWithRequestBuilder(id: Double) -> RequestBuilder<GetMonitoringProfileRegistrarData200Response> {
+    open class func getMonitoringProfileRegistrarDataWithRequestBuilder(id: Double) -> RequestBuilder<RegistrarData> {
         var localVariablePath = "/monitoring-profile/{id}/registrar-data"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -200,7 +200,7 @@ open class MonitoringProfileAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GetMonitoringProfileRegistrarData200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<RegistrarData>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }

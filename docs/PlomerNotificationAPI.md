@@ -60,7 +60,7 @@ Name | Type | Description  | Notes
 
 # **getNotification**
 ```swift
-    open class func getNotification(id: Double, completion: @escaping (_ data: GetNotification200Response?, _ error: Error?) -> Void)
+    open class func getNotification(id: Double, completion: @escaping (_ data: PlomerNotification?, _ error: Error?) -> Void)
 ```
 
 Get notification
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetNotification200Response**](GetNotification200Response.md)
+[**PlomerNotification**](PlomerNotification.md)
 
 ### Authorization
 

@@ -25,10 +25,6 @@ PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateAccountRequest.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateCollection.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateMonitoringProfile.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/DeleteCollection200Response.swift
-PlomerSwiftSdk/Classes/OpenAPIs/Models/GetCollection200Response.swift
-PlomerSwiftSdk/Classes/OpenAPIs/Models/GetMonitoringProfile200Response.swift
-PlomerSwiftSdk/Classes/OpenAPIs/Models/GetMonitoringProfileRegistrarData200Response.swift
-PlomerSwiftSdk/Classes/OpenAPIs/Models/GetNotification200Response.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/GetNotifications200Response.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/GetNotifications200ResponsePagination.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/ModelError.swift
@@ -55,10 +51,6 @@ docs/CreateAccountRequest.md
 docs/CreateCollection.md
 docs/CreateMonitoringProfile.md
 docs/DeleteCollection200Response.md
-docs/GetCollection200Response.md
-docs/GetMonitoringProfile200Response.md
-docs/GetMonitoringProfileRegistrarData200Response.md
-docs/GetNotification200Response.md
 docs/GetNotifications200Response.md
 docs/GetNotifications200ResponsePagination.md
 docs/ModelError.md
