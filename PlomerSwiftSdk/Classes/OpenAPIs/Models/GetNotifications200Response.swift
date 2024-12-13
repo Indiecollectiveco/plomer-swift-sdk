@@ -12,10 +12,10 @@ import AnyCodable
 
 public struct GetNotifications200Response: Codable, JSONEncodable, Hashable {
 
-    public var data: [Notification]
+    public var data: [PlomerNotification]
     public var pagination: GetNotifications200ResponsePagination
 
-    public init(data: [Notification], pagination: GetNotifications200ResponsePagination) {
+    public init(data: [PlomerNotification], pagination: GetNotifications200ResponsePagination) {
         self.data = data
         self.pagination = pagination
     }

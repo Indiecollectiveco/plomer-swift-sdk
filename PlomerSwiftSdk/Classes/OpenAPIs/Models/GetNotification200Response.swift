@@ -11,20 +11,20 @@ import AnyCodable
 #endif
 
 public enum GetNotification200Response: Codable, JSONEncodable, Hashable {
-    case typeNotification(Notification)
+    case typePlomerNotification(PlomerNotification)
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         switch self {
-        case .typeNotification(let value):
+        case .typePlomerNotification(let value):
             try container.encode(value)
         }
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        if let value = try? container.decode(Notification.self) {
-            self = .typeNotification(value)
+        if let value = try? container.decode(PlomerNotification.self) {
+            self = .typePlomerNotification(value)
         } else {
             throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Unable to decode instance of GetNotification200Response"))
         }
