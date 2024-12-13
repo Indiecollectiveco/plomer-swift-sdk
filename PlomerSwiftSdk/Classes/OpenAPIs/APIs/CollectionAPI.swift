@@ -169,7 +169,7 @@ open class CollectionAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getCollection(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<GetCollection200Response, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func getCollection(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<CollectionWithProfiles, ErrorResponse>) -> Void)) -> RequestTask {
         return getCollectionWithRequestBuilder(id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -187,9 +187,9 @@ open class CollectionAPI {
        - type: http
        - name: bearerAuth
      - parameter id: (path)  
-     - returns: RequestBuilder<GetCollection200Response> 
+     - returns: RequestBuilder<CollectionWithProfiles> 
      */
-    open class func getCollectionWithRequestBuilder(id: Double) -> RequestBuilder<GetCollection200Response> {
+    open class func getCollectionWithRequestBuilder(id: Double) -> RequestBuilder<CollectionWithProfiles> {
         var localVariablePath = "/collection/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -205,7 +205,7 @@ open class CollectionAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<GetCollection200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<CollectionWithProfiles>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }

@@ -110,7 +110,7 @@ Name | Type | Description  | Notes
 
 # **getMonitoringProfile**
 ```swift
-    open class func getMonitoringProfile(id: Double, completion: @escaping (_ data: GetMonitoringProfile200Response?, _ error: Error?) -> Void)
+    open class func getMonitoringProfile(id: Double, completion: @escaping (_ data: MonitoringProfile?, _ error: Error?) -> Void)
 ```
 
 Get monitoring profile
@@ -143,7 +143,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetMonitoringProfile200Response**](GetMonitoringProfile200Response.md)
+[**MonitoringProfile**](MonitoringProfile.md)
 
 ### Authorization
 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 # **getMonitoringProfileRegistrarData**
 ```swift
-    open class func getMonitoringProfileRegistrarData(id: Double, completion: @escaping (_ data: GetMonitoringProfileRegistrarData200Response?, _ error: Error?) -> Void)
+    open class func getMonitoringProfileRegistrarData(id: Double, completion: @escaping (_ data: RegistrarData?, _ error: Error?) -> Void)
 ```
 
 Get monitoring profile registrar data
@@ -191,7 +191,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetMonitoringProfileRegistrarData200Response**](GetMonitoringProfileRegistrarData200Response.md)
+[**RegistrarData**](RegistrarData.md)
 
 ### Authorization
 
