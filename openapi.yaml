@@ -497,7 +497,6 @@ components:
           type: integer
       required:
         - accountId
-        - date
         - failedRequests
         - monitoringProfileId
         - p95
@@ -821,9 +820,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/MonitoringProfile"
-                  - type: "null"
+                $ref: "#/components/schemas/MonitoringProfile"
     patch:
       operationId: updateMonitoringProfile
       summary: Update monitoring profile
@@ -955,9 +952,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/PlomerNotification"
-                  - type: "null"
+                $ref: "#/components/schemas/PlomerNotification"
     delete:
       operationId: deleteNotification
       summary: Delete notification
@@ -985,7 +980,7 @@ paths:
       operationId: updateNotification
       summary: Update notification
       tags:
-        - PlomerNotification
+        - Notification
       requestBody:
         content:
           application/json:
@@ -1026,6 +1021,14 @@ paths:
             type: number
           in: query
           name: days
+        - schema:
+            type: string
+            enum:
+              - hour
+              - day
+            default: day
+          in: query
+          name: granularity
       responses:
         "200":
           description: Default Response
