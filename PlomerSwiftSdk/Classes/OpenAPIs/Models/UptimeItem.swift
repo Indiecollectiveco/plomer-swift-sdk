@@ -14,14 +14,14 @@ import AnyCodable
 public struct UptimeItem: Codable, JSONEncodable, Hashable {
 
     public var accountId: Int
-    public var date: String
+    public var date: String?
     public var failedRequests: Int
     public var monitoringProfileId: Int
     public var p95: Double
     public var successful: Int
     public var total: Int
 
-    public init(accountId: Int, date: String, failedRequests: Int, monitoringProfileId: Int, p95: Double, successful: Int, total: Int) {
+    public init(accountId: Int, date: String? = nil, failedRequests: Int, monitoringProfileId: Int, p95: Double, successful: Int, total: Int) {
         self.accountId = accountId
         self.date = date
         self.failedRequests = failedRequests
@@ -46,7 +46,7 @@ public struct UptimeItem: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(accountId, forKey: .accountId)
-        try container.encode(date, forKey: .date)
+        try container.encodeIfPresent(date, forKey: .date)
         try container.encode(failedRequests, forKey: .failedRequests)
         try container.encode(monitoringProfileId, forKey: .monitoringProfileId)
         try container.encode(p95, forKey: .p95)

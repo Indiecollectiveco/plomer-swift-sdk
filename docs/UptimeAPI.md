@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 # **getUptime**
 ```swift
-    open class func getUptime(monitoringProfileId: Double, days: Double? = nil, completion: @escaping (_ data: [UptimeItem]?, _ error: Error?) -> Void)
+    open class func getUptime(monitoringProfileId: Double, days: Double? = nil, granularity: Granularity_getUptime? = nil, completion: @escaping (_ data: [UptimeItem]?, _ error: Error?) -> Void)
 ```
 
 Get uptime
@@ -21,9 +21,10 @@ import PlomerSwiftSdk
 
 let monitoringProfileId = 987 // Double | 
 let days = 987 // Double |  (optional)
+let granularity = "granularity_example" // String |  (optional) (default to .day)
 
 // Get uptime
-UptimeAPI.getUptime(monitoringProfileId: monitoringProfileId, days: days) { (response, error) in
+UptimeAPI.getUptime(monitoringProfileId: monitoringProfileId, days: days, granularity: granularity) { (response, error) in
     guard error == nil else {
         print(error)
         return
@@ -41,6 +42,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **monitoringProfileId** | **Double** |  | 
  **days** | **Double** |  | [optional] 
+ **granularity** | **String** |  | [optional] [default to .day]
 
 ### Return type
 

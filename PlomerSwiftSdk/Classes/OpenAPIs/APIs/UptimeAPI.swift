@@ -13,16 +13,25 @@ import AnyCodable
 open class UptimeAPI {
 
     /**
+     * enum for parameter granularity
+     */
+    public enum Granularity_getUptime: String, CaseIterable {
+        case hour = "hour"
+        case day = "day"
+    }
+
+    /**
      Get uptime
      
      - parameter monitoringProfileId: (query)  
      - parameter days: (query)  (optional)
+     - parameter granularity: (query)  (optional, default to .day)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func getUptime(monitoringProfileId: Double, days: Double? = nil, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[UptimeItem], ErrorResponse>) -> Void)) -> RequestTask {
-        return getUptimeWithRequestBuilder(monitoringProfileId: monitoringProfileId, days: days).execute(apiResponseQueue) { result in
+    open class func getUptime(monitoringProfileId: Double, days: Double? = nil, granularity: Granularity_getUptime? = nil, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[UptimeItem], ErrorResponse>) -> Void)) -> RequestTask {
+        return getUptimeWithRequestBuilder(monitoringProfileId: monitoringProfileId, days: days, granularity: granularity).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
                 completion(.success(response.body))
@@ -40,9 +49,10 @@ open class UptimeAPI {
        - name: bearerAuth
      - parameter monitoringProfileId: (query)  
      - parameter days: (query)  (optional)
+     - parameter granularity: (query)  (optional, default to .day)
      - returns: RequestBuilder<[UptimeItem]> 
      */
-    open class func getUptimeWithRequestBuilder(monitoringProfileId: Double, days: Double? = nil) -> RequestBuilder<[UptimeItem]> {
+    open class func getUptimeWithRequestBuilder(monitoringProfileId: Double, days: Double? = nil, granularity: Granularity_getUptime? = nil) -> RequestBuilder<[UptimeItem]> {
         let localVariablePath = "/uptime"
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
@@ -51,6 +61,7 @@ open class UptimeAPI {
         localVariableUrlComponents?.queryItems = APIHelper.mapValuesToQueryItems([
             "monitoringProfileId": (wrappedValue: monitoringProfileId.encodeToJSON(), isExplode: true),
             "days": (wrappedValue: days?.encodeToJSON(), isExplode: true),
+            "granularity": (wrappedValue: granularity?.encodeToJSON(), isExplode: true),
         ])
 
         let localVariableNillableHeaders: [String: Any?] = [

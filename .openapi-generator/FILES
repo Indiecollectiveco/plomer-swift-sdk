@@ -8,6 +8,7 @@ PlomerSwiftSdk/Classes/OpenAPIs/APIs.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/AccountAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/CollectionAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/MonitoringProfileAPI.swift
+PlomerSwiftSdk/Classes/OpenAPIs/APIs/NotificationAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/PlomerNotificationAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/UptimeAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/AlamofireImplementations.swift
@@ -56,6 +57,7 @@ docs/GetNotifications200ResponsePagination.md
 docs/ModelError.md
 docs/MonitoringProfile.md
 docs/MonitoringProfileAPI.md
+docs/NotificationAPI.md
 docs/PlomerNotification.md
 docs/PlomerNotificationAPI.md
 docs/RefreshTokensRequest.md

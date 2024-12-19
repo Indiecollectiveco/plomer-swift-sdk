@@ -42,10 +42,10 @@ Class | Method | HTTP request | Description
 *MonitoringProfileAPI* | [**getMonitoringProfileRegistrarData**](docs/MonitoringProfileAPI.md#getmonitoringprofileregistrardata) | **GET** /monitoring-profile/{id}/registrar-data | Get monitoring profile registrar data
 *MonitoringProfileAPI* | [**getMonitoringProfiles**](docs/MonitoringProfileAPI.md#getmonitoringprofiles) | **GET** /monitoring-profile | Get monitoring profiles
 *MonitoringProfileAPI* | [**updateMonitoringProfile**](docs/MonitoringProfileAPI.md#updatemonitoringprofile) | **PATCH** /monitoring-profile/{id} | Update monitoring profile
+*NotificationAPI* | [**updateNotification**](docs/NotificationAPI.md#updatenotification) | **PATCH** /notification/{id} | Update notification
 *PlomerNotificationAPI* | [**deleteNotification**](docs/PlomerNotificationAPI.md#deletenotification) | **DELETE** /notification/{id} | Delete notification
 *PlomerNotificationAPI* | [**getNotification**](docs/PlomerNotificationAPI.md#getnotification) | **GET** /notification/{id} | Get notification
 *PlomerNotificationAPI* | [**getNotifications**](docs/PlomerNotificationAPI.md#getnotifications) | **GET** /notification | Get notifications
-*PlomerNotificationAPI* | [**updateNotification**](docs/PlomerNotificationAPI.md#updatenotification) | **PATCH** /notification/{id} | Update notification
 *UptimeAPI* | [**getUptime**](docs/UptimeAPI.md#getuptime) | **GET** /uptime | Get uptime
 
 

@@ -4,7 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **accountId** | **Int** |  | 
-**date** | **String** |  | 
+**date** | **String** |  | [optional] 
 **failedRequests** | **Int** |  | 
 **monitoringProfileId** | **Int** |  | 
 **p95** | **Double** |  | 
