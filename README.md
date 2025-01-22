@@ -26,6 +26,7 @@ All URIs are relative to *http://localhost:3000*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*AccountAPI* | [**addMacOsPushToken**](docs/AccountAPI.md#addmacospushtoken) | **POST** /account/add-macos-push-token | Add macOS push token
 *AccountAPI* | [**createAccount**](docs/AccountAPI.md#createaccount) | **POST** /account | Create account
 *AccountAPI* | [**getAccountWithTokens**](docs/AccountAPI.md#getaccountwithtokens) | **GET** /account/{appleId} | Get account with tokens
 *AccountAPI* | [**refreshTokens**](docs/AccountAPI.md#refreshtokens) | **POST** /account/refresh-token | Refresh authentication tokens
@@ -53,12 +54,13 @@ Class | Method | HTTP request | Description
 
  - [Account](docs/Account.md)
  - [AccountWithTokens](docs/AccountWithTokens.md)
+ - [AddMacOsPushToken200Response](docs/AddMacOsPushToken200Response.md)
+ - [AddMacOsPushTokenRequest](docs/AddMacOsPushTokenRequest.md)
  - [Collection](docs/Collection.md)
  - [CollectionWithProfiles](docs/CollectionWithProfiles.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
  - [CreateCollection](docs/CreateCollection.md)
  - [CreateMonitoringProfile](docs/CreateMonitoringProfile.md)
- - [DeleteCollection200Response](docs/DeleteCollection200Response.md)
  - [GetNotifications200Response](docs/GetNotifications200Response.md)
  - [GetNotifications200ResponsePagination](docs/GetNotifications200ResponsePagination.md)
  - [ModelError](docs/ModelError.md)

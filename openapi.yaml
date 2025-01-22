@@ -207,8 +207,8 @@ components:
         - isDomainExpired
         - isSslValid
         - isWebsiteReachable
-        - sslExpiresAt
         - sslExpiryCheck
+        - sslExpiresAt
         - tags
         - timeoutSeconds
         - unhealthyThresholdCount
@@ -609,6 +609,48 @@ paths:
               schema:
                 $ref: "#/components/schemas/TokenResponse"
         "401":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /account/add-macos-push-token:
+    post:
+      operationId: addMacOsPushToken
+      summary: Add macOS push token
+      tags:
+        - Account
+      description: Add macOS push token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+              required:
+                - token
+        required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "401":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        "404":
           description: Default Response
           content:
             application/json:

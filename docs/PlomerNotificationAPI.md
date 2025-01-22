@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **deleteNotification**
 ```swift
-    open class func deleteNotification(id: Double, completion: @escaping (_ data: DeleteCollection200Response?, _ error: Error?) -> Void)
+    open class func deleteNotification(id: Double, completion: @escaping (_ data: AddMacOsPushToken200Response?, _ error: Error?) -> Void)
 ```
 
 Delete notification
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteCollection200Response**](DeleteCollection200Response.md)
+[**AddMacOsPushToken200Response**](AddMacOsPushToken200Response.md)
 
 ### Authorization
 

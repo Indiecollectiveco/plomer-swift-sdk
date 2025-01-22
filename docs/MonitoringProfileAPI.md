@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 # **deleteMonitoringProfile**
 ```swift
-    open class func deleteMonitoringProfile(id: Double, completion: @escaping (_ data: DeleteCollection200Response?, _ error: Error?) -> Void)
+    open class func deleteMonitoringProfile(id: Double, completion: @escaping (_ data: AddMacOsPushToken200Response?, _ error: Error?) -> Void)
 ```
 
 Delete monitoring profile
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteCollection200Response**](DeleteCollection200Response.md)
+[**AddMacOsPushToken200Response**](AddMacOsPushToken200Response.md)
 
 ### Authorization
 

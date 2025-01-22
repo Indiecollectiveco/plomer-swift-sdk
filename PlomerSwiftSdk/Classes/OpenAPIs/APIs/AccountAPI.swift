@@ -13,6 +13,53 @@ import AnyCodable
 open class AccountAPI {
 
     /**
+     Add macOS push token
+     
+     - parameter addMacOsPushTokenRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func addMacOsPushToken(addMacOsPushTokenRequest: AddMacOsPushTokenRequest, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AddMacOsPushToken200Response, ErrorResponse>) -> Void)) -> RequestTask {
+        return addMacOsPushTokenWithRequestBuilder(addMacOsPushTokenRequest: addMacOsPushTokenRequest).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Add macOS push token
+     - POST /account/add-macos-push-token
+     - Add macOS push token
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter addMacOsPushTokenRequest: (body)  
+     - returns: RequestBuilder<AddMacOsPushToken200Response> 
+     */
+    open class func addMacOsPushTokenWithRequestBuilder(addMacOsPushTokenRequest: AddMacOsPushTokenRequest) -> RequestBuilder<AddMacOsPushToken200Response> {
+        let localVariablePath = "/account/add-macos-push-token"
+        let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: addMacOsPushTokenRequest)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<AddMacOsPushToken200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
      Create account
      
      - parameter createAccountRequest: (body)  

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 # **addProfileToCollection**
 ```swift
-    open class func addProfileToCollection(id: Double, profileId: Double, completion: @escaping (_ data: DeleteCollection200Response?, _ error: Error?) -> Void)
+    open class func addProfileToCollection(id: Double, profileId: Double, completion: @escaping (_ data: AddMacOsPushToken200Response?, _ error: Error?) -> Void)
 ```
 
 Add monitoring profile to collection
@@ -50,7 +50,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteCollection200Response**](DeleteCollection200Response.md)
+[**AddMacOsPushToken200Response**](AddMacOsPushToken200Response.md)
 
 ### Authorization
 
@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 
 # **deleteCollection**
 ```swift
-    open class func deleteCollection(id: Double, completion: @escaping (_ data: DeleteCollection200Response?, _ error: Error?) -> Void)
+    open class func deleteCollection(id: Double, completion: @escaping (_ data: AddMacOsPushToken200Response?, _ error: Error?) -> Void)
 ```
 
 Delete collection
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteCollection200Response**](DeleteCollection200Response.md)
+[**AddMacOsPushToken200Response**](AddMacOsPushToken200Response.md)
 
 ### Authorization
 
@@ -253,7 +253,7 @@ This endpoint does not need any parameter.
 
 # **removeProfileFromCollection**
 ```swift
-    open class func removeProfileFromCollection(id: Double, profileId: Double, completion: @escaping (_ data: DeleteCollection200Response?, _ error: Error?) -> Void)
+    open class func removeProfileFromCollection(id: Double, profileId: Double, completion: @escaping (_ data: AddMacOsPushToken200Response?, _ error: Error?) -> Void)
 ```
 
 Remove monitoring profile from collection
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteCollection200Response**](DeleteCollection200Response.md)
+[**AddMacOsPushToken200Response**](AddMacOsPushToken200Response.md)
 
 ### Authorization
 
