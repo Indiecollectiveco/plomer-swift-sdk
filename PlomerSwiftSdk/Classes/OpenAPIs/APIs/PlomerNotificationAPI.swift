@@ -20,7 +20,7 @@ open class PlomerNotificationAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func deleteNotification(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeleteCollection200Response, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func deleteNotification(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AddMacOsPushToken200Response, ErrorResponse>) -> Void)) -> RequestTask {
         return deleteNotificationWithRequestBuilder(id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -38,9 +38,9 @@ open class PlomerNotificationAPI {
        - type: http
        - name: bearerAuth
      - parameter id: (path)  
-     - returns: RequestBuilder<DeleteCollection200Response> 
+     - returns: RequestBuilder<AddMacOsPushToken200Response> 
      */
-    open class func deleteNotificationWithRequestBuilder(id: Double) -> RequestBuilder<DeleteCollection200Response> {
+    open class func deleteNotificationWithRequestBuilder(id: Double) -> RequestBuilder<AddMacOsPushToken200Response> {
         var localVariablePath = "/notification/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -56,7 +56,7 @@ open class PlomerNotificationAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<DeleteCollection200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AddMacOsPushToken200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
