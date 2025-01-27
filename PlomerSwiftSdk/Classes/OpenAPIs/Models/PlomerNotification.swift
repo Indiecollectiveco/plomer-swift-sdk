@@ -10,7 +10,7 @@ import Foundation
 import AnyCodable
 #endif
 
-/** PlomerNotification represents a system message or alert for a user */
+/** Plomer Notification represents a system message or alert for a user */
 public struct PlomerNotification: Codable, JSONEncodable, Hashable {
 
     public enum ModelType: String, Codable, CaseIterable {

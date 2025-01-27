@@ -43,6 +43,7 @@ Class | Method | HTTP request | Description
 *MonitoringProfileAPI* | [**getMonitoringProfileRegistrarData**](docs/MonitoringProfileAPI.md#getmonitoringprofileregistrardata) | **GET** /monitoring-profile/{id}/registrar-data | Get monitoring profile registrar data
 *MonitoringProfileAPI* | [**getMonitoringProfiles**](docs/MonitoringProfileAPI.md#getmonitoringprofiles) | **GET** /monitoring-profile | Get monitoring profiles
 *MonitoringProfileAPI* | [**updateMonitoringProfile**](docs/MonitoringProfileAPI.md#updatemonitoringprofile) | **PATCH** /monitoring-profile/{id} | Update monitoring profile
+*NotificationAPI* | [**createNotification**](docs/NotificationAPI.md#createnotification) | **POST** /notification | Create notification
 *NotificationAPI* | [**updateNotification**](docs/NotificationAPI.md#updatenotification) | **PATCH** /notification/{id} | Update notification
 *PlomerNotificationAPI* | [**deleteNotification**](docs/PlomerNotificationAPI.md#deletenotification) | **DELETE** /notification/{id} | Delete notification
 *PlomerNotificationAPI* | [**getNotification**](docs/PlomerNotificationAPI.md#getnotification) | **GET** /notification/{id} | Get notification
@@ -61,6 +62,7 @@ Class | Method | HTTP request | Description
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
  - [CreateCollection](docs/CreateCollection.md)
  - [CreateMonitoringProfile](docs/CreateMonitoringProfile.md)
+ - [CreateNotificationRequest](docs/CreateNotificationRequest.md)
  - [GetNotifications200Response](docs/GetNotifications200Response.md)
  - [GetNotifications200ResponsePagination](docs/GetNotifications200ResponsePagination.md)
  - [ModelError](docs/ModelError.md)

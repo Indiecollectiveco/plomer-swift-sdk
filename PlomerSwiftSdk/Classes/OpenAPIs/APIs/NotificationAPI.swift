@@ -13,6 +13,52 @@ import AnyCodable
 open class NotificationAPI {
 
     /**
+     Create notification
+     
+     - parameter createNotificationRequest: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func createNotification(createNotificationRequest: CreateNotificationRequest, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<PlomerNotification, ErrorResponse>) -> Void)) -> RequestTask {
+        return createNotificationWithRequestBuilder(createNotificationRequest: createNotificationRequest).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Create notification
+     - POST /notification
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter createNotificationRequest: (body)  
+     - returns: RequestBuilder<PlomerNotification> 
+     */
+    open class func createNotificationWithRequestBuilder(createNotificationRequest: CreateNotificationRequest) -> RequestBuilder<PlomerNotification> {
+        let localVariablePath = "/notification"
+        let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createNotificationRequest)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<PlomerNotification>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
      Update notification
      
      - parameter id: (path)  
