@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 
 # **createAccount**
 ```swift
-    open class func createAccount(createAccountRequest: CreateAccountRequest, completion: @escaping (_ data: Account?, _ error: Error?) -> Void)
+    open class func createAccount(createAccountRequest: CreateAccountRequest, completion: @escaping (_ data: AccountWithTokens?, _ error: Error?) -> Void)
 ```
 
 Create account
@@ -97,7 +97,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Account**](Account.md)
+[**AccountWithTokens**](AccountWithTokens.md)
 
 ### Authorization
 
