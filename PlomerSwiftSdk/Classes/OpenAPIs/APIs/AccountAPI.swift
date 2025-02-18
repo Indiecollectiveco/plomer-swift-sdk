@@ -67,7 +67,7 @@ open class AccountAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func createAccount(createAccountRequest: CreateAccountRequest, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Account, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func createAccount(createAccountRequest: CreateAccountRequest, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AccountWithTokens, ErrorResponse>) -> Void)) -> RequestTask {
         return createAccountWithRequestBuilder(createAccountRequest: createAccountRequest).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -86,9 +86,9 @@ open class AccountAPI {
        - type: http
        - name: bearerAuth
      - parameter createAccountRequest: (body)  
-     - returns: RequestBuilder<Account> 
+     - returns: RequestBuilder<AccountWithTokens> 
      */
-    open class func createAccountWithRequestBuilder(createAccountRequest: CreateAccountRequest) -> RequestBuilder<Account> {
+    open class func createAccountWithRequestBuilder(createAccountRequest: CreateAccountRequest) -> RequestBuilder<AccountWithTokens> {
         let localVariablePath = "/account"
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createAccountRequest)
@@ -101,7 +101,7 @@ open class AccountAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<Account>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<AccountWithTokens>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }

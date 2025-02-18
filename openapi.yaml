@@ -582,7 +582,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Account"
+                $ref: "#/components/schemas/AccountWithTokens"
   /account/refresh-token:
     post:
       operationId: refreshTokens
