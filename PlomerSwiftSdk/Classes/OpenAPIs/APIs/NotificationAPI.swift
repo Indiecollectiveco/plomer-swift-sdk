@@ -34,6 +34,9 @@ open class NotificationAPI {
     /**
      Create notification
      - POST /notification
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -81,6 +84,9 @@ open class NotificationAPI {
     /**
      Update notification
      - PATCH /notification/{id}
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth

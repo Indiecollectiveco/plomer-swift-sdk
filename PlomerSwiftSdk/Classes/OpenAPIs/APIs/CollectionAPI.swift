@@ -35,6 +35,9 @@ open class CollectionAPI {
     /**
      Add monitoring profile to collection
      - POST /collection/{id}/profiles/{profileId}
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -88,6 +91,9 @@ open class CollectionAPI {
     /**
      Create collection
      - POST /collection
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -134,6 +140,9 @@ open class CollectionAPI {
     /**
      Delete collection
      - DELETE /collection/{id}
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -183,6 +192,9 @@ open class CollectionAPI {
     /**
      Get collection with profiles
      - GET /collection/{id}
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -231,6 +243,9 @@ open class CollectionAPI {
     /**
      Get collections
      - GET /collection
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -277,6 +292,9 @@ open class CollectionAPI {
     /**
      Remove monitoring profile from collection
      - DELETE /collection/{id}/profiles/{profileId}
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -331,6 +349,9 @@ open class CollectionAPI {
     /**
      Update collection
      - PATCH /collection/{id}
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth

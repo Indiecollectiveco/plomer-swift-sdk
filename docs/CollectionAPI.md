@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -198,7 +198,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -242,7 +242,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -292,7 +292,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 
@@ -342,7 +342,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
 
 ### HTTP request headers
 

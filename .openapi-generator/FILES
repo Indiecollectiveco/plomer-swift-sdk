@@ -6,6 +6,7 @@ PlomerSwiftSdk.podspec
 PlomerSwiftSdk/Classes/OpenAPIs/APIHelper.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/AccountAPI.swift
+PlomerSwiftSdk/Classes/OpenAPIs/APIs/ApiKeyAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/CollectionAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/MonitoringProfileAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/NotificationAPI.swift
@@ -22,9 +23,11 @@ PlomerSwiftSdk/Classes/OpenAPIs/Models/Account.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/AccountWithTokens.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/AddMacOsPushToken200Response.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/AddMacOsPushTokenRequest.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/ApiKey.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/Collection.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CollectionWithProfiles.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateAccountRequest.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateApiKey.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateCollection.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateMonitoringProfile.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateNotificationRequest.swift
@@ -49,10 +52,13 @@ docs/AccountAPI.md
 docs/AccountWithTokens.md
 docs/AddMacOsPushToken200Response.md
 docs/AddMacOsPushTokenRequest.md
+docs/ApiKey.md
+docs/ApiKeyAPI.md
 docs/Collection.md
 docs/CollectionAPI.md
 docs/CollectionWithProfiles.md
 docs/CreateAccountRequest.md
+docs/CreateApiKey.md
 docs/CreateCollection.md
 docs/CreateMonitoringProfile.md
 docs/CreateNotificationRequest.md

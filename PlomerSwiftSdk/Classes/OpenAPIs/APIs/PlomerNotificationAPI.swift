@@ -34,6 +34,9 @@ open class PlomerNotificationAPI {
     /**
      Delete notification
      - DELETE /notification/{id}
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -83,6 +86,9 @@ open class PlomerNotificationAPI {
     /**
      Get notification
      - GET /notification/{id}
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -133,6 +139,9 @@ open class PlomerNotificationAPI {
     /**
      Get notifications
      - GET /notification
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
