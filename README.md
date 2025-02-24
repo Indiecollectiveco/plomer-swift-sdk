@@ -30,6 +30,9 @@ Class | Method | HTTP request | Description
 *AccountAPI* | [**createAccount**](docs/AccountAPI.md#createaccount) | **POST** /account | Create account
 *AccountAPI* | [**getAccountWithTokens**](docs/AccountAPI.md#getaccountwithtokens) | **GET** /account/{appleId} | Get account with tokens
 *AccountAPI* | [**refreshTokens**](docs/AccountAPI.md#refreshtokens) | **POST** /account/refresh-token | Refresh authentication tokens
+*ApiKeyAPI* | [**createApiKey**](docs/ApiKeyAPI.md#createapikey) | **POST** /api-key | Create API key
+*ApiKeyAPI* | [**deleteApiKey**](docs/ApiKeyAPI.md#deleteapikey) | **DELETE** /api-key/{id} | Delete API key
+*ApiKeyAPI* | [**getApiKeys**](docs/ApiKeyAPI.md#getapikeys) | **GET** /api-key | Get API keys
 *CollectionAPI* | [**addProfileToCollection**](docs/CollectionAPI.md#addprofiletocollection) | **POST** /collection/{id}/profiles/{profileId} | Add monitoring profile to collection
 *CollectionAPI* | [**createCollection**](docs/CollectionAPI.md#createcollection) | **POST** /collection | Create collection
 *CollectionAPI* | [**deleteCollection**](docs/CollectionAPI.md#deletecollection) | **DELETE** /collection/{id} | Delete collection
@@ -57,9 +60,11 @@ Class | Method | HTTP request | Description
  - [AccountWithTokens](docs/AccountWithTokens.md)
  - [AddMacOsPushToken200Response](docs/AddMacOsPushToken200Response.md)
  - [AddMacOsPushTokenRequest](docs/AddMacOsPushTokenRequest.md)
+ - [ApiKey](docs/ApiKey.md)
  - [Collection](docs/Collection.md)
  - [CollectionWithProfiles](docs/CollectionWithProfiles.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)
+ - [CreateApiKey](docs/CreateApiKey.md)
  - [CreateCollection](docs/CreateCollection.md)
  - [CreateMonitoringProfile](docs/CreateMonitoringProfile.md)
  - [CreateNotificationRequest](docs/CreateNotificationRequest.md)
@@ -86,6 +91,13 @@ Authentication schemes defined for the API:
 ### bearerAuth
 
 - **Type**: HTTP Bearer Token authentication (JWT)
+
+<a id="apiKey"></a>
+### apiKey
+
+- **Type**: API key
+- **API key parameter name**: ApiKey
+- **Location**: HTTP header
 
 
 # How do I migrate from the Swift 5 generator to the swift 6 generator?

@@ -35,6 +35,9 @@ open class AccountAPI {
      Add macOS push token
      - POST /account/add-macos-push-token
      - Add macOS push token
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -82,6 +85,9 @@ open class AccountAPI {
      Create account
      - POST /account
      - Create account
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -129,6 +135,9 @@ open class AccountAPI {
      Get account with tokens
      - GET /account/{appleId}
      - Get account and generate authentication tokens
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -179,6 +188,9 @@ open class AccountAPI {
      Refresh authentication tokens
      - POST /account/refresh-token
      - Generate new access and refresh tokens using a refresh token
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth

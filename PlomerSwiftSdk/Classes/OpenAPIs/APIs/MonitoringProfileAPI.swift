@@ -34,6 +34,9 @@ open class MonitoringProfileAPI {
     /**
      Create monitoring profile
      - POST /monitoring-profile
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -80,6 +83,9 @@ open class MonitoringProfileAPI {
     /**
      Delete monitoring profile
      - DELETE /monitoring-profile/{id}
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -129,6 +135,9 @@ open class MonitoringProfileAPI {
     /**
      Get monitoring profile
      - GET /monitoring-profile/{id}
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -178,6 +187,9 @@ open class MonitoringProfileAPI {
     /**
      Get monitoring profile registrar data
      - GET /monitoring-profile/{id}/registrar-data
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -226,6 +238,9 @@ open class MonitoringProfileAPI {
     /**
      Get monitoring profiles
      - GET /monitoring-profile
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth
@@ -272,6 +287,9 @@ open class MonitoringProfileAPI {
     /**
      Update monitoring profile
      - PATCH /monitoring-profile/{id}
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth

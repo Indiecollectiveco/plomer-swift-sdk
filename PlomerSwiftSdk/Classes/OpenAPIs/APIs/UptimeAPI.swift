@@ -44,6 +44,9 @@ open class UptimeAPI {
     /**
      Get uptime
      - GET /uptime
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
      - Bearer Token:
        - type: http
        - name: bearerAuth

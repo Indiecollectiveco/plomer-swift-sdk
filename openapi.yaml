@@ -12,6 +12,11 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    apiKey:
+      type: apiKey
+      in: header
+      name: ApiKey
+      description: API key for authentication
   schemas:
     AccountWithTokens:
       allOf:
@@ -93,6 +98,55 @@ components:
       description: Error
       example:
         error: Not found
+    ApiKey:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountId:
+          type: integer
+        name:
+          type: string
+        key:
+          type: string
+        lastUsedAt:
+          type: string
+          nullable: true
+        expiresAt:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - accountId
+        - name
+        - key
+        - lastUsedAt
+        - expiresAt
+      description: API Key for authentication
+      example:
+        id: 1
+        accountId: 1
+        name: Production API Key
+        key: pk_test_123456789
+        lastUsedAt: "2024-03-20T10:00:00.000Z"
+        expiresAt: null
+        createdAt: "2024-03-20T10:00:00.000Z"
+        updatedAt: "2024-03-20T10:00:00.000Z"
+    CreateApiKey:
+      type: object
+      properties:
+        name:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+      required:
+        - name
+      description: Input schema for creating a new API key
     Collection:
       type: object
       properties:
@@ -656,6 +710,74 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /api-key:
+    get:
+      operationId: getApiKeys
+      summary: Get API keys
+      tags:
+        - ApiKey
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ApiKey"
+    post:
+      operationId: createApiKey
+      summary: Create API key
+      tags:
+        - ApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateApiKey"
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiKey"
+        "401":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api-key/{id}:
+    delete:
+      operationId: deleteApiKey
+      summary: Delete API key
+      tags:
+        - ApiKey
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "401":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
   /collection:
     get:
       operationId: getCollections
@@ -1133,3 +1255,4 @@ servers:
     description: production server
 security:
   - bearerAuth: []
+    apiKey: []
