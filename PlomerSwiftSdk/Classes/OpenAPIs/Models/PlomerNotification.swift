@@ -22,15 +22,17 @@ public struct PlomerNotification: Codable, JSONEncodable, Hashable {
     }
     public var id: Int
     public var accountId: Int
+    public var monitoringProfileId: Int?
     public var text: String
     public var type: ModelType
     public var read: Bool = false
     public var createdAt: String
     public var updatedAt: String
 
-    public init(id: Int, accountId: Int, text: String, type: ModelType, read: Bool = false, createdAt: String, updatedAt: String) {
+    public init(id: Int, accountId: Int, monitoringProfileId: Int? = nil, text: String, type: ModelType, read: Bool = false, createdAt: String, updatedAt: String) {
         self.id = id
         self.accountId = accountId
+        self.monitoringProfileId = monitoringProfileId
         self.text = text
         self.type = type
         self.read = read
@@ -41,6 +43,7 @@ public struct PlomerNotification: Codable, JSONEncodable, Hashable {
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case id
         case accountId
+        case monitoringProfileId
         case text
         case type
         case read
@@ -54,6 +57,7 @@ public struct PlomerNotification: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(accountId, forKey: .accountId)
+        try container.encodeIfPresent(monitoringProfileId, forKey: .monitoringProfileId)
         try container.encode(text, forKey: .text)
         try container.encode(type, forKey: .type)
         try container.encode(read, forKey: .read)

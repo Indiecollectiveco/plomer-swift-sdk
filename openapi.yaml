@@ -498,6 +498,8 @@ components:
           type: integer
         accountId:
           type: integer
+        monitoringProfileId:
+          type: integer
         text:
           type: string
         type:
@@ -527,6 +529,7 @@ components:
       example:
         id: 1
         accountId: 1
+        monitoringProfileId: 1
         text: Your domain example.com will expire in 30 days
         type: DOMAIN_EXPIRY
         read: false
@@ -1055,7 +1058,7 @@ paths:
       operationId: createNotification
       summary: Create notification
       tags:
-        - Notification
+        - PlomerNotification
       requestBody:
         content:
           application/json:
@@ -1188,7 +1191,7 @@ paths:
       operationId: updateNotification
       summary: Update notification
       tags:
-        - Notification
+        - PlomerNotification
       requestBody:
         content:
           application/json:
