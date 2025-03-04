@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Int** |  | 
 **accountId** | **Int** |  | 
+**monitoringProfileId** | **Int** |  | [optional] 
 **text** | **String** |  | 
 **type** | **String** |  | 
 **read** | **Bool** |  | [default to false]
