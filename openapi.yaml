@@ -262,7 +262,6 @@ components:
         - isSslValid
         - isWebsiteReachable
         - sslExpiryCheck
-        - sslExpiresAt
         - tags
         - timeoutSeconds
         - unhealthyThresholdCount
@@ -535,6 +534,14 @@ components:
         read: false
         createdAt: "2024-03-20T10:00:00.000Z"
         updatedAt: "2024-03-20T10:00:00.000Z"
+    Product:
+      type: string
+      enum:
+        - PLOMER_WEEKLY
+        - PLOMER_MONTHLY
+        - PLOMER_YEARLY
+      description: The product to purchase
+      example: PLOMER_WEEKLY
     UptimeItem:
       type: object
       properties:
@@ -1216,6 +1223,21 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PlomerNotification"
+  /products:
+    get:
+      operationId: getProducts
+      summary: Get available products
+      tags:
+        - Products
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
   /uptime:
     get:
       operationId: getUptime
@@ -1250,8 +1272,6 @@ paths:
                 items:
                   $ref: "#/components/schemas/UptimeItem"
 servers:
-  - url: http://localhost:3000
-    description: local server
   - url: https://devapi.plomer.app
     description: development server
   - url: https://api.plomer.app

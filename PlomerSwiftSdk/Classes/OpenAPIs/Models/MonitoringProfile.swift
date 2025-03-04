@@ -36,7 +36,7 @@ public struct MonitoringProfile: Codable, JSONEncodable, Hashable {
     public var updatedAt: String
     public var url: String
 
-    public init(id: Int, accountId: Int, registrarDataId: Int, contentChangeDetection: Bool = false, createdAt: String, description: String, domainExpiresAt: String, domainExpiryCheck: Bool = false, healthyThresholdCount: Double = 3, httpStatusChecks: Bool = true, iconUrl: String, intervalSeconds: Double = 60, isDomainExpired: Bool = false, isSslValid: Bool = true, isWebsiteReachable: Bool = true, sslExpiresAt: String?, sslExpiryCheck: Bool = false, tags: [String], timeoutSeconds: Double = 30, unhealthyThresholdCount: Double = 3, updatedAt: String, url: String) {
+    public init(id: Int, accountId: Int, registrarDataId: Int, contentChangeDetection: Bool = false, createdAt: String, description: String, domainExpiresAt: String, domainExpiryCheck: Bool = false, healthyThresholdCount: Double = 3, httpStatusChecks: Bool = true, iconUrl: String, intervalSeconds: Double = 60, isDomainExpired: Bool = false, isSslValid: Bool = true, isWebsiteReachable: Bool = true, sslExpiresAt: String? = nil, sslExpiryCheck: Bool = false, tags: [String], timeoutSeconds: Double = 30, unhealthyThresholdCount: Double = 3, updatedAt: String, url: String) {
         self.id = id
         self.accountId = accountId
         self.registrarDataId = registrarDataId
@@ -105,7 +105,7 @@ public struct MonitoringProfile: Codable, JSONEncodable, Hashable {
         try container.encode(isDomainExpired, forKey: .isDomainExpired)
         try container.encode(isSslValid, forKey: .isSslValid)
         try container.encode(isWebsiteReachable, forKey: .isWebsiteReachable)
-        try container.encode(sslExpiresAt, forKey: .sslExpiresAt)
+        try container.encodeIfPresent(sslExpiresAt, forKey: .sslExpiresAt)
         try container.encode(sslExpiryCheck, forKey: .sslExpiryCheck)
         try container.encode(tags, forKey: .tags)
         try container.encode(timeoutSeconds, forKey: .timeoutSeconds)
