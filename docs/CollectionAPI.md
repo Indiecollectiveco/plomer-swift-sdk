@@ -1,6 +1,6 @@
 # CollectionAPI
 
-All URIs are relative to *http://localhost:3000*
+All URIs are relative to *https://devapi.plomer.app*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

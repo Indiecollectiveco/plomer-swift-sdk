@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **isDomainExpired** | **Bool** |  | [default to false]
 **isSslValid** | **Bool** |  | [default to true]
 **isWebsiteReachable** | **Bool** |  | [default to true]
-**sslExpiresAt** | **String** |  | 
+**sslExpiresAt** | **String** |  | [optional] 
 **sslExpiryCheck** | **Bool** |  | [default to false]
 **tags** | **[String]** |  | 
 **timeoutSeconds** | **Double** |  | [default to 30]

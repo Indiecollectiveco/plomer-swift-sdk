@@ -22,7 +22,7 @@ Run `pod install`
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://localhost:3000*
+All URIs are relative to *https://devapi.plomer.app*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -51,6 +51,7 @@ Class | Method | HTTP request | Description
 *PlomerNotificationAPI* | [**getNotification**](docs/PlomerNotificationAPI.md#getnotification) | **GET** /notification/{id} | Get notification
 *PlomerNotificationAPI* | [**getNotifications**](docs/PlomerNotificationAPI.md#getnotifications) | **GET** /notification | Get notifications
 *PlomerNotificationAPI* | [**updateNotification**](docs/PlomerNotificationAPI.md#updatenotification) | **PATCH** /notification/{id} | Update notification
+*ProductsAPI* | [**getProducts**](docs/ProductsAPI.md#getproducts) | **GET** /products | Get available products
 *UptimeAPI* | [**getUptime**](docs/UptimeAPI.md#getuptime) | **GET** /uptime | Get uptime
 
 
@@ -73,6 +74,7 @@ Class | Method | HTTP request | Description
  - [ModelError](docs/ModelError.md)
  - [MonitoringProfile](docs/MonitoringProfile.md)
  - [PlomerNotification](docs/PlomerNotification.md)
+ - [Product](docs/Product.md)
  - [RefreshTokensRequest](docs/RefreshTokensRequest.md)
  - [RegistrarData](docs/RegistrarData.md)
  - [TokenResponse](docs/TokenResponse.md)
