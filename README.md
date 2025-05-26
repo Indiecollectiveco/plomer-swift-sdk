@@ -22,7 +22,7 @@ Run `pod install`
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://devapi.plomer.app*
+All URIs are relative to *http://localhost:3000*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -44,6 +44,7 @@ Class | Method | HTTP request | Description
 *MonitoringProfileAPI* | [**deleteMonitoringProfile**](docs/MonitoringProfileAPI.md#deletemonitoringprofile) | **DELETE** /monitoring-profile/{id} | Delete monitoring profile
 *MonitoringProfileAPI* | [**getMonitoringProfile**](docs/MonitoringProfileAPI.md#getmonitoringprofile) | **GET** /monitoring-profile/{id} | Get monitoring profile
 *MonitoringProfileAPI* | [**getMonitoringProfileRegistrarData**](docs/MonitoringProfileAPI.md#getmonitoringprofileregistrardata) | **GET** /monitoring-profile/{id}/registrar-data | Get monitoring profile registrar data
+*MonitoringProfileAPI* | [**getMonitoringProfileWhoisData**](docs/MonitoringProfileAPI.md#getmonitoringprofilewhoisdata) | **GET** /monitoring-profile/{id}/whois-data | Get monitoring profile whois data
 *MonitoringProfileAPI* | [**getMonitoringProfiles**](docs/MonitoringProfileAPI.md#getmonitoringprofiles) | **GET** /monitoring-profile | Get monitoring profiles
 *MonitoringProfileAPI* | [**updateMonitoringProfile**](docs/MonitoringProfileAPI.md#updatemonitoringprofile) | **PATCH** /monitoring-profile/{id} | Update monitoring profile
 *PlomerNotificationAPI* | [**createNotification**](docs/PlomerNotificationAPI.md#createnotification) | **POST** /notification | Create notification
@@ -82,6 +83,7 @@ Class | Method | HTTP request | Description
  - [UpdateMonitoringProfile](docs/UpdateMonitoringProfile.md)
  - [UpdateNotificationRequest](docs/UpdateNotificationRequest.md)
  - [UptimeItem](docs/UptimeItem.md)
+ - [WhoisData](docs/WhoisData.md)
 
 
 <a id="documentation-for-authorization"></a>

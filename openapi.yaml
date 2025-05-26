@@ -403,6 +403,62 @@ components:
         reseller: GoDaddy
         createdAt: "2024-03-20T10:00:00.000Z"
         updatedAt: "2024-03-20T10:00:00.000Z"
+    WhoisData:
+      type: object
+      properties:
+        id:
+          type: integer
+        domainName:
+          type: string
+        registryDomainId:
+          type: string
+        updatedDate:
+          type: string
+        creationDate:
+          type: string
+        registrarRegistrationExpirationDate:
+          type: string
+        registrar:
+          type: string
+        domainStatus:
+          type: string
+        registrantName:
+          type: string
+        nameServer:
+          type: string
+        dnssec:
+          type: string
+        lastUpdateOfWhoisDatabase:
+          type: string
+      required:
+        - id
+        - domainName
+        - registryDomainId
+        - updatedDate
+        - creationDate
+        - registrarRegistrationExpirationDate
+        - registrar
+        - domainStatus
+        - registrantName
+        - nameServer
+        - dnssec
+        - lastUpdateOfWhoisDatabase
+      description:
+        WhoisData represents domain registration information including
+        registrant and registrar details
+      example:
+        id: 1
+        domainName: example.com
+        registryDomainId: "1234567890"
+        updatedDate: "2024-03-20T10:00:00.000Z"
+        creationDate: "2024-03-20T10:00:00.000Z"
+        registrarRegistrationExpirationDate: "2025-03-20T10:00:00.000Z"
+        registrar: GoDaddy.com, LLC
+        domainStatus: active
+        registrantName: John Doe
+        nameServer: ns1.example.com, ns2.example.com
+        dnssec: unsigned
+        lastUpdateOfWhoisDatabase: "2024-03-20T10:00:00.000Z"
     CreateMonitoringProfile:
       type: object
       properties:
@@ -1060,6 +1116,25 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RegistrarData"
+  /monitoring-profile/{id}/whois-data:
+    get:
+      operationId: getMonitoringProfileWhoisData
+      summary: Get monitoring profile whois data
+      tags:
+        - MonitoringProfile
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WhoisData"
   /notification:
     post:
       operationId: createNotification
@@ -1272,6 +1347,8 @@ paths:
                 items:
                   $ref: "#/components/schemas/UptimeItem"
 servers:
+  - url: http://localhost:3000
+    description: local server
   - url: https://devapi.plomer.app
     description: development server
   - url: https://api.plomer.app
