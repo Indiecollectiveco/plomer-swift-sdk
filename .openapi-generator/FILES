@@ -44,6 +44,7 @@ PlomerSwiftSdk/Classes/OpenAPIs/Models/UpdateCollection.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/UpdateMonitoringProfile.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/UpdateNotificationRequest.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/UptimeItem.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/WhoisData.swift
 PlomerSwiftSdk/Classes/OpenAPIs/OpenISO8601DateFormatter.swift
 PlomerSwiftSdk/Classes/OpenAPIs/SynchronizedDictionary.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Validation.swift
@@ -80,5 +81,6 @@ docs/UpdateMonitoringProfile.md
 docs/UpdateNotificationRequest.md
 docs/UptimeAPI.md
 docs/UptimeItem.md
+docs/WhoisData.md
 git_push.sh
 project.yml
