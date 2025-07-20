@@ -11,6 +11,7 @@ PlomerSwiftSdk/Classes/OpenAPIs/APIs/CollectionAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/MonitoringProfileAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/PlomerNotificationAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/ProductsAPI.swift
+PlomerSwiftSdk/Classes/OpenAPIs/APIs/ResponseTimesAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/UptimeAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/AlamofireImplementations.swift
 PlomerSwiftSdk/Classes/OpenAPIs/CodableHelper.swift
@@ -33,12 +34,14 @@ PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateMonitoringProfile.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateNotificationRequest.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/GetNotifications200Response.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/GetNotifications200ResponsePagination.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/GetResponseTimes200Response.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/ModelError.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/MonitoringProfile.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/PlomerNotification.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/Product.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/RefreshTokensRequest.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/RegistrarData.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/ResponseTimes.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/TokenResponse.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/UpdateCollection.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/UpdateMonitoringProfile.swift
@@ -66,6 +69,7 @@ docs/CreateMonitoringProfile.md
 docs/CreateNotificationRequest.md
 docs/GetNotifications200Response.md
 docs/GetNotifications200ResponsePagination.md
+docs/GetResponseTimes200Response.md
 docs/ModelError.md
 docs/MonitoringProfile.md
 docs/MonitoringProfileAPI.md
@@ -75,6 +79,8 @@ docs/Product.md
 docs/ProductsAPI.md
 docs/RefreshTokensRequest.md
 docs/RegistrarData.md
+docs/ResponseTimes.md
+docs/ResponseTimesAPI.md
 docs/TokenResponse.md
 docs/UpdateCollection.md
 docs/UpdateMonitoringProfile.md

@@ -33,7 +33,7 @@ open class ApiKeyAPI {
 
     /**
      Create API key
-     - POST /api-key
+     - POST /api-key/
      - API Key:
        - type: apiKey ApiKey (HEADER)
        - name: apiKey
@@ -44,7 +44,7 @@ open class ApiKeyAPI {
      - returns: RequestBuilder<ApiKey> 
      */
     open class func createApiKeyWithRequestBuilder(createApiKey: CreateApiKey? = nil) -> RequestBuilder<ApiKey> {
-        let localVariablePath = "/api-key"
+        let localVariablePath = "/api-key/"
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createApiKey)
 

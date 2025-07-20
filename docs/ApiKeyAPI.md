@@ -1,10 +1,10 @@
 # ApiKeyAPI
 
-All URIs are relative to *https://devapi.plomer.app*
+All URIs are relative to *http://localhost:3000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createApiKey**](ApiKeyAPI.md#createapikey) | **POST** /api-key | Create API key
+[**createApiKey**](ApiKeyAPI.md#createapikey) | **POST** /api-key/ | Create API key
 [**deleteApiKey**](ApiKeyAPI.md#deleteapikey) | **DELETE** /api-key/{id} | Delete API key
 [**getApiKeys**](ApiKeyAPI.md#getapikeys) | **GET** /api-key | Get API keys
 

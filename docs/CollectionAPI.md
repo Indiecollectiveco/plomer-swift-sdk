@@ -1,11 +1,11 @@
 # CollectionAPI
 
-All URIs are relative to *https://devapi.plomer.app*
+All URIs are relative to *http://localhost:3000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addProfileToCollection**](CollectionAPI.md#addprofiletocollection) | **POST** /collection/{id}/profiles/{profileId} | Add monitoring profile to collection
-[**createCollection**](CollectionAPI.md#createcollection) | **POST** /collection | Create collection
+[**createCollection**](CollectionAPI.md#createcollection) | **POST** /collection/ | Create collection
 [**deleteCollection**](CollectionAPI.md#deletecollection) | **DELETE** /collection/{id} | Delete collection
 [**getCollection**](CollectionAPI.md#getcollection) | **GET** /collection/{id} | Get collection with profiles
 [**getCollections**](CollectionAPI.md#getcollections) | **GET** /collection | Get collections

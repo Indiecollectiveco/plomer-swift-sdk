@@ -24,16 +24,18 @@ public struct PlomerNotification: Codable, JSONEncodable, Hashable {
     public var accountId: Int
     public var monitoringProfileId: Int?
     public var text: String
+    public var source: String?
     public var type: ModelType
     public var read: Bool = false
     public var createdAt: String
     public var updatedAt: String
 
-    public init(id: Int, accountId: Int, monitoringProfileId: Int? = nil, text: String, type: ModelType, read: Bool = false, createdAt: String, updatedAt: String) {
+    public init(id: Int, accountId: Int, monitoringProfileId: Int? = nil, text: String, source: String? = nil, type: ModelType, read: Bool = false, createdAt: String, updatedAt: String) {
         self.id = id
         self.accountId = accountId
         self.monitoringProfileId = monitoringProfileId
         self.text = text
+        self.source = source
         self.type = type
         self.read = read
         self.createdAt = createdAt
@@ -45,6 +47,7 @@ public struct PlomerNotification: Codable, JSONEncodable, Hashable {
         case accountId
         case monitoringProfileId
         case text
+        case source
         case type
         case read
         case createdAt
@@ -59,6 +62,7 @@ public struct PlomerNotification: Codable, JSONEncodable, Hashable {
         try container.encode(accountId, forKey: .accountId)
         try container.encodeIfPresent(monitoringProfileId, forKey: .monitoringProfileId)
         try container.encode(text, forKey: .text)
+        try container.encodeIfPresent(source, forKey: .source)
         try container.encode(type, forKey: .type)
         try container.encode(read, forKey: .read)
         try container.encode(createdAt, forKey: .createdAt)
@@ -66,3 +70,6 @@ public struct PlomerNotification: Codable, JSONEncodable, Hashable {
     }
 }
 
+
+@available(iOS 13, tvOS 13, watchOS 6, macOS 10.15, *)
+extension PlomerNotification: Identifiable {}
