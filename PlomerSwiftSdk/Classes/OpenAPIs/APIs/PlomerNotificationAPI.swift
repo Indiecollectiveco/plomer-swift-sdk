@@ -187,7 +187,7 @@ open class PlomerNotificationAPI {
 
     /**
      Get notifications
-     - GET /notification
+     - GET /notification/
      - API Key:
        - type: apiKey ApiKey (HEADER)
        - name: apiKey
@@ -199,7 +199,7 @@ open class PlomerNotificationAPI {
      - returns: RequestBuilder<GetNotifications200Response> 
      */
     open class func getNotificationsWithRequestBuilder(limit: Double? = nil, page: Double? = nil) -> RequestBuilder<GetNotifications200Response> {
-        let localVariablePath = "/notification"
+        let localVariablePath = "/notification/"
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters: [String: Any]? = nil
 

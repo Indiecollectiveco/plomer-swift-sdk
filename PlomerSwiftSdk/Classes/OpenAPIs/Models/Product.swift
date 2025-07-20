@@ -12,7 +12,7 @@ import AnyCodable
 
 /** The product to purchase */
 public enum Product: String, Codable, CaseIterable {
-    case weekly = "PLOMER_WEEKLY"
-    case monthly = "PLOMER_MONTHLY"
-    case yearly = "PLOMER_YEARLY"
+    case plomerWeekly = "PLOMER_WEEKLY"
+    case plomerMonthly = "PLOMER_MONTHLY"
+    case plomerYearly = "PLOMER_YEARLY"
 }

@@ -33,7 +33,7 @@ open class MonitoringProfileAPI {
 
     /**
      Create monitoring profile
-     - POST /monitoring-profile
+     - POST /monitoring-profile/
      - API Key:
        - type: apiKey ApiKey (HEADER)
        - name: apiKey
@@ -44,7 +44,7 @@ open class MonitoringProfileAPI {
      - returns: RequestBuilder<MonitoringProfile> 
      */
     open class func createMonitoringProfileWithRequestBuilder(createMonitoringProfile: CreateMonitoringProfile? = nil) -> RequestBuilder<MonitoringProfile> {
-        let localVariablePath = "/monitoring-profile"
+        let localVariablePath = "/monitoring-profile/"
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createMonitoringProfile)
 

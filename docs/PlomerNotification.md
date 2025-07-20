@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **accountId** | **Int** |  | 
 **monitoringProfileId** | **Int** |  | [optional] 
 **text** | **String** |  | 
+**source** | **String** |  | [optional] 
 **type** | **String** |  | 
 **read** | **Bool** |  | [default to false]
 **createdAt** | **String** |  | 

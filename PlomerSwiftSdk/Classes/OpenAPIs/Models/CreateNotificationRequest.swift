@@ -21,15 +21,21 @@ public struct CreateNotificationRequest: Codable, JSONEncodable, Hashable {
     }
     public var text: String
     public var type: ModelType
+    public var sendNotification: Bool? = true
+    public var source: String?
 
-    public init(text: String, type: ModelType) {
+    public init(text: String, type: ModelType, sendNotification: Bool? = true, source: String? = nil) {
         self.text = text
         self.type = type
+        self.sendNotification = sendNotification
+        self.source = source
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case text
         case type
+        case sendNotification
+        case source
     }
 
     // Encodable protocol methods
@@ -38,6 +44,8 @@ public struct CreateNotificationRequest: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(text, forKey: .text)
         try container.encode(type, forKey: .type)
+        try container.encodeIfPresent(sendNotification, forKey: .sendNotification)
+        try container.encodeIfPresent(source, forKey: .source)
     }
 }
 

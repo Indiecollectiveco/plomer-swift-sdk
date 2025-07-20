@@ -1,13 +1,13 @@
 # PlomerNotificationAPI
 
-All URIs are relative to *https://devapi.plomer.app*
+All URIs are relative to *http://localhost:3000*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createNotification**](PlomerNotificationAPI.md#createnotification) | **POST** /notification | Create notification
 [**deleteNotification**](PlomerNotificationAPI.md#deletenotification) | **DELETE** /notification/{id} | Delete notification
 [**getNotification**](PlomerNotificationAPI.md#getnotification) | **GET** /notification/{id} | Get notification
-[**getNotifications**](PlomerNotificationAPI.md#getnotifications) | **GET** /notification | Get notifications
+[**getNotifications**](PlomerNotificationAPI.md#getnotifications) | **GET** /notification/ | Get notifications
 [**updateNotification**](PlomerNotificationAPI.md#updatenotification) | **PATCH** /notification/{id} | Update notification
 
 
@@ -23,7 +23,7 @@ Create notification
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let createNotificationRequest = createNotification_request(text: "text_example", type: "type_example") // CreateNotificationRequest | 
+let createNotificationRequest = createNotification_request(text: "text_example", type: "type_example", sendNotification: false, source: "source_example") // CreateNotificationRequest | 
 
 // Create notification
 PlomerNotificationAPI.createNotification(createNotificationRequest: createNotificationRequest) { (response, error) in

@@ -555,8 +555,12 @@ components:
           type: integer
         monitoringProfileId:
           type: integer
+          nullable: true
         text:
           type: string
+        source:
+          type: string
+          nullable: true
         type:
           type: string
           enum:
@@ -588,6 +592,7 @@ components:
         text: Your domain example.com will expire in 30 days
         type: DOMAIN_EXPIRY
         read: false
+        source: SYSTEM
         createdAt: "2024-03-20T10:00:00.000Z"
         updatedAt: "2024-03-20T10:00:00.000Z"
     Product:
@@ -598,6 +603,28 @@ components:
         - PLOMER_YEARLY
       description: The product to purchase
       example: PLOMER_WEEKLY
+    ResponseTimes:
+      type: object
+      properties:
+        time:
+          type: string
+        monitoringProfileId:
+          type: integer
+        accountId:
+          type: integer
+        value:
+          type: number
+      required:
+        - time
+        - monitoringProfileId
+        - accountId
+        - value
+      description: ResponseTimes represents a response time for a monitoring profile
+      example:
+        time: "2024-03-20T10:00:00.000Z"
+        monitoringProfileId: 1
+        accountId: 1
+        value: 100
     UptimeItem:
       type: object
       properties:
@@ -791,6 +818,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/ApiKey"
+  /api-key/:
     post:
       operationId: createApiKey
       summary: Create API key
@@ -859,24 +887,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Collection"
-    post:
-      operationId: createCollection
-      summary: Create collection
-      tags:
-        - Collection
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CreateCollection"
-      responses:
-        "200":
-          description: Default Response
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Collection"
-  /collection/{id}:
+  "/collection/{id}":
     get:
       operationId: getCollection
       summary: Get collection with profiles
@@ -943,7 +954,25 @@ paths:
                     type: string
                 required:
                   - message
-  /collection/{id}/profiles/{profileId}:
+  /collection/:
+    post:
+      operationId: createCollection
+      summary: Create collection
+      tags:
+        - Collection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCollection"
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Collection"
+  "/collection/{id}/profiles/{profileId}":
     post:
       operationId: addProfileToCollection
       summary: Add monitoring profile to collection
@@ -1015,24 +1044,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/MonitoringProfile"
-    post:
-      operationId: createMonitoringProfile
-      summary: Create monitoring profile
-      tags:
-        - MonitoringProfile
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CreateMonitoringProfile"
-      responses:
-        "200":
-          description: Default Response
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/MonitoringProfile"
-  /monitoring-profile/{id}:
+  "/monitoring-profile/{id}":
     get:
       operationId: getMonitoringProfile
       summary: Get monitoring profile
@@ -1116,7 +1128,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RegistrarData"
-  /monitoring-profile/{id}/whois-data:
+  "/monitoring-profile/{id}/whois-data":
     get:
       operationId: getMonitoringProfileWhoisData
       summary: Get monitoring profile whois data
@@ -1135,6 +1147,24 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WhoisData"
+  /monitoring-profile/:
+    post:
+      operationId: createMonitoringProfile
+      summary: Create monitoring profile
+      tags:
+        - MonitoringProfile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateMonitoringProfile"
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MonitoringProfile"
   /notification:
     post:
       operationId: createNotification
@@ -1157,6 +1187,12 @@ paths:
                     - WEBSITE_DOWN
                     - CONTENT_CHANGE
                     - SYSTEM
+                sendNotification:
+                  type: boolean
+                  default: true
+                source:
+                  type: string
+                  nullable: true
               required:
                 - text
                 - type
@@ -1180,6 +1216,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+  /notification/:
     get:
       operationId: getNotifications
       summary: Get notifications
@@ -1313,6 +1350,59 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Product"
+  /response-times:
+    get:
+      operationId: getResponseTimes
+      summary: Get response times
+      tags:
+        - ResponseTimes
+      parameters:
+        - schema:
+            type: number
+            default: 10
+          in: query
+          name: limit
+        - schema:
+            type: number
+            default: 0
+          in: query
+          name: page
+        - schema:
+            type: integer
+          in: query
+          name: monitoringProfileId
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ResponseTimes"
+                  pagination:
+                    type: object
+                    properties:
+                      page:
+                        type: number
+                      totalPages:
+                        type: number
+                      totalItems:
+                        type: number
+                      hasMore:
+                        type: boolean
+                    required:
+                      - page
+                      - totalPages
+                      - totalItems
+                      - hasMore
+                required:
+                  - data
+                  - pagination
   /uptime:
     get:
       operationId: getUptime

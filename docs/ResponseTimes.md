@@ -1,12 +1,12 @@
-# CreateNotificationRequest
+# ResponseTimes
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**text** | **String** |  | 
-**type** | **String** |  | 
-**sendNotification** | **Bool** |  | [optional] [default to true]
-**source** | **String** |  | [optional] 
+**time** | **String** |  | 
+**monitoringProfileId** | **Int** |  | 
+**accountId** | **Int** |  | 
+**value** | **Double** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
