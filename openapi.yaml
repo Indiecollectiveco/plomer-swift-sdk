@@ -1437,7 +1437,7 @@ paths:
                 items:
                   $ref: "#/components/schemas/UptimeItem"
 servers:
-  - url: http://localhost:3000
+  - url: https://devapi.plomer.app
     description: local server
   - url: https://devapi.plomer.app
     description: development server
