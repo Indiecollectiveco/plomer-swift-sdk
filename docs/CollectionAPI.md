@@ -1,19 +1,19 @@
 # CollectionAPI
 
-All URIs are relative to *http://localhost:3000*
+All URIs are relative to *https://devapi.plomer.app*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**addProfileToCollection**](CollectionAPI.md#addprofiletocollection) | **POST** /collection/{id}/profiles/{profileId} | Add monitoring profile to collection
-[**createCollection**](CollectionAPI.md#createcollection) | **POST** /collection/ | Create collection
-[**deleteCollection**](CollectionAPI.md#deletecollection) | **DELETE** /collection/{id} | Delete collection
-[**getCollection**](CollectionAPI.md#getcollection) | **GET** /collection/{id} | Get collection with profiles
-[**getCollections**](CollectionAPI.md#getcollections) | **GET** /collection | Get collections
-[**removeProfileFromCollection**](CollectionAPI.md#removeprofilefromcollection) | **DELETE** /collection/{id}/profiles/{profileId} | Remove monitoring profile from collection
-[**updateCollection**](CollectionAPI.md#updatecollection) | **PATCH** /collection/{id} | Update collection
-
+| Method                                                                          | HTTP request                                     | Description                               |
+| ------------------------------------------------------------------------------- | ------------------------------------------------ | ----------------------------------------- |
+| [**addProfileToCollection**](CollectionAPI.md#addprofiletocollection)           | **POST** /collection/{id}/profiles/{profileId}   | Add monitoring profile to collection      |
+| [**createCollection**](CollectionAPI.md#createcollection)                       | **POST** /collection/                            | Create collection                         |
+| [**deleteCollection**](CollectionAPI.md#deletecollection)                       | **DELETE** /collection/{id}                      | Delete collection                         |
+| [**getCollection**](CollectionAPI.md#getcollection)                             | **GET** /collection/{id}                         | Get collection with profiles              |
+| [**getCollections**](CollectionAPI.md#getcollections)                           | **GET** /collection                              | Get collections                           |
+| [**removeProfileFromCollection**](CollectionAPI.md#removeprofilefromcollection) | **DELETE** /collection/{id}/profiles/{profileId} | Remove monitoring profile from collection |
+| [**updateCollection**](CollectionAPI.md#updatecollection)                       | **PATCH** /collection/{id}                       | Update collection                         |
 
 # **addProfileToCollection**
+
 ```swift
     open class func addProfileToCollection(id: Double, profileId: Double, completion: @escaping (_ data: AddMacOsPushToken200Response?, _ error: Error?) -> Void)
 ```
@@ -21,12 +21,13 @@ Method | HTTP request | Description
 Add monitoring profile to collection
 
 ### Example
+
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let id = 987 // Double | 
-let profileId = 987 // Double | 
+let id = 987 // Double |
+let profileId = 987 // Double |
 
 // Add monitoring profile to collection
 CollectionAPI.addProfileToCollection(id: id, profileId: profileId) { (response, error) in
@@ -43,10 +44,10 @@ CollectionAPI.addProfileToCollection(id: id, profileId: profileId) { (response, 
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Double** |  | 
- **profileId** | **Double** |  | 
+| Name          | Type       | Description | Notes |
+| ------------- | ---------- | ----------- | ----- |
+| **id**        | **Double** |             |
+| **profileId** | **Double** |             |
 
 ### Return type
 
@@ -58,12 +59,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **createCollection**
+
 ```swift
     open class func createCollection(createCollection: CreateCollection? = nil, completion: @escaping (_ data: Collection?, _ error: Error?) -> Void)
 ```
@@ -71,6 +73,7 @@ Name | Type | Description  | Notes
 Create collection
 
 ### Example
+
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
@@ -92,9 +95,9 @@ CollectionAPI.createCollection(createCollection: createCollection) { (response, 
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createCollection** | [**CreateCollection**](CreateCollection.md) |  | [optional] 
+| Name                 | Type                                        | Description | Notes      |
+| -------------------- | ------------------------------------------- | ----------- | ---------- |
+| **createCollection** | [**CreateCollection**](CreateCollection.md) |             | [optional] |
 
 ### Return type
 
@@ -106,12 +109,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteCollection**
+
 ```swift
     open class func deleteCollection(id: Double, completion: @escaping (_ data: AddMacOsPushToken200Response?, _ error: Error?) -> Void)
 ```
@@ -119,11 +123,12 @@ Name | Type | Description  | Notes
 Delete collection
 
 ### Example
+
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let id = 987 // Double | 
+let id = 987 // Double |
 
 // Delete collection
 CollectionAPI.deleteCollection(id: id) { (response, error) in
@@ -140,9 +145,9 @@ CollectionAPI.deleteCollection(id: id) { (response, error) in
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Double** |  | 
+| Name   | Type       | Description | Notes |
+| ------ | ---------- | ----------- | ----- |
+| **id** | **Double** |             |
 
 ### Return type
 
@@ -154,12 +159,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getCollection**
+
 ```swift
     open class func getCollection(id: Double, completion: @escaping (_ data: CollectionWithProfiles?, _ error: Error?) -> Void)
 ```
@@ -167,11 +173,12 @@ Name | Type | Description  | Notes
 Get collection with profiles
 
 ### Example
+
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let id = 987 // Double | 
+let id = 987 // Double |
 
 // Get collection with profiles
 CollectionAPI.getCollection(id: id) { (response, error) in
@@ -188,9 +195,9 @@ CollectionAPI.getCollection(id: id) { (response, error) in
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Double** |  | 
+| Name   | Type       | Description | Notes |
+| ------ | ---------- | ----------- | ----- |
+| **id** | **Double** |             |
 
 ### Return type
 
@@ -202,12 +209,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getCollections**
+
 ```swift
     open class func getCollections(completion: @escaping (_ data: [Collection]?, _ error: Error?) -> Void)
 ```
@@ -215,6 +223,7 @@ Name | Type | Description  | Notes
 Get collections
 
 ### Example
+
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
@@ -234,6 +243,7 @@ CollectionAPI.getCollections() { (response, error) in
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -246,12 +256,13 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **removeProfileFromCollection**
+
 ```swift
     open class func removeProfileFromCollection(id: Double, profileId: Double, completion: @escaping (_ data: AddMacOsPushToken200Response?, _ error: Error?) -> Void)
 ```
@@ -259,12 +270,13 @@ This endpoint does not need any parameter.
 Remove monitoring profile from collection
 
 ### Example
+
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let id = 987 // Double | 
-let profileId = 987 // Double | 
+let id = 987 // Double |
+let profileId = 987 // Double |
 
 // Remove monitoring profile from collection
 CollectionAPI.removeProfileFromCollection(id: id, profileId: profileId) { (response, error) in
@@ -281,10 +293,10 @@ CollectionAPI.removeProfileFromCollection(id: id, profileId: profileId) { (respo
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Double** |  | 
- **profileId** | **Double** |  | 
+| Name          | Type       | Description | Notes |
+| ------------- | ---------- | ----------- | ----- |
+| **id**        | **Double** |             |
+| **profileId** | **Double** |             |
 
 ### Return type
 
@@ -296,12 +308,13 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateCollection**
+
 ```swift
     open class func updateCollection(id: Double, updateCollection: UpdateCollection? = nil, completion: @escaping (_ data: Collection?, _ error: Error?) -> Void)
 ```
@@ -309,11 +322,12 @@ Name | Type | Description  | Notes
 Update collection
 
 ### Example
+
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let id = 987 // Double | 
+let id = 987 // Double |
 let updateCollection = UpdateCollection(name: "name_example", description: "description_example") // UpdateCollection |  (optional)
 
 // Update collection
@@ -331,10 +345,10 @@ CollectionAPI.updateCollection(id: id, updateCollection: updateCollection) { (re
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Double** |  | 
- **updateCollection** | [**UpdateCollection**](UpdateCollection.md) |  | [optional] 
+| Name                 | Type                                        | Description | Notes      |
+| -------------------- | ------------------------------------------- | ----------- | ---------- |
+| **id**               | **Double**                                  |             |
+| **updateCollection** | [**UpdateCollection**](UpdateCollection.md) |             | [optional] |
 
 ### Return type
 
@@ -346,8 +360,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-

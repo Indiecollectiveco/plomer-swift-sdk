@@ -1,13 +1,13 @@
 # ProductsAPI
 
-All URIs are relative to *http://localhost:3000*
+All URIs are relative to *https://devapi.plomer.app*
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getProducts**](ProductsAPI.md#getproducts) | **GET** /products | Get available products
-
+| Method                                        | HTTP request      | Description            |
+| --------------------------------------------- | ----------------- | ---------------------- |
+| [**getProducts**](ProductsAPI.md#getproducts) | **GET** /products | Get available products |
 
 # **getProducts**
+
 ```swift
     open class func getProducts(completion: @escaping (_ data: [Product]?, _ error: Error?) -> Void)
 ```
@@ -15,6 +15,7 @@ Method | HTTP request | Description
 Get available products
 
 ### Example
+
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
@@ -34,6 +35,7 @@ ProductsAPI.getProducts() { (response, error) in
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -46,8 +48,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
