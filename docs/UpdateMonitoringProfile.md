@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **contentChangeDetection** | **Bool** |  | [optional] [default to false]
 **description** | **String** |  | [optional] 
 **tags** | **[String]** |  | [optional] 
+**sendAlerts** | **Bool** |  | [optional] [default to true]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

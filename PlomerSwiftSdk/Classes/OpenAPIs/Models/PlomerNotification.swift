@@ -19,6 +19,7 @@ public struct PlomerNotification: Codable, JSONEncodable, Hashable {
         case websiteDown = "WEBSITE_DOWN"
         case contentChange = "CONTENT_CHANGE"
         case system = "SYSTEM"
+        case websiteRestored = "WEBSITE_RESTORED"
     }
     public var id: Int
     public var accountId: Int

@@ -8,6 +8,7 @@ PlomerSwiftSdk/Classes/OpenAPIs/APIs.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/AccountAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/ApiKeyAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/CollectionAPI.swift
+PlomerSwiftSdk/Classes/OpenAPIs/APIs/DowntimeAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/MonitoringProfileAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/PlomerNotificationAPI.swift
 PlomerSwiftSdk/Classes/OpenAPIs/APIs/ProductsAPI.swift
@@ -32,6 +33,9 @@ PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateApiKey.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateCollection.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateMonitoringProfile.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateNotificationRequest.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/DowntimeIncident.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/DowntimeStats.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/GetDowntimeIncidents200Response.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/GetNotifications200Response.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/GetNotifications200ResponsePagination.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/GetResponseTimes200Response.swift
@@ -67,6 +71,10 @@ docs/CreateApiKey.md
 docs/CreateCollection.md
 docs/CreateMonitoringProfile.md
 docs/CreateNotificationRequest.md
+docs/DowntimeAPI.md
+docs/DowntimeIncident.md
+docs/DowntimeStats.md
+docs/GetDowntimeIncidents200Response.md
 docs/GetNotifications200Response.md
 docs/GetNotifications200ResponsePagination.md
 docs/GetResponseTimes200Response.md

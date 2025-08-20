@@ -1,19 +1,19 @@
 # MonitoringProfileAPI
 
-All URIs are relative to *https://devapi.plomer.app*
+All URIs are relative to *http://localhost:3000*
 
-| Method                                                                                             | HTTP request                                    | Description                           |
-| -------------------------------------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------- |
-| [**createMonitoringProfile**](MonitoringProfileAPI.md#createmonitoringprofile)                     | **POST** /monitoring-profile/                   | Create monitoring profile             |
-| [**deleteMonitoringProfile**](MonitoringProfileAPI.md#deletemonitoringprofile)                     | **DELETE** /monitoring-profile/{id}             | Delete monitoring profile             |
-| [**getMonitoringProfile**](MonitoringProfileAPI.md#getmonitoringprofile)                           | **GET** /monitoring-profile/{id}                | Get monitoring profile                |
-| [**getMonitoringProfileRegistrarData**](MonitoringProfileAPI.md#getmonitoringprofileregistrardata) | **GET** /monitoring-profile/{id}/registrar-data | Get monitoring profile registrar data |
-| [**getMonitoringProfileWhoisData**](MonitoringProfileAPI.md#getmonitoringprofilewhoisdata)         | **GET** /monitoring-profile/{id}/whois-data     | Get monitoring profile whois data     |
-| [**getMonitoringProfiles**](MonitoringProfileAPI.md#getmonitoringprofiles)                         | **GET** /monitoring-profile                     | Get monitoring profiles               |
-| [**updateMonitoringProfile**](MonitoringProfileAPI.md#updatemonitoringprofile)                     | **PATCH** /monitoring-profile/{id}              | Update monitoring profile             |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createMonitoringProfile**](MonitoringProfileAPI.md#createmonitoringprofile) | **POST** /monitoring-profile/ | Create monitoring profile
+[**deleteMonitoringProfile**](MonitoringProfileAPI.md#deletemonitoringprofile) | **DELETE** /monitoring-profile/{id} | Delete monitoring profile
+[**getMonitoringProfile**](MonitoringProfileAPI.md#getmonitoringprofile) | **GET** /monitoring-profile/{id} | Get monitoring profile
+[**getMonitoringProfileRegistrarData**](MonitoringProfileAPI.md#getmonitoringprofileregistrardata) | **GET** /monitoring-profile/{id}/registrar-data | Get monitoring profile registrar data
+[**getMonitoringProfileWhoisData**](MonitoringProfileAPI.md#getmonitoringprofilewhoisdata) | **GET** /monitoring-profile/{id}/whois-data | Get monitoring profile whois data
+[**getMonitoringProfiles**](MonitoringProfileAPI.md#getmonitoringprofiles) | **GET** /monitoring-profile | Get monitoring profiles
+[**updateMonitoringProfile**](MonitoringProfileAPI.md#updatemonitoringprofile) | **PATCH** /monitoring-profile/{id} | Update monitoring profile
+
 
 # **createMonitoringProfile**
-
 ```swift
     open class func createMonitoringProfile(createMonitoringProfile: CreateMonitoringProfile? = nil, completion: @escaping (_ data: MonitoringProfile?, _ error: Error?) -> Void)
 ```
@@ -21,12 +21,11 @@ All URIs are relative to *https://devapi.plomer.app*
 Create monitoring profile
 
 ### Example
-
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let createMonitoringProfile = CreateMonitoringProfile(url: "url_example", httpStatusChecks: false, timeoutSeconds: 123, intervalSeconds: 123, healthyThresholdCount: 123, unhealthyThresholdCount: 123, domainExpiryCheck: false, sslExpiryCheck: false, contentChangeDetection: false, description: "description_example", tags: ["tags_example"]) // CreateMonitoringProfile |  (optional)
+let createMonitoringProfile = CreateMonitoringProfile(url: "url_example", httpStatusChecks: false, timeoutSeconds: 123, intervalSeconds: 123, healthyThresholdCount: 123, unhealthyThresholdCount: 123, domainExpiryCheck: false, sslExpiryCheck: false, contentChangeDetection: false, description: "description_example", tags: ["tags_example"], sendAlerts: false) // CreateMonitoringProfile |  (optional)
 
 // Create monitoring profile
 MonitoringProfileAPI.createMonitoringProfile(createMonitoringProfile: createMonitoringProfile) { (response, error) in
@@ -43,9 +42,9 @@ MonitoringProfileAPI.createMonitoringProfile(createMonitoringProfile: createMoni
 
 ### Parameters
 
-| Name                        | Type                                                      | Description | Notes      |
-| --------------------------- | --------------------------------------------------------- | ----------- | ---------- |
-| **createMonitoringProfile** | [**CreateMonitoringProfile**](CreateMonitoringProfile.md) |             | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createMonitoringProfile** | [**CreateMonitoringProfile**](CreateMonitoringProfile.md) |  | [optional] 
 
 ### Return type
 
@@ -57,13 +56,12 @@ MonitoringProfileAPI.createMonitoringProfile(createMonitoringProfile: createMoni
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteMonitoringProfile**
-
 ```swift
     open class func deleteMonitoringProfile(id: Double, completion: @escaping (_ data: AddMacOsPushToken200Response?, _ error: Error?) -> Void)
 ```
@@ -71,12 +69,11 @@ MonitoringProfileAPI.createMonitoringProfile(createMonitoringProfile: createMoni
 Delete monitoring profile
 
 ### Example
-
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let id = 987 // Double |
+let id = 987 // Double | 
 
 // Delete monitoring profile
 MonitoringProfileAPI.deleteMonitoringProfile(id: id) { (response, error) in
@@ -93,9 +90,9 @@ MonitoringProfileAPI.deleteMonitoringProfile(id: id) { (response, error) in
 
 ### Parameters
 
-| Name   | Type       | Description | Notes |
-| ------ | ---------- | ----------- | ----- |
-| **id** | **Double** |             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Double** |  | 
 
 ### Return type
 
@@ -107,13 +104,12 @@ MonitoringProfileAPI.deleteMonitoringProfile(id: id) { (response, error) in
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getMonitoringProfile**
-
 ```swift
     open class func getMonitoringProfile(id: Double, completion: @escaping (_ data: MonitoringProfile?, _ error: Error?) -> Void)
 ```
@@ -121,12 +117,11 @@ MonitoringProfileAPI.deleteMonitoringProfile(id: id) { (response, error) in
 Get monitoring profile
 
 ### Example
-
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let id = 987 // Double |
+let id = 987 // Double | 
 
 // Get monitoring profile
 MonitoringProfileAPI.getMonitoringProfile(id: id) { (response, error) in
@@ -143,9 +138,9 @@ MonitoringProfileAPI.getMonitoringProfile(id: id) { (response, error) in
 
 ### Parameters
 
-| Name   | Type       | Description | Notes |
-| ------ | ---------- | ----------- | ----- |
-| **id** | **Double** |             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Double** |  | 
 
 ### Return type
 
@@ -157,13 +152,12 @@ MonitoringProfileAPI.getMonitoringProfile(id: id) { (response, error) in
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getMonitoringProfileRegistrarData**
-
 ```swift
     open class func getMonitoringProfileRegistrarData(id: Double, completion: @escaping (_ data: RegistrarData?, _ error: Error?) -> Void)
 ```
@@ -171,12 +165,11 @@ MonitoringProfileAPI.getMonitoringProfile(id: id) { (response, error) in
 Get monitoring profile registrar data
 
 ### Example
-
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let id = 987 // Double |
+let id = 987 // Double | 
 
 // Get monitoring profile registrar data
 MonitoringProfileAPI.getMonitoringProfileRegistrarData(id: id) { (response, error) in
@@ -193,9 +186,9 @@ MonitoringProfileAPI.getMonitoringProfileRegistrarData(id: id) { (response, erro
 
 ### Parameters
 
-| Name   | Type       | Description | Notes |
-| ------ | ---------- | ----------- | ----- |
-| **id** | **Double** |             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Double** |  | 
 
 ### Return type
 
@@ -207,13 +200,12 @@ MonitoringProfileAPI.getMonitoringProfileRegistrarData(id: id) { (response, erro
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getMonitoringProfileWhoisData**
-
 ```swift
     open class func getMonitoringProfileWhoisData(id: Double, completion: @escaping (_ data: WhoisData?, _ error: Error?) -> Void)
 ```
@@ -221,12 +213,11 @@ MonitoringProfileAPI.getMonitoringProfileRegistrarData(id: id) { (response, erro
 Get monitoring profile whois data
 
 ### Example
-
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let id = 987 // Double |
+let id = 987 // Double | 
 
 // Get monitoring profile whois data
 MonitoringProfileAPI.getMonitoringProfileWhoisData(id: id) { (response, error) in
@@ -243,9 +234,9 @@ MonitoringProfileAPI.getMonitoringProfileWhoisData(id: id) { (response, error) i
 
 ### Parameters
 
-| Name   | Type       | Description | Notes |
-| ------ | ---------- | ----------- | ----- |
-| **id** | **Double** |             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Double** |  | 
 
 ### Return type
 
@@ -257,13 +248,12 @@ MonitoringProfileAPI.getMonitoringProfileWhoisData(id: id) { (response, error) i
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getMonitoringProfiles**
-
 ```swift
     open class func getMonitoringProfiles(completion: @escaping (_ data: [MonitoringProfile]?, _ error: Error?) -> Void)
 ```
@@ -271,7 +261,6 @@ MonitoringProfileAPI.getMonitoringProfileWhoisData(id: id) { (response, error) i
 Get monitoring profiles
 
 ### Example
-
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
@@ -291,7 +280,6 @@ MonitoringProfileAPI.getMonitoringProfiles() { (response, error) in
 ```
 
 ### Parameters
-
 This endpoint does not need any parameter.
 
 ### Return type
@@ -304,13 +292,12 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateMonitoringProfile**
-
 ```swift
     open class func updateMonitoringProfile(id: Double, updateMonitoringProfile: UpdateMonitoringProfile? = nil, completion: @escaping (_ data: MonitoringProfile?, _ error: Error?) -> Void)
 ```
@@ -318,13 +305,12 @@ This endpoint does not need any parameter.
 Update monitoring profile
 
 ### Example
-
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let id = 987 // Double |
-let updateMonitoringProfile = UpdateMonitoringProfile(url: "url_example", httpStatusChecks: false, timeoutSeconds: 123, intervalSeconds: 123, healthyThresholdCount: 123, unhealthyThresholdCount: 123, domainExpiryCheck: false, sslExpiryCheck: false, contentChangeDetection: false, description: "description_example", tags: ["tags_example"]) // UpdateMonitoringProfile |  (optional)
+let id = 987 // Double | 
+let updateMonitoringProfile = UpdateMonitoringProfile(url: "url_example", httpStatusChecks: false, timeoutSeconds: 123, intervalSeconds: 123, healthyThresholdCount: 123, unhealthyThresholdCount: 123, domainExpiryCheck: false, sslExpiryCheck: false, contentChangeDetection: false, description: "description_example", tags: ["tags_example"], sendAlerts: false) // UpdateMonitoringProfile |  (optional)
 
 // Update monitoring profile
 MonitoringProfileAPI.updateMonitoringProfile(id: id, updateMonitoringProfile: updateMonitoringProfile) { (response, error) in
@@ -341,10 +327,10 @@ MonitoringProfileAPI.updateMonitoringProfile(id: id, updateMonitoringProfile: up
 
 ### Parameters
 
-| Name                        | Type                                                      | Description | Notes      |
-| --------------------------- | --------------------------------------------------------- | ----------- | ---------- |
-| **id**                      | **Double**                                                |             |
-| **updateMonitoringProfile** | [**UpdateMonitoringProfile**](UpdateMonitoringProfile.md) |             | [optional] |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Double** |  | 
+ **updateMonitoringProfile** | [**UpdateMonitoringProfile**](UpdateMonitoringProfile.md) |  | [optional] 
 
 ### Return type
 
@@ -356,7 +342,8 @@ MonitoringProfileAPI.updateMonitoringProfile(id: id, updateMonitoringProfile: up
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
