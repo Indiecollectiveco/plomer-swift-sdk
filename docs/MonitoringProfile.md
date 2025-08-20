@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **unhealthyThresholdCount** | **Double** |  | [default to 3]
 **updatedAt** | **String** |  | 
 **url** | **String** |  | 
+**sendAlerts** | **Bool** |  | [default to true]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

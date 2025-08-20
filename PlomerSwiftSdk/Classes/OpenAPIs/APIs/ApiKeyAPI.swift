@@ -33,7 +33,7 @@ open class ApiKeyAPI {
 
     /**
      Create API key
-     - POST /api-key/
+     - POST /api-key
      - API Key:
        - type: apiKey ApiKey (HEADER)
        - name: apiKey
@@ -44,7 +44,7 @@ open class ApiKeyAPI {
      - returns: RequestBuilder<ApiKey> 
      */
     open class func createApiKeyWithRequestBuilder(createApiKey: CreateApiKey? = nil) -> RequestBuilder<ApiKey> {
-        let localVariablePath = "/api-key/"
+        let localVariablePath = "/api-key"
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createApiKey)
 
@@ -111,52 +111,5 @@ open class ApiKeyAPI {
         let localVariableRequestBuilder: RequestBuilder<AddMacOsPushToken200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
-    }
-
-    /**
-     Get API keys
-     
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - parameter completion: completion handler to receive the result
-     */
-    @discardableResult
-    open class func getApiKeys(apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<[ApiKey], ErrorResponse>) -> Void)) -> RequestTask {
-        return getApiKeysWithRequestBuilder().execute(apiResponseQueue) { result in
-            switch result {
-            case let .success(response):
-                completion(.success(response.body))
-            case let .failure(error):
-                completion(.failure(error))
-            }
-        }
-    }
-
-    /**
-     Get API keys
-     - GET /api-key
-     - API Key:
-       - type: apiKey ApiKey (HEADER)
-       - name: apiKey
-     - Bearer Token:
-       - type: http
-       - name: bearerAuth
-     - returns: RequestBuilder<[ApiKey]> 
-     */
-    open class func getApiKeysWithRequestBuilder() -> RequestBuilder<[ApiKey]> {
-        let localVariablePath = "/api-key"
-        let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
-        let localVariableParameters: [String: Any]? = nil
-
-        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
-
-        let localVariableNillableHeaders: [String: Any?] = [
-            :
-        ]
-
-        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
-
-        let localVariableRequestBuilder: RequestBuilder<[ApiKey]>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
-
-        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 }

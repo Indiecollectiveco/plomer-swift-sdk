@@ -1,17 +1,17 @@
 # PlomerNotificationAPI
 
-All URIs are relative to *https://devapi.plomer.app*
+All URIs are relative to *http://localhost:3000*
 
-| Method                                                                | HTTP request                  | Description         |
-| --------------------------------------------------------------------- | ----------------------------- | ------------------- |
-| [**createNotification**](PlomerNotificationAPI.md#createnotification) | **POST** /notification        | Create notification |
-| [**deleteNotification**](PlomerNotificationAPI.md#deletenotification) | **DELETE** /notification/{id} | Delete notification |
-| [**getNotification**](PlomerNotificationAPI.md#getnotification)       | **GET** /notification/{id}    | Get notification    |
-| [**getNotifications**](PlomerNotificationAPI.md#getnotifications)     | **GET** /notification/        | Get notifications   |
-| [**updateNotification**](PlomerNotificationAPI.md#updatenotification) | **PATCH** /notification/{id}  | Update notification |
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createNotification**](PlomerNotificationAPI.md#createnotification) | **POST** /notification | Create notification
+[**deleteNotification**](PlomerNotificationAPI.md#deletenotification) | **DELETE** /notification/{id} | Delete notification
+[**getNotification**](PlomerNotificationAPI.md#getnotification) | **GET** /notification/{id} | Get notification
+[**getNotifications**](PlomerNotificationAPI.md#getnotifications) | **GET** /notification/ | Get notifications
+[**updateNotification**](PlomerNotificationAPI.md#updatenotification) | **PATCH** /notification/{id} | Update notification
+
 
 # **createNotification**
-
 ```swift
     open class func createNotification(createNotificationRequest: CreateNotificationRequest, completion: @escaping (_ data: PlomerNotification?, _ error: Error?) -> Void)
 ```
@@ -19,12 +19,11 @@ All URIs are relative to *https://devapi.plomer.app*
 Create notification
 
 ### Example
-
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let createNotificationRequest = createNotification_request(text: "text_example", type: "type_example", sendNotification: false, source: "source_example") // CreateNotificationRequest |
+let createNotificationRequest = createNotification_request(text: "text_example", type: "type_example", sendNotification: false, source: "source_example") // CreateNotificationRequest | 
 
 // Create notification
 PlomerNotificationAPI.createNotification(createNotificationRequest: createNotificationRequest) { (response, error) in
@@ -41,9 +40,9 @@ PlomerNotificationAPI.createNotification(createNotificationRequest: createNotifi
 
 ### Parameters
 
-| Name                          | Type                                                          | Description | Notes |
-| ----------------------------- | ------------------------------------------------------------- | ----------- | ----- |
-| **createNotificationRequest** | [**CreateNotificationRequest**](CreateNotificationRequest.md) |             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createNotificationRequest** | [**CreateNotificationRequest**](CreateNotificationRequest.md) |  | 
 
 ### Return type
 
@@ -55,13 +54,12 @@ PlomerNotificationAPI.createNotification(createNotificationRequest: createNotifi
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **deleteNotification**
-
 ```swift
     open class func deleteNotification(id: Double, completion: @escaping (_ data: AddMacOsPushToken200Response?, _ error: Error?) -> Void)
 ```
@@ -69,12 +67,11 @@ PlomerNotificationAPI.createNotification(createNotificationRequest: createNotifi
 Delete notification
 
 ### Example
-
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let id = 987 // Double |
+let id = 987 // Double | 
 
 // Delete notification
 PlomerNotificationAPI.deleteNotification(id: id) { (response, error) in
@@ -91,9 +88,9 @@ PlomerNotificationAPI.deleteNotification(id: id) { (response, error) in
 
 ### Parameters
 
-| Name   | Type       | Description | Notes |
-| ------ | ---------- | ----------- | ----- |
-| **id** | **Double** |             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Double** |  | 
 
 ### Return type
 
@@ -105,13 +102,12 @@ PlomerNotificationAPI.deleteNotification(id: id) { (response, error) in
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getNotification**
-
 ```swift
     open class func getNotification(id: Double, completion: @escaping (_ data: PlomerNotification?, _ error: Error?) -> Void)
 ```
@@ -119,12 +115,11 @@ PlomerNotificationAPI.deleteNotification(id: id) { (response, error) in
 Get notification
 
 ### Example
-
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let id = 987 // Double |
+let id = 987 // Double | 
 
 // Get notification
 PlomerNotificationAPI.getNotification(id: id) { (response, error) in
@@ -141,9 +136,9 @@ PlomerNotificationAPI.getNotification(id: id) { (response, error) in
 
 ### Parameters
 
-| Name   | Type       | Description | Notes |
-| ------ | ---------- | ----------- | ----- |
-| **id** | **Double** |             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Double** |  | 
 
 ### Return type
 
@@ -155,13 +150,12 @@ PlomerNotificationAPI.getNotification(id: id) { (response, error) in
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getNotifications**
-
 ```swift
     open class func getNotifications(limit: Double? = nil, page: Double? = nil, completion: @escaping (_ data: GetNotifications200Response?, _ error: Error?) -> Void)
 ```
@@ -169,7 +163,6 @@ PlomerNotificationAPI.getNotification(id: id) { (response, error) in
 Get notifications
 
 ### Example
-
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
@@ -192,10 +185,10 @@ PlomerNotificationAPI.getNotifications(limit: limit, page: page) { (response, er
 
 ### Parameters
 
-| Name      | Type       | Description | Notes                      |
-| --------- | ---------- | ----------- | -------------------------- |
-| **limit** | **Double** |             | [optional] [default to 10] |
-| **page**  | **Double** |             | [optional] [default to 0]  |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **Double** |  | [optional] [default to 10]
+ **page** | **Double** |  | [optional] [default to 0]
 
 ### Return type
 
@@ -207,13 +200,12 @@ PlomerNotificationAPI.getNotifications(limit: limit, page: page) { (response, er
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **updateNotification**
-
 ```swift
     open class func updateNotification(id: Double, updateNotificationRequest: UpdateNotificationRequest, completion: @escaping (_ data: PlomerNotification?, _ error: Error?) -> Void)
 ```
@@ -221,13 +213,12 @@ PlomerNotificationAPI.getNotifications(limit: limit, page: page) { (response, er
 Update notification
 
 ### Example
-
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let id = 987 // Double |
-let updateNotificationRequest = updateNotification_request(read: false) // UpdateNotificationRequest |
+let id = 987 // Double | 
+let updateNotificationRequest = updateNotification_request(read: false) // UpdateNotificationRequest | 
 
 // Update notification
 PlomerNotificationAPI.updateNotification(id: id, updateNotificationRequest: updateNotificationRequest) { (response, error) in
@@ -244,10 +235,10 @@ PlomerNotificationAPI.updateNotification(id: id, updateNotificationRequest: upda
 
 ### Parameters
 
-| Name                          | Type                                                          | Description | Notes |
-| ----------------------------- | ------------------------------------------------------------- | ----------- | ----- |
-| **id**                        | **Double**                                                    |             |
-| **updateNotificationRequest** | [**UpdateNotificationRequest**](UpdateNotificationRequest.md) |             |
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | **Double** |  | 
+ **updateNotificationRequest** | [**UpdateNotificationRequest**](UpdateNotificationRequest.md) |  | 
 
 ### Return type
 
@@ -259,7 +250,8 @@ PlomerNotificationAPI.updateNotification(id: id, updateNotificationRequest: upda
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

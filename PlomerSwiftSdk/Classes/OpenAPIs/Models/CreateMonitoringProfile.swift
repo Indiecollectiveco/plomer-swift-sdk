@@ -24,8 +24,9 @@ public struct CreateMonitoringProfile: Codable, JSONEncodable, Hashable {
     public var contentChangeDetection: Bool? = false
     public var description: String?
     public var tags: [String]
+    public var sendAlerts: Bool? = true
 
-    public init(url: String, httpStatusChecks: Bool? = true, timeoutSeconds: Double? = 5, intervalSeconds: Double? = 30, healthyThresholdCount: Double? = 3, unhealthyThresholdCount: Double? = 5, domainExpiryCheck: Bool? = false, sslExpiryCheck: Bool? = false, contentChangeDetection: Bool? = false, description: String? = nil, tags: [String]) {
+    public init(url: String, httpStatusChecks: Bool? = true, timeoutSeconds: Double? = 5, intervalSeconds: Double? = 30, healthyThresholdCount: Double? = 3, unhealthyThresholdCount: Double? = 5, domainExpiryCheck: Bool? = false, sslExpiryCheck: Bool? = false, contentChangeDetection: Bool? = false, description: String? = nil, tags: [String], sendAlerts: Bool? = true) {
         self.url = url
         self.httpStatusChecks = httpStatusChecks
         self.timeoutSeconds = timeoutSeconds
@@ -37,6 +38,7 @@ public struct CreateMonitoringProfile: Codable, JSONEncodable, Hashable {
         self.contentChangeDetection = contentChangeDetection
         self.description = description
         self.tags = tags
+        self.sendAlerts = sendAlerts
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
@@ -51,6 +53,7 @@ public struct CreateMonitoringProfile: Codable, JSONEncodable, Hashable {
         case contentChangeDetection
         case description
         case tags
+        case sendAlerts
     }
 
     // Encodable protocol methods
@@ -68,6 +71,7 @@ public struct CreateMonitoringProfile: Codable, JSONEncodable, Hashable {
         try container.encodeIfPresent(contentChangeDetection, forKey: .contentChangeDetection)
         try container.encodeIfPresent(description, forKey: .description)
         try container.encode(tags, forKey: .tags)
+        try container.encodeIfPresent(sendAlerts, forKey: .sendAlerts)
     }
 }
 
