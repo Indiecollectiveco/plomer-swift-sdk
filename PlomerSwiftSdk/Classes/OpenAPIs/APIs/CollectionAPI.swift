@@ -90,7 +90,7 @@ open class CollectionAPI {
 
     /**
      Create collection
-     - POST /collection"
+     - POST /collection/
      - API Key:
        - type: apiKey ApiKey (HEADER)
        - name: apiKey
@@ -101,7 +101,7 @@ open class CollectionAPI {
      - returns: RequestBuilder<Collection> 
      */
     open class func createCollectionWithRequestBuilder(createCollection: CreateCollection? = nil) -> RequestBuilder<Collection> {
-        let localVariablePath = "/collection""
+        let localVariablePath = "/collection/"
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createCollection)
 
