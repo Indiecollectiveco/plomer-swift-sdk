@@ -18,17 +18,19 @@ public struct Account: Codable, JSONEncodable, Hashable {
     public var email: String
     public var name: String
     public var enablePushNotifications: Bool = false
+    public var hasSubscription: Bool = false
     public var identityToken: String?
     public var authCode: String?
     public var createdAt: String
     public var updatedAt: String
 
-    public init(id: Int, appleId: String, email: String, name: String, enablePushNotifications: Bool = false, identityToken: String?, authCode: String?, createdAt: String, updatedAt: String) {
+    public init(id: Int, appleId: String, email: String, name: String, enablePushNotifications: Bool = false, hasSubscription: Bool = false, identityToken: String?, authCode: String?, createdAt: String, updatedAt: String) {
         self.id = id
         self.appleId = appleId
         self.email = email
         self.name = name
         self.enablePushNotifications = enablePushNotifications
+        self.hasSubscription = hasSubscription
         self.identityToken = identityToken
         self.authCode = authCode
         self.createdAt = createdAt
@@ -41,6 +43,7 @@ public struct Account: Codable, JSONEncodable, Hashable {
         case email
         case name
         case enablePushNotifications
+        case hasSubscription
         case identityToken
         case authCode
         case createdAt
@@ -56,6 +59,7 @@ public struct Account: Codable, JSONEncodable, Hashable {
         try container.encode(email, forKey: .email)
         try container.encode(name, forKey: .name)
         try container.encode(enablePushNotifications, forKey: .enablePushNotifications)
+        try container.encode(hasSubscription, forKey: .hasSubscription)
         try container.encode(identityToken, forKey: .identityToken)
         try container.encode(authCode, forKey: .authCode)
         try container.encode(createdAt, forKey: .createdAt)
