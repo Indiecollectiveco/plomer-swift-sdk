@@ -1,6 +1,6 @@
 # AccountAPI
 
-All URIs are relative to *http://localhost:3000*
+All URIs are relative to *https://devapi.plomer.app*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**createAccount**](AccountAPI.md#createaccount) | **POST** /account | Create account
 [**getAccountWithTokens**](AccountAPI.md#getaccountwithtokens) | **GET** /account/{appleId} | Get account with tokens
 [**refreshTokens**](AccountAPI.md#refreshtokens) | **POST** /account/refresh-token | Refresh authentication tokens
+[**updateAccount**](AccountAPI.md#updateaccount) | **PATCH** /account | Update account
 
 
 # **addMacOsPushToken**
@@ -74,7 +75,7 @@ Create account
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import PlomerSwiftSdk
 
-let createAccountRequest = createAccount_request(appleId: "appleId_example", email: "email_example", name: "name_example", enablePushNotifications: false, identityToken: "identityToken_example", authCode: "authCode_example") // CreateAccountRequest | 
+let createAccountRequest = createAccount_request(appleId: "appleId_example", email: "email_example", name: "name_example", enablePushNotifications: false, hasSubscription: false, identityToken: "identityToken_example", authCode: "authCode_example") // CreateAccountRequest | 
 
 // Create account
 AccountAPI.createAccount(createAccountRequest: createAccountRequest) { (response, error) in
@@ -198,6 +199,56 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TokenResponse**](TokenResponse.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **updateAccount**
+```swift
+    open class func updateAccount(updateAccountRequest: UpdateAccountRequest? = nil, completion: @escaping (_ data: Account?, _ error: Error?) -> Void)
+```
+
+Update account
+
+Update account fields
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import PlomerSwiftSdk
+
+let updateAccountRequest = updateAccount_request(hasSubscription: false, enablePushNotifications: false) // UpdateAccountRequest |  (optional)
+
+// Update account
+AccountAPI.updateAccount(updateAccountRequest: updateAccountRequest) { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **updateAccountRequest** | [**UpdateAccountRequest**](UpdateAccountRequest.md) |  | [optional] 
+
+### Return type
+
+[**Account**](Account.md)
 
 ### Authorization
 

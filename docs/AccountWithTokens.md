@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **email** | **String** |  | 
 **name** | **String** |  | 
 **enablePushNotifications** | **Bool** |  | [default to false]
+**hasSubscription** | **Bool** |  | [default to false]
 **identityToken** | **String** |  | 
 **authCode** | **String** |  | 
 **createdAt** | **String** |  | 

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **email** | **String** |  | 
 **name** | **String** |  | 
 **enablePushNotifications** | **Bool** |  | [optional] [default to false]
+**hasSubscription** | **Bool** |  | [optional] [default to false]
 **identityToken** | **String** |  | 
 **authCode** | **String** |  | 
 

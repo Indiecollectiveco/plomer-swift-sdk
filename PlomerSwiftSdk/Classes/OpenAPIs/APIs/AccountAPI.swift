@@ -214,4 +214,54 @@ open class AccountAPI {
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
+
+    /**
+     Update account
+     
+     - parameter updateAccountRequest: (body)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func updateAccount(updateAccountRequest: UpdateAccountRequest? = nil, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<Account, ErrorResponse>) -> Void)) -> RequestTask {
+        return updateAccountWithRequestBuilder(updateAccountRequest: updateAccountRequest).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Update account
+     - PATCH /account
+     - Update account fields
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter updateAccountRequest: (body)  (optional)
+     - returns: RequestBuilder<Account> 
+     */
+    open class func updateAccountWithRequestBuilder(updateAccountRequest: UpdateAccountRequest? = nil) -> RequestBuilder<Account> {
+        let localVariablePath = "/account"
+        let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: updateAccountRequest)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "application/json",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<Account>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
 }

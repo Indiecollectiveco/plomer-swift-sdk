@@ -47,6 +47,7 @@ PlomerSwiftSdk/Classes/OpenAPIs/Models/RefreshTokensRequest.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/RegistrarData.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/ResponseTimes.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/TokenResponse.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/UpdateAccountRequest.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/UpdateCollection.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/UpdateMonitoringProfile.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/UpdateNotificationRequest.swift
@@ -90,6 +91,7 @@ docs/RegistrarData.md
 docs/ResponseTimes.md
 docs/ResponseTimesAPI.md
 docs/TokenResponse.md
+docs/UpdateAccountRequest.md
 docs/UpdateCollection.md
 docs/UpdateMonitoringProfile.md
 docs/UpdateNotificationRequest.md
