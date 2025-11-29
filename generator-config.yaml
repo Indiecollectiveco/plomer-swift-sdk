@@ -1,0 +1,12 @@
+generatorName: swift5
+inputSpec: openapi.yaml
+outputDir: .
+additionalProperties:
+  library: alamofire
+  projectName: PlomerSwiftSdk
+  packageName: PlomerSwiftSdk
+  useResultType: true
+  responseAs: Result
+packageName: PlomerSwiftSdk
+gitUserId: your-git-username
+gitRepoId: plomer-swift-sdk
