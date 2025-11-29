@@ -23,7 +23,7 @@ Add monitoring profile to collection
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let id = 987 // Double | 
 let profileId = 987 // Double | 
@@ -73,7 +73,7 @@ Create collection
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let createCollection = CreateCollection(name: "name_example", description: "description_example") // CreateCollection |  (optional)
 
@@ -121,7 +121,7 @@ Delete collection
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let id = 987 // Double | 
 
@@ -169,7 +169,7 @@ Get collection with profiles
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let id = 987 // Double | 
 
@@ -217,7 +217,7 @@ Get collections
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 
 // Get collections
@@ -261,7 +261,7 @@ Remove monitoring profile from collection
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let id = 987 // Double | 
 let profileId = 987 // Double | 
@@ -311,7 +311,7 @@ Update collection
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let id = 987 // Double | 
 let updateCollection = UpdateCollection(name: "name_example", description: "description_example") // UpdateCollection |  (optional)

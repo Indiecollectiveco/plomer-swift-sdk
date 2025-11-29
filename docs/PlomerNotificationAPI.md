@@ -21,7 +21,7 @@ Create notification
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let createNotificationRequest = createNotification_request(text: "text_example", type: "type_example", sendNotification: false, source: "source_example") // CreateNotificationRequest | 
 
@@ -69,7 +69,7 @@ Delete notification
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let id = 987 // Double | 
 
@@ -117,7 +117,7 @@ Get notification
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let id = 987 // Double | 
 
@@ -165,7 +165,7 @@ Get notifications
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let limit = 987 // Double |  (optional) (default to 10)
 let page = 987 // Double |  (optional) (default to 0)
@@ -215,7 +215,7 @@ Update notification
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let id = 987 // Double | 
 let updateNotificationRequest = updateNotification_request(read: false) // UpdateNotificationRequest | 

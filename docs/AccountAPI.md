@@ -23,7 +23,7 @@ Add macOS push token
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let addMacOsPushTokenRequest = addMacOsPushToken_request(token: "token_example") // AddMacOsPushTokenRequest | 
 
@@ -73,7 +73,7 @@ Create account
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let createAccountRequest = createAccount_request(appleId: "appleId_example", email: "email_example", name: "name_example", enablePushNotifications: false, hasSubscription: false, identityToken: "identityToken_example", authCode: "authCode_example") // CreateAccountRequest | 
 
@@ -123,7 +123,7 @@ Get account and generate authentication tokens
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let appleId = "appleId_example" // String | 
 
@@ -173,7 +173,7 @@ Generate new access and refresh tokens using a refresh token
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let refreshTokensRequest = refreshTokens_request(refreshToken: "refreshToken_example") // RefreshTokensRequest | 
 
@@ -223,7 +223,7 @@ Update account fields
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import PlomerSwiftSdk
+import OpenAPIClient
 
 let updateAccountRequest = updateAccount_request(hasSubscription: false, enablePushNotifications: false) // UpdateAccountRequest |  (optional)
 
