@@ -19,7 +19,7 @@ Get active downtime incidents
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import PlomerSwiftSdk
 
 let monitoringProfileId = 987 // Double |  (optional)
 
@@ -67,7 +67,7 @@ Get downtime incidents
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import PlomerSwiftSdk
 
 let monitoringProfileId = "monitoringProfileId_example" // String |  (optional)
 let startDate = Date() // Date |  (optional)
@@ -125,7 +125,7 @@ Get downtime statistics
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import PlomerSwiftSdk
 
 let monitoringProfileId = 987 // Double |  (optional)
 let days = 987 // Double |  (optional) (default to 30)

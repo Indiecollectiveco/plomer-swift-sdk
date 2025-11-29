@@ -23,7 +23,7 @@ Create monitoring profile
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import PlomerSwiftSdk
 
 let createMonitoringProfile = CreateMonitoringProfile(url: "url_example", httpStatusChecks: false, timeoutSeconds: 123, intervalSeconds: 123, healthyThresholdCount: 123, unhealthyThresholdCount: 123, domainExpiryCheck: false, sslExpiryCheck: false, contentChangeDetection: false, description: "description_example", tags: ["tags_example"], sendAlerts: false) // CreateMonitoringProfile |  (optional)
 
@@ -71,7 +71,7 @@ Delete monitoring profile
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import PlomerSwiftSdk
 
 let id = 987 // Double | 
 
@@ -119,7 +119,7 @@ Get monitoring profile
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import PlomerSwiftSdk
 
 let id = 987 // Double | 
 
@@ -167,7 +167,7 @@ Get monitoring profile registrar data
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import PlomerSwiftSdk
 
 let id = 987 // Double | 
 
@@ -215,7 +215,7 @@ Get monitoring profile whois data
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import PlomerSwiftSdk
 
 let id = 987 // Double | 
 
@@ -263,7 +263,7 @@ Get monitoring profiles
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import PlomerSwiftSdk
 
 
 // Get monitoring profiles
@@ -307,7 +307,7 @@ Update monitoring profile
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import PlomerSwiftSdk
 
 let id = 987 // Double | 
 let updateMonitoringProfile = UpdateMonitoringProfile(url: "url_example", httpStatusChecks: false, timeoutSeconds: 123, intervalSeconds: 123, healthyThresholdCount: 123, unhealthyThresholdCount: 123, domainExpiryCheck: false, sslExpiryCheck: false, contentChangeDetection: false, description: "description_example", tags: ["tags_example"], sendAlerts: false) // UpdateMonitoringProfile |  (optional)

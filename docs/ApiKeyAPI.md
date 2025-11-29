@@ -18,7 +18,7 @@ Create API key
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import PlomerSwiftSdk
 
 let createApiKey = CreateApiKey(name: "name_example", expiresAt: Date()) // CreateApiKey |  (optional)
 
@@ -66,7 +66,7 @@ Delete API key
 ### Example
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import PlomerSwiftSdk
 
 let id = 987 // Double | 
 

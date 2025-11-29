@@ -1,10 +1,10 @@
-name: OpenAPIClient
+name: PlomerSwiftSdk
 targets:
-  OpenAPIClient:
+  PlomerSwiftSdk:
     type: framework
     platform: iOS
     deploymentTarget: "11.0"
-    sources: [OpenAPIClient]
+    sources: [PlomerSwiftSdk]
     info:
       path: ./Info.plist
       version: 1.0.0
