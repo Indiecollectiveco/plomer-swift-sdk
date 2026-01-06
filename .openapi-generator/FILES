@@ -23,7 +23,6 @@ PlomerSwiftSdk/Classes/OpenAPIs/JSONEncodingHelper.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/Account.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/AccountWithTokens.swift
-PlomerSwiftSdk/Classes/OpenAPIs/Models/AddMacOsPushToken200Response.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/AddMacOsPushTokenRequest.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/ApiKey.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/Collection.swift
@@ -33,6 +32,7 @@ PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateApiKey.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateCollection.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateMonitoringProfile.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateNotificationRequest.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/DeleteAccount200Response.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/DowntimeIncident.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/DowntimeStats.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/GetDowntimeIncidents200Response.swift
@@ -60,7 +60,6 @@ README.md
 docs/Account.md
 docs/AccountAPI.md
 docs/AccountWithTokens.md
-docs/AddMacOsPushToken200Response.md
 docs/AddMacOsPushTokenRequest.md
 docs/ApiKey.md
 docs/ApiKeyAPI.md
@@ -72,6 +71,7 @@ docs/CreateApiKey.md
 docs/CreateCollection.md
 docs/CreateMonitoringProfile.md
 docs/CreateNotificationRequest.md
+docs/DeleteAccount200Response.md
 docs/DowntimeAPI.md
 docs/DowntimeIncident.md
 docs/DowntimeStats.md
