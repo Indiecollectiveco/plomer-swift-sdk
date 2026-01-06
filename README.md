@@ -28,6 +28,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccountAPI* | [**addMacOsPushToken**](docs/AccountAPI.md#addmacospushtoken) | **POST** /account/add-macos-push-token | Add macOS push token
 *AccountAPI* | [**createAccount**](docs/AccountAPI.md#createaccount) | **POST** /account | Create account
+*AccountAPI* | [**deleteAccount**](docs/AccountAPI.md#deleteaccount) | **DELETE** /account | Delete account
 *AccountAPI* | [**getAccountWithTokens**](docs/AccountAPI.md#getaccountwithtokens) | **GET** /account/{appleId} | Get account with tokens
 *AccountAPI* | [**refreshTokens**](docs/AccountAPI.md#refreshtokens) | **POST** /account/refresh-token | Refresh authentication tokens
 *AccountAPI* | [**updateAccount**](docs/AccountAPI.md#updateaccount) | **PATCH** /account | Update account
@@ -64,7 +65,6 @@ Class | Method | HTTP request | Description
 
  - [Account](docs/Account.md)
  - [AccountWithTokens](docs/AccountWithTokens.md)
- - [AddMacOsPushToken200Response](docs/AddMacOsPushToken200Response.md)
  - [AddMacOsPushTokenRequest](docs/AddMacOsPushTokenRequest.md)
  - [ApiKey](docs/ApiKey.md)
  - [Collection](docs/Collection.md)
@@ -74,6 +74,7 @@ Class | Method | HTTP request | Description
  - [CreateCollection](docs/CreateCollection.md)
  - [CreateMonitoringProfile](docs/CreateMonitoringProfile.md)
  - [CreateNotificationRequest](docs/CreateNotificationRequest.md)
+ - [DeleteAccount200Response](docs/DeleteAccount200Response.md)
  - [DowntimeIncident](docs/DowntimeIncident.md)
  - [DowntimeStats](docs/DowntimeStats.md)
  - [GetDowntimeIncidents200Response](docs/GetDowntimeIncidents200Response.md)
