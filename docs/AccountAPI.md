@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**addMacOsPushToken**](AccountAPI.md#addmacospushtoken) | **POST** /account/add-macos-push-token | Add macOS push token
 [**createAccount**](AccountAPI.md#createaccount) | **POST** /account | Create account
+[**deleteAccount**](AccountAPI.md#deleteaccount) | **DELETE** /account | Delete account
 [**getAccountWithTokens**](AccountAPI.md#getaccountwithtokens) | **GET** /account/{appleId} | Get account with tokens
 [**refreshTokens**](AccountAPI.md#refreshtokens) | **POST** /account/refresh-token | Refresh authentication tokens
 [**updateAccount**](AccountAPI.md#updateaccount) | **PATCH** /account | Update account
@@ -13,7 +14,7 @@ Method | HTTP request | Description
 
 # **addMacOsPushToken**
 ```swift
-    open class func addMacOsPushToken(addMacOsPushTokenRequest: AddMacOsPushTokenRequest, completion: @escaping (_ data: AddMacOsPushToken200Response?, _ error: Error?) -> Void)
+    open class func addMacOsPushToken(addMacOsPushTokenRequest: AddMacOsPushTokenRequest, completion: @escaping (_ data: DeleteAccount200Response?, _ error: Error?) -> Void)
 ```
 
 Add macOS push token
@@ -48,7 +49,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AddMacOsPushToken200Response**](AddMacOsPushToken200Response.md)
+[**DeleteAccount200Response**](DeleteAccount200Response.md)
 
 ### Authorization
 
@@ -107,6 +108,52 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteAccount**
+```swift
+    open class func deleteAccount(completion: @escaping (_ data: DeleteAccount200Response?, _ error: Error?) -> Void)
+```
+
+Delete account
+
+Soft delete the authenticated user's account
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import PlomerSwiftSdk
+
+
+// Delete account
+AccountAPI.deleteAccount() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DeleteAccount200Response**](DeleteAccount200Response.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

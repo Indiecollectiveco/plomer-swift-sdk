@@ -104,6 +104,93 @@
         description: Error
         example:
           error: Not found
+      BulkImportResult:
+        type: object
+        properties:
+          total:
+            type: integer
+          created:
+            type: integer
+          skipped:
+            type: array
+            items:
+              type: object
+              properties:
+                url:
+                  type: string
+                reason:
+                  type: string
+              required:
+              - url
+              - reason
+          failed:
+            type: array
+            items:
+              type: object
+              properties:
+                url:
+                  type: string
+                error:
+                  type: string
+              required:
+              - url
+              - error
+        required:
+        - total
+        - created
+        - skipped
+        - failed
+        description: Per-row outcome of a bulk monitoring-profile import
+      BulkImportAccepted:
+        type: object
+        properties:
+          jobId:
+            type: string
+          total:
+            type: integer
+          statusUrl:
+            type: string
+        required:
+        - jobId
+        - total
+        - statusUrl
+        description: Acknowledgement that a bulk import job has been queued
+        example:
+          jobId: '42'
+          total: 120
+          statusUrl: "/monitoring-profile/bulk/42"
+      BulkImportStatus:
+        type: object
+        properties:
+          jobId:
+            type: string
+          state:
+            type: string
+            enum:
+            - waiting
+            - active
+            - completed
+            - failed
+          progress:
+            type: object
+            properties:
+              done:
+                type: integer
+              total:
+                type: integer
+            required:
+            - done
+            - total
+          result:
+            nullable: true
+            allOf:
+            - "$ref": "#/components/schemas/BulkImportResult"
+        required:
+        - jobId
+        - state
+        - progress
+        - result
+        description: Status and results of a bulk monitoring-profile import job
       ApiKey:
         type: object
         properties:
@@ -1405,6 +1492,69 @@
               application/json:
                 schema:
                   "$ref": "#/components/schemas/MonitoringProfile"
+    "/monitoring-profile/bulk":
+      post:
+        operationId: bulkImportMonitoringProfiles
+        summary: Bulk import monitoring profiles from a CSV of URLs
+        tags:
+        - MonitoringProfile
+        requestBody:
+          description: CSV body with one URL per line. An optional 'url' header line
+            is ignored. Max 500 rows.
+          content:
+            text/csv:
+              schema:
+                type: string
+                description: CSV body with one URL per line. An optional 'url' header
+                  line is ignored. Max 500 rows.
+                example: |-
+                  url
+                  https://example.com
+                  https://another.com
+        responses:
+          '202':
+            description: Default Response
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/BulkImportAccepted"
+          '400':
+            description: Default Response
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/Error"
+          '413':
+            description: Default Response
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/Error"
+    "/monitoring-profile/bulk/{jobId}":
+      get:
+        operationId: getBulkImportStatus
+        summary: Get the status of a bulk import job
+        tags:
+        - MonitoringProfile
+        parameters:
+        - schema:
+            type: string
+          in: path
+          name: jobId
+          required: true
+        responses:
+          '200':
+            description: Default Response
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/BulkImportStatus"
+          '404':
+            description: Default Response
+            content:
+              application/json:
+                schema:
+                  "$ref": "#/components/schemas/Error"
     /notification:
       post:
         operationId: createNotification

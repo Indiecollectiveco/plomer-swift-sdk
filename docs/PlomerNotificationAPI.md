@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 # **deleteNotification**
 ```swift
-    open class func deleteNotification(id: Double, completion: @escaping (_ data: AddMacOsPushToken200Response?, _ error: Error?) -> Void)
+    open class func deleteNotification(id: Double, completion: @escaping (_ data: DeleteAccount200Response?, _ error: Error?) -> Void)
 ```
 
 Delete notification
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AddMacOsPushToken200Response**](AddMacOsPushToken200Response.md)
+[**DeleteAccount200Response**](DeleteAccount200Response.md)
 
 ### Authorization
 
