@@ -21,3 +21,8 @@
 #docs/*.md
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
+
+# Hand-written supporting file: raw text/csv bulk-import upload helper.
+# The generated bulkImportMonitoringProfiles(body:) cannot send a text/csv body,
+# so this extension provides MonitoringProfileAPI.bulkImport(csv:). Keep it.
+PlomerSwiftSdk/Classes/OpenAPIs/APIs/MonitoringProfileAPI+BulkImport.swift
