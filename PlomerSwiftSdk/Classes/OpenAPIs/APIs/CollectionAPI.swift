@@ -21,7 +21,7 @@ open class CollectionAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func addProfileToCollection(id: Double, profileId: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AddMacOsPushToken200Response, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func addProfileToCollection(id: Double, profileId: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeleteAccount200Response, ErrorResponse>) -> Void)) -> RequestTask {
         return addProfileToCollectionWithRequestBuilder(id: id, profileId: profileId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -43,9 +43,9 @@ open class CollectionAPI {
        - name: bearerAuth
      - parameter id: (path)  
      - parameter profileId: (path)  
-     - returns: RequestBuilder<AddMacOsPushToken200Response> 
+     - returns: RequestBuilder<DeleteAccount200Response> 
      */
-    open class func addProfileToCollectionWithRequestBuilder(id: Double, profileId: Double) -> RequestBuilder<AddMacOsPushToken200Response> {
+    open class func addProfileToCollectionWithRequestBuilder(id: Double, profileId: Double) -> RequestBuilder<DeleteAccount200Response> {
         var localVariablePath = "/collection/{id}/profiles/{profileId}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -64,7 +64,7 @@ open class CollectionAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AddMacOsPushToken200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DeleteAccount200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
@@ -126,7 +126,7 @@ open class CollectionAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func deleteCollection(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AddMacOsPushToken200Response, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func deleteCollection(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeleteAccount200Response, ErrorResponse>) -> Void)) -> RequestTask {
         return deleteCollectionWithRequestBuilder(id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -147,9 +147,9 @@ open class CollectionAPI {
        - type: http
        - name: bearerAuth
      - parameter id: (path)  
-     - returns: RequestBuilder<AddMacOsPushToken200Response> 
+     - returns: RequestBuilder<DeleteAccount200Response> 
      */
-    open class func deleteCollectionWithRequestBuilder(id: Double) -> RequestBuilder<AddMacOsPushToken200Response> {
+    open class func deleteCollectionWithRequestBuilder(id: Double) -> RequestBuilder<DeleteAccount200Response> {
         var localVariablePath = "/collection/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -165,7 +165,7 @@ open class CollectionAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AddMacOsPushToken200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DeleteAccount200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
@@ -278,7 +278,7 @@ open class CollectionAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func removeProfileFromCollection(id: Double, profileId: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AddMacOsPushToken200Response, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func removeProfileFromCollection(id: Double, profileId: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeleteAccount200Response, ErrorResponse>) -> Void)) -> RequestTask {
         return removeProfileFromCollectionWithRequestBuilder(id: id, profileId: profileId).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -300,9 +300,9 @@ open class CollectionAPI {
        - name: bearerAuth
      - parameter id: (path)  
      - parameter profileId: (path)  
-     - returns: RequestBuilder<AddMacOsPushToken200Response> 
+     - returns: RequestBuilder<DeleteAccount200Response> 
      */
-    open class func removeProfileFromCollectionWithRequestBuilder(id: Double, profileId: Double) -> RequestBuilder<AddMacOsPushToken200Response> {
+    open class func removeProfileFromCollectionWithRequestBuilder(id: Double, profileId: Double) -> RequestBuilder<DeleteAccount200Response> {
         var localVariablePath = "/collection/{id}/profiles/{profileId}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -321,7 +321,7 @@ open class CollectionAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AddMacOsPushToken200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DeleteAccount200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }

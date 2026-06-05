@@ -44,8 +44,10 @@ Class | Method | HTTP request | Description
 *DowntimeAPI* | [**getActiveDowntimeIncidents**](docs/DowntimeAPI.md#getactivedowntimeincidents) | **GET** /downtime/active | Get active downtime incidents
 *DowntimeAPI* | [**getDowntimeIncidents**](docs/DowntimeAPI.md#getdowntimeincidents) | **GET** /downtime/incidents | Get downtime incidents
 *DowntimeAPI* | [**getDowntimeStats**](docs/DowntimeAPI.md#getdowntimestats) | **GET** /downtime/stats | Get downtime statistics
+*MonitoringProfileAPI* | [**bulkImportMonitoringProfiles**](docs/MonitoringProfileAPI.md#bulkimportmonitoringprofiles) | **POST** /monitoring-profile/bulk | Bulk import monitoring profiles from a CSV of URLs
 *MonitoringProfileAPI* | [**createMonitoringProfile**](docs/MonitoringProfileAPI.md#createmonitoringprofile) | **POST** /monitoring-profile/ | Create monitoring profile
 *MonitoringProfileAPI* | [**deleteMonitoringProfile**](docs/MonitoringProfileAPI.md#deletemonitoringprofile) | **DELETE** /monitoring-profile/{id} | Delete monitoring profile
+*MonitoringProfileAPI* | [**getBulkImportStatus**](docs/MonitoringProfileAPI.md#getbulkimportstatus) | **GET** /monitoring-profile/bulk/{jobId} | Get the status of a bulk import job
 *MonitoringProfileAPI* | [**getMonitoringProfile**](docs/MonitoringProfileAPI.md#getmonitoringprofile) | **GET** /monitoring-profile/{id} | Get monitoring profile
 *MonitoringProfileAPI* | [**getMonitoringProfileRegistrarData**](docs/MonitoringProfileAPI.md#getmonitoringprofileregistrardata) | **GET** /monitoring-profile/{id}/registrar-data | Get monitoring profile registrar data
 *MonitoringProfileAPI* | [**getMonitoringProfileWhoisData**](docs/MonitoringProfileAPI.md#getmonitoringprofilewhoisdata) | **GET** /monitoring-profile/{id}/whois-data | Get monitoring profile whois data
@@ -67,6 +69,12 @@ Class | Method | HTTP request | Description
  - [AccountWithTokens](docs/AccountWithTokens.md)
  - [AddMacOsPushTokenRequest](docs/AddMacOsPushTokenRequest.md)
  - [ApiKey](docs/ApiKey.md)
+ - [BulkImportAccepted](docs/BulkImportAccepted.md)
+ - [BulkImportResult](docs/BulkImportResult.md)
+ - [BulkImportResultFailedInner](docs/BulkImportResultFailedInner.md)
+ - [BulkImportResultSkippedInner](docs/BulkImportResultSkippedInner.md)
+ - [BulkImportStatus](docs/BulkImportStatus.md)
+ - [BulkImportStatusProgress](docs/BulkImportStatusProgress.md)
  - [Collection](docs/Collection.md)
  - [CollectionWithProfiles](docs/CollectionWithProfiles.md)
  - [CreateAccountRequest](docs/CreateAccountRequest.md)

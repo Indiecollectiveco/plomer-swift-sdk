@@ -25,6 +25,12 @@ PlomerSwiftSdk/Classes/OpenAPIs/Models/Account.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/AccountWithTokens.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/AddMacOsPushTokenRequest.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/ApiKey.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/BulkImportAccepted.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/BulkImportResult.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/BulkImportResultFailedInner.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/BulkImportResultSkippedInner.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/BulkImportStatus.swift
+PlomerSwiftSdk/Classes/OpenAPIs/Models/BulkImportStatusProgress.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/Collection.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CollectionWithProfiles.swift
 PlomerSwiftSdk/Classes/OpenAPIs/Models/CreateAccountRequest.swift
@@ -63,6 +69,12 @@ docs/AccountWithTokens.md
 docs/AddMacOsPushTokenRequest.md
 docs/ApiKey.md
 docs/ApiKeyAPI.md
+docs/BulkImportAccepted.md
+docs/BulkImportResult.md
+docs/BulkImportResultFailedInner.md
+docs/BulkImportResultSkippedInner.md
+docs/BulkImportStatus.md
+docs/BulkImportStatusProgress.md
 docs/Collection.md
 docs/CollectionAPI.md
 docs/CollectionWithProfiles.md

@@ -20,7 +20,7 @@ open class AccountAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func addMacOsPushToken(addMacOsPushTokenRequest: AddMacOsPushTokenRequest, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AddMacOsPushToken200Response, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func addMacOsPushToken(addMacOsPushTokenRequest: AddMacOsPushTokenRequest, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeleteAccount200Response, ErrorResponse>) -> Void)) -> RequestTask {
         return addMacOsPushTokenWithRequestBuilder(addMacOsPushTokenRequest: addMacOsPushTokenRequest).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -42,9 +42,9 @@ open class AccountAPI {
        - type: http
        - name: bearerAuth
      - parameter addMacOsPushTokenRequest: (body)  
-     - returns: RequestBuilder<AddMacOsPushToken200Response> 
+     - returns: RequestBuilder<DeleteAccount200Response> 
      */
-    open class func addMacOsPushTokenWithRequestBuilder(addMacOsPushTokenRequest: AddMacOsPushTokenRequest) -> RequestBuilder<AddMacOsPushToken200Response> {
+    open class func addMacOsPushTokenWithRequestBuilder(addMacOsPushTokenRequest: AddMacOsPushTokenRequest) -> RequestBuilder<DeleteAccount200Response> {
         let localVariablePath = "/account/add-macos-push-token"
         let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
         let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: addMacOsPushTokenRequest)
@@ -57,7 +57,7 @@ open class AccountAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AddMacOsPushToken200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DeleteAccount200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }

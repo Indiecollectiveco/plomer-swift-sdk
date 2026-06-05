@@ -13,6 +13,55 @@ import AnyCodable
 open class MonitoringProfileAPI {
 
     /**
+     Bulk import monitoring profiles from a CSV of URLs
+     
+     - parameter body: (body) CSV body with one URL per line. An optional &#39;url&#39; header line is ignored. Max 500 rows. (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func bulkImportMonitoringProfiles(body: String? = nil, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BulkImportAccepted, ErrorResponse>) -> Void)) -> RequestTask {
+        return bulkImportMonitoringProfilesWithRequestBuilder(body: body).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Bulk import monitoring profiles from a CSV of URLs
+     - POST /monitoring-profile/bulk
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter body: (body) CSV body with one URL per line. An optional &#39;url&#39; header line is ignored. Max 500 rows. (optional)
+     - returns: RequestBuilder<BulkImportAccepted> 
+     */
+    open class func bulkImportMonitoringProfilesWithRequestBuilder(body: String? = nil) -> RequestBuilder<BulkImportAccepted> {
+        let localVariablePath = "/monitoring-profile/bulk"
+        let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
+        let localVariableParameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            "Content-Type": "text/csv",
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<BulkImportAccepted>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "POST", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
      Create monitoring profile
      
      - parameter createMonitoringProfile: (body)  (optional)
@@ -69,7 +118,7 @@ open class MonitoringProfileAPI {
      - parameter completion: completion handler to receive the result
      */
     @discardableResult
-    open class func deleteMonitoringProfile(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<AddMacOsPushToken200Response, ErrorResponse>) -> Void)) -> RequestTask {
+    open class func deleteMonitoringProfile(id: Double, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeleteAccount200Response, ErrorResponse>) -> Void)) -> RequestTask {
         return deleteMonitoringProfileWithRequestBuilder(id: id).execute(apiResponseQueue) { result in
             switch result {
             case let .success(response):
@@ -90,9 +139,9 @@ open class MonitoringProfileAPI {
        - type: http
        - name: bearerAuth
      - parameter id: (path)  
-     - returns: RequestBuilder<AddMacOsPushToken200Response> 
+     - returns: RequestBuilder<DeleteAccount200Response> 
      */
-    open class func deleteMonitoringProfileWithRequestBuilder(id: Double) -> RequestBuilder<AddMacOsPushToken200Response> {
+    open class func deleteMonitoringProfileWithRequestBuilder(id: Double) -> RequestBuilder<DeleteAccount200Response> {
         var localVariablePath = "/monitoring-profile/{id}"
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -108,9 +157,61 @@ open class MonitoringProfileAPI {
 
         let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
 
-        let localVariableRequestBuilder: RequestBuilder<AddMacOsPushToken200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+        let localVariableRequestBuilder: RequestBuilder<DeleteAccount200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     Get the status of a bulk import job
+     
+     - parameter jobId: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func getBulkImportStatus(jobId: String, apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<BulkImportStatus, ErrorResponse>) -> Void)) -> RequestTask {
+        return getBulkImportStatusWithRequestBuilder(jobId: jobId).execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Get the status of a bulk import job
+     - GET /monitoring-profile/bulk/{jobId}
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - parameter jobId: (path)  
+     - returns: RequestBuilder<BulkImportStatus> 
+     */
+    open class func getBulkImportStatusWithRequestBuilder(jobId: String) -> RequestBuilder<BulkImportStatus> {
+        var localVariablePath = "/monitoring-profile/bulk/{jobId}"
+        let jobIdPreEscape = "\(APIHelper.mapValueToPathItem(jobId))"
+        let jobIdPostEscape = jobIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        localVariablePath = localVariablePath.replacingOccurrences(of: "{jobId}", with: jobIdPostEscape, options: .literal, range: nil)
+        let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<BulkImportStatus>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**
