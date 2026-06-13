@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Int** |  | 
 **appleId** | **String** |  | 
-**email** | **String** |  | 
+**email** | **String** |  | [optional] 
 **name** | **String** |  | 
 **enablePushNotifications** | **Bool** |  | [default to false]
 **hasSubscription** | **Bool** |  | [default to false]

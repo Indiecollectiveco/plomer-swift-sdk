@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 **tokens** | [**TokenResponse**](TokenResponse.md) |  | 
 **id** | **Int** |  | 
 **appleId** | **String** |  | 
-**email** | **String** |  | 
+**email** | **String** |  | [optional] 
 **name** | **String** |  | 
 **enablePushNotifications** | **Bool** |  | [default to false]
 **hasSubscription** | **Bool** |  | [default to false]

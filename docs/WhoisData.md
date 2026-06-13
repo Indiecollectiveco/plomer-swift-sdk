@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Int** |  | 
 **domainName** | **String** |  | 
-**registryDomainId** | **String** |  | 
+**registryDomainId** | **String** |  | [optional] 
 **updatedDate** | **String** |  | 
 **creationDate** | **String** |  | 
 **registrarRegistrationExpirationDate** | **String** |  | 

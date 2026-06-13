@@ -133,7 +133,7 @@ open class AccountAPI {
     /**
      Delete account
      - DELETE /account
-     - Soft delete the authenticated user's account
+     - Permanently delete the authenticated user's account and all associated data
      - API Key:
        - type: apiKey ApiKey (HEADER)
        - name: apiKey

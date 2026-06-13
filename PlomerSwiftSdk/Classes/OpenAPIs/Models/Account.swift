@@ -15,7 +15,7 @@ public struct Account: Codable, JSONEncodable, Hashable {
 
     public var id: Int
     public var appleId: String
-    public var email: String
+    public var email: String?
     public var name: String
     public var enablePushNotifications: Bool = false
     public var hasSubscription: Bool = false
@@ -24,7 +24,7 @@ public struct Account: Codable, JSONEncodable, Hashable {
     public var createdAt: String
     public var updatedAt: String
 
-    public init(id: Int, appleId: String, email: String, name: String, enablePushNotifications: Bool = false, hasSubscription: Bool = false, identityToken: String?, authCode: String?, createdAt: String, updatedAt: String) {
+    public init(id: Int, appleId: String, email: String? = nil, name: String, enablePushNotifications: Bool = false, hasSubscription: Bool = false, identityToken: String?, authCode: String?, createdAt: String, updatedAt: String) {
         self.id = id
         self.appleId = appleId
         self.email = email
@@ -56,7 +56,7 @@ public struct Account: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(appleId, forKey: .appleId)
-        try container.encode(email, forKey: .email)
+        try container.encodeIfPresent(email, forKey: .email)
         try container.encode(name, forKey: .name)
         try container.encode(enablePushNotifications, forKey: .enablePushNotifications)
         try container.encode(hasSubscription, forKey: .hasSubscription)

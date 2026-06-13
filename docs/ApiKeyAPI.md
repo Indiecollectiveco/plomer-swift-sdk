@@ -1,11 +1,12 @@
 # ApiKeyAPI
 
-All URIs are relative to *https://devapi.plomer.app*
+All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createApiKey**](ApiKeyAPI.md#createapikey) | **POST** /api-key | Create API key
+[**createApiKey**](ApiKeyAPI.md#createapikey) | **POST** /api-key/ | Create API key
 [**deleteApiKey**](ApiKeyAPI.md#deleteapikey) | **DELETE** /api-key/{id} | Delete API key
+[**getApiKeys**](ApiKeyAPI.md#getapikeys) | **GET** /api-key | Get API keys
 
 
 # **createApiKey**
@@ -92,6 +93,50 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DeleteAccount200Response**](DeleteAccount200Response.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getApiKeys**
+```swift
+    open class func getApiKeys(completion: @escaping (_ data: [ApiKey]?, _ error: Error?) -> Void)
+```
+
+Get API keys
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import PlomerSwiftSdk
+
+
+// Get API keys
+ApiKeyAPI.getApiKeys() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**[ApiKey]**](ApiKey.md)
 
 ### Authorization
 

@@ -22,7 +22,7 @@ Run `pod install`
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://devapi.plomer.app*
+All URIs are relative to *http://localhost:8080*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -32,8 +32,9 @@ Class | Method | HTTP request | Description
 *AccountAPI* | [**getAccountWithTokens**](docs/AccountAPI.md#getaccountwithtokens) | **GET** /account/{appleId} | Get account with tokens
 *AccountAPI* | [**refreshTokens**](docs/AccountAPI.md#refreshtokens) | **POST** /account/refresh-token | Refresh authentication tokens
 *AccountAPI* | [**updateAccount**](docs/AccountAPI.md#updateaccount) | **PATCH** /account | Update account
-*ApiKeyAPI* | [**createApiKey**](docs/ApiKeyAPI.md#createapikey) | **POST** /api-key | Create API key
+*ApiKeyAPI* | [**createApiKey**](docs/ApiKeyAPI.md#createapikey) | **POST** /api-key/ | Create API key
 *ApiKeyAPI* | [**deleteApiKey**](docs/ApiKeyAPI.md#deleteapikey) | **DELETE** /api-key/{id} | Delete API key
+*ApiKeyAPI* | [**getApiKeys**](docs/ApiKeyAPI.md#getapikeys) | **GET** /api-key | Get API keys
 *CollectionAPI* | [**addProfileToCollection**](docs/CollectionAPI.md#addprofiletocollection) | **POST** /collection/{id}/profiles/{profileId} | Add monitoring profile to collection
 *CollectionAPI* | [**createCollection**](docs/CollectionAPI.md#createcollection) | **POST** /collection/ | Create collection
 *CollectionAPI* | [**deleteCollection**](docs/CollectionAPI.md#deletecollection) | **DELETE** /collection/{id} | Delete collection

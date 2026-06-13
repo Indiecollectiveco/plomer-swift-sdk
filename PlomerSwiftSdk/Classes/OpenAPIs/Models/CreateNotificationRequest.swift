@@ -19,6 +19,9 @@ public struct CreateNotificationRequest: Codable, JSONEncodable, Hashable {
         case contentChange = "CONTENT_CHANGE"
         case system = "SYSTEM"
         case websiteRestored = "WEBSITE_RESTORED"
+        case warning = "WARNING"
+        case info = "INFO"
+        case error = "ERROR"
     }
     public var text: String
     public var type: ModelType

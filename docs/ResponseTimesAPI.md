@@ -1,6 +1,6 @@
 # ResponseTimesAPI
 
-All URIs are relative to *https://devapi.plomer.app*
+All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

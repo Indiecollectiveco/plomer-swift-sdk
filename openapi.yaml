@@ -1,66 +1,64 @@
----
-  openapi: 3.0.3
-  info:
-    title: Plomer API
-    description: API for Plomer
-    version: 1.0.0
-    license:
-      name: Plomer
-      url: https://plomer.app
-  components:
-    securitySchemes:
-      bearerAuth:
-        type: http
-        scheme: bearer
-        bearerFormat: JWT
-      apiKey:
-        type: apiKey
-        in: header
-        name: ApiKey
-        description: API key for authentication
-    schemas:
-      AccountWithTokens:
-        allOf:
-        - "$ref": "#/components/schemas/Account"
-        type: object
-        properties:
-          tokens:
-            "$ref": "#/components/schemas/TokenResponse"
-        required:
+openapi: 3.0.3
+info:
+  title: Plomer API
+  description: API for Plomer
+  version: 1.0.0
+  license:
+    name: Plomer
+    url: https://plomer.app
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    apiKey:
+      type: apiKey
+      in: header
+      name: ApiKey
+      description: API key for authentication
+  schemas:
+    AccountWithTokens:
+      allOf:
+        - $ref: '#/components/schemas/Account'
+      type: object
+      properties:
+        tokens:
+          $ref: '#/components/schemas/TokenResponse'
+      required:
         - tokens
-        description: Account with authentication tokens
-      Account:
-        type: object
-        properties:
-          id:
-            type: integer
-          appleId:
-            type: string
-          email:
-            type: string
-            format: email
-          name:
-            type: string
-          enablePushNotifications:
-            type: boolean
-            default: false
-          hasSubscription:
-            type: boolean
-            default: false
-          identityToken:
-            type: string
-            nullable: true
-          authCode:
-            type: string
-            nullable: true
-          createdAt:
-            type: string
-          updatedAt:
-            type: string
-        required:
+      description: Account with authentication tokens
+    Account:
+      type: object
+      properties:
+        id:
+          type: integer
+        appleId:
+          type: string
+        email:
+          type: string
+          nullable: true
+        name:
+          type: string
+        enablePushNotifications:
+          type: boolean
+          default: false
+        hasSubscription:
+          type: boolean
+          default: false
+        identityToken:
+          type: string
+          nullable: true
+        authCode:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
         - id
         - appleId
-        - email
         - name
         - enablePushNotifications
         - hasSubscription
@@ -68,280 +66,193 @@
         - authCode
         - createdAt
         - updatedAt
-        description: Account represents a user account in the system
-        example:
-          id: 1
-          appleId: auth0|123456789
-          email: user@example.com
-          name: John Doe
-          enablePushNotifications: true
-          hasSubscription: false
-          identityToken: some-token
-          authCode: some-code
-          createdAt: '2024-03-20T10:00:00.000Z'
-          updatedAt: '2024-03-20T10:00:00.000Z'
-      TokenResponse:
-        type: object
-        properties:
-          accessToken:
-            type: string
-          refreshToken:
-            type: string
-        required:
+      description: Account represents a user account in the system
+      example:
+        id: 1
+        appleId: auth0|123456789
+        email: user@example.com
+        name: John Doe
+        enablePushNotifications: true
+        hasSubscription: false
+        identityToken: some-token
+        authCode: some-code
+        createdAt: "2024-03-20T10:00:00.000Z"
+        updatedAt: "2024-03-20T10:00:00.000Z"
+    TokenResponse:
+      type: object
+      properties:
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+      required:
         - accessToken
         - refreshToken
-        description: Authentication tokens
-        example:
-          accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-          refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-      Error:
-        type: object
-        properties:
-          error:
-            type: string
-        required:
+      description: Authentication tokens
+      example:
+        accessToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        refreshToken: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
         - error
-        description: Error
-        example:
-          error: Not found
-      BulkImportResult:
-        type: object
-        properties:
-          total:
-            type: integer
-          created:
-            type: integer
-          skipped:
-            type: array
-            items:
-              type: object
-              properties:
-                url:
-                  type: string
-                reason:
-                  type: string
-              required:
-              - url
-              - reason
-          failed:
-            type: array
-            items:
-              type: object
-              properties:
-                url:
-                  type: string
-                error:
-                  type: string
-              required:
-              - url
-              - error
-        required:
-        - total
-        - created
-        - skipped
-        - failed
-        description: Per-row outcome of a bulk monitoring-profile import
-      BulkImportAccepted:
-        type: object
-        properties:
-          jobId:
-            type: string
-          total:
-            type: integer
-          statusUrl:
-            type: string
-        required:
-        - jobId
-        - total
-        - statusUrl
-        description: Acknowledgement that a bulk import job has been queued
-        example:
-          jobId: '42'
-          total: 120
-          statusUrl: "/monitoring-profile/bulk/42"
-      BulkImportStatus:
-        type: object
-        properties:
-          jobId:
-            type: string
-          state:
-            type: string
-            enum:
-            - waiting
-            - active
-            - completed
-            - failed
-          progress:
-            type: object
-            properties:
-              done:
-                type: integer
-              total:
-                type: integer
-            required:
-            - done
-            - total
-          result:
-            nullable: true
-            allOf:
-            - "$ref": "#/components/schemas/BulkImportResult"
-        required:
-        - jobId
-        - state
-        - progress
-        - result
-        description: Status and results of a bulk monitoring-profile import job
-      ApiKey:
-        type: object
-        properties:
-          id:
-            type: integer
-          accountId:
-            type: integer
-          name:
-            type: string
-          key:
-            type: string
-          lastUsedAt:
-            type: string
-            nullable: true
-          expiresAt:
-            type: string
-            nullable: true
-          createdAt:
-            type: string
-          updatedAt:
-            type: string
-        required:
+      description: Error
+      example:
+        error: Not found
+    ApiKey:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountId:
+          type: integer
+        name:
+          type: string
+        key:
+          type: string
+        lastUsedAt:
+          type: string
+          nullable: true
+        expiresAt:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
         - id
         - accountId
         - name
         - key
         - lastUsedAt
         - expiresAt
-        description: API Key for authentication
-        example:
-          id: 1
-          accountId: 1
-          name: Production API Key
-          key: pk_test_123456789
-          lastUsedAt: '2024-03-20T10:00:00.000Z'
-          expiresAt: 
-          createdAt: '2024-03-20T10:00:00.000Z'
-          updatedAt: '2024-03-20T10:00:00.000Z'
-      CreateApiKey:
-        type: object
-        properties:
-          name:
-            type: string
-          expiresAt:
-            type: string
-            format: date-time
-        required:
+      description: API Key for authentication
+      example:
+        id: 1
+        accountId: 1
+        name: Production API Key
+        key: pk_test_123456789
+        lastUsedAt: "2024-03-20T10:00:00.000Z"
+        expiresAt: null
+        createdAt: "2024-03-20T10:00:00.000Z"
+        updatedAt: "2024-03-20T10:00:00.000Z"
+    CreateApiKey:
+      type: object
+      properties:
+        name:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+      required:
         - name
-        description: Input schema for creating a new API key
-      Collection:
-        type: object
-        properties:
-          id:
-            type: integer
-          name:
-            type: string
-          description:
-            type: string
-            nullable: true
-          accountId:
-            type: integer
-          createdAt:
-            type: string
-          updatedAt:
-            type: string
-        required:
+      description: Input schema for creating a new API key
+    Collection:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        accountId:
+          type: integer
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
         - id
         - name
         - description
         - accountId
         - createdAt
         - updatedAt
-        description: Collection of monitoring profiles
-      CollectionWithProfiles:
-        allOf:
-        - "$ref": "#/components/schemas/Collection"
-        type: object
-        properties:
-          profiles:
-            type: array
-            items:
-              "$ref": "#/components/schemas/MonitoringProfile"
-        required:
+      description: Collection of monitoring profiles
+    CollectionWithProfiles:
+      allOf:
+        - $ref: '#/components/schemas/Collection'
+      type: object
+      properties:
+        profiles:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonitoringProfile'
+      required:
         - profiles
-        description: Collection with its monitoring profiles
-      MonitoringProfile:
-        type: object
-        properties:
-          id:
-            type: integer
-          accountId:
-            type: integer
-          registrarDataId:
-            type: integer
-          contentChangeDetection:
-            type: boolean
-            default: false
-          createdAt:
+      description: Collection with its monitoring profiles
+    MonitoringProfile:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountId:
+          type: integer
+        registrarDataId:
+          type: integer
+        contentChangeDetection:
+          type: boolean
+          default: false
+        createdAt:
+          type: string
+        description:
+          type: string
+        domainExpiresAt:
+          type: string
+        domainExpiryCheck:
+          type: boolean
+          default: false
+        healthyThresholdCount:
+          type: number
+          default: 3
+        httpStatusChecks:
+          type: boolean
+          default: true
+        iconUrl:
+          type: string
+        intervalSeconds:
+          type: number
+          default: 60
+        isDomainExpired:
+          type: boolean
+          default: false
+        isSslValid:
+          type: boolean
+          default: true
+        isWebsiteReachable:
+          type: boolean
+          default: true
+        sslExpiresAt:
+          type: string
+          nullable: true
+        sslExpiryCheck:
+          type: boolean
+          default: false
+        tags:
+          type: array
+          items:
             type: string
-          description:
-            type: string
-          domainExpiresAt:
-            type: string
-          domainExpiryCheck:
-            type: boolean
-            default: false
-          healthyThresholdCount:
-            type: number
-            default: 3
-          httpStatusChecks:
-            type: boolean
-            default: true
-          iconUrl:
-            type: string
-          intervalSeconds:
-            type: number
-            default: 60
-          isDomainExpired:
-            type: boolean
-            default: false
-          isSslValid:
-            type: boolean
-            default: true
-          isWebsiteReachable:
-            type: boolean
-            default: true
-          sslExpiresAt:
-            type: string
-            nullable: true
-          sslExpiryCheck:
-            type: boolean
-            default: false
-          tags:
-            type: array
-            items:
-              type: string
-          timeoutSeconds:
-            type: number
-            default: 30
-          unhealthyThresholdCount:
-            type: number
-            default: 3
-          updatedAt:
-            type: string
-          url:
-            type: string
-            format: uri
-          sendAlerts:
-            type: boolean
-            default: true
-        required:
+        timeoutSeconds:
+          type: number
+          default: 30
+        unhealthyThresholdCount:
+          type: number
+          default: 3
+        updatedAt:
+          type: string
+        url:
+          type: string
+          format: uri
+        sendAlerts:
+          type: boolean
+          default: true
+      required:
         - id
         - accountId
         - registrarDataId
@@ -364,76 +275,75 @@
         - updatedAt
         - url
         - sendAlerts
-        description: MonitoringProfile represents a website monitoring configuration
-          with various health checks and thresholds
-        example:
-          id: 1
-          accountId: 1
-          contentChangeDetection: false
-          createdAt: '2024-03-20T10:00:00.000Z'
-          description: My Company Website Monitor
-          domainExpiresAt: '2025-03-20T10:00:00.000Z'
-          domainExpiryCheck: true
-          healthyThresholdCount: 3
-          httpStatusChecks: true
-          iconUrl: https://example.com/favicon.ico
-          intervalSeconds: 60
-          isDomainExpired: false
-          isSslValid: true
-          isWebsiteReachable: true
-          registrarDataId: 1
-          sslExpiresAt: '2025-03-20T10:00:00.000Z'
-          sslExpiryCheck: true
-          tags:
+      description: MonitoringProfile represents a website monitoring configuration with various health checks and thresholds
+      example:
+        id: 1
+        accountId: 1
+        contentChangeDetection: false
+        createdAt: "2024-03-20T10:00:00.000Z"
+        description: My Company Website Monitor
+        domainExpiresAt: "2025-03-20T10:00:00.000Z"
+        domainExpiryCheck: true
+        healthyThresholdCount: 3
+        httpStatusChecks: true
+        iconUrl: https://example.com/favicon.ico
+        intervalSeconds: 60
+        isDomainExpired: false
+        isSslValid: true
+        isWebsiteReachable: true
+        registrarDataId: 1
+        sslExpiresAt: "2025-03-20T10:00:00.000Z"
+        sslExpiryCheck: true
+        tags:
           - production
           - website
-          timeoutSeconds: 30
-          unhealthyThresholdCount: 3
-          updatedAt: '2024-03-20T10:00:00.000Z'
-          url: https://example.com
-      CreateCollection:
-        type: object
-        properties:
-          name:
-            type: string
-          description:
-            type: string
-        required:
+        timeoutSeconds: 30
+        unhealthyThresholdCount: 3
+        updatedAt: "2024-03-20T10:00:00.000Z"
+        url: https://example.com
+    CreateCollection:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      required:
         - name
-        description: Input schema for creating a new collection
-      UpdateCollection:
-        type: object
-        properties:
-          name:
-            type: string
-          description:
-            type: string
-        description: Input schema for updating a collection
-      DowntimeIncident:
-        type: object
-        properties:
-          id:
-            type: number
-          accountId:
-            type: number
-          monitoringProfileId:
-            type: number
-          startedAt:
-            type: string
-          restoredAt:
-            type: string
-            nullable: true
-          isResolved:
-            type: boolean
-          notificationSent:
-            type: boolean
-          restorationNotificationSent:
-            type: boolean
-          createdAt:
-            type: string
-          updatedAt:
-            type: string
-        required:
+      description: Input schema for creating a new collection
+    UpdateCollection:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      description: Input schema for updating a collection
+    DowntimeIncident:
+      type: object
+      properties:
+        id:
+          type: number
+        accountId:
+          type: number
+        monitoringProfileId:
+          type: number
+        startedAt:
+          type: string
+        restoredAt:
+          type: string
+          nullable: true
+        isResolved:
+          type: boolean
+        notificationSent:
+          type: boolean
+        restorationNotificationSent:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
         - id
         - accountId
         - monitoringProfileId
@@ -444,90 +354,88 @@
         - restorationNotificationSent
         - createdAt
         - updatedAt
-        description: Downtime incident
-        example:
-          id: 1
-          accountId: 1
-          monitoringProfileId: 1
-          startedAt: '2025-08-20T22:29:34.313Z'
-          restoredAt: 
-          isResolved: false
-          notificationSent: false
-          restorationNotificationSent: false
-          createdAt: '2025-08-20T22:29:34.313Z'
-          updatedAt: '2025-08-20T22:29:34.313Z'
-      DowntimeStats:
-        type: object
-        properties:
-          totalIncidents:
-            type: number
-          unresolvedIncidents:
-            type: number
-          averageDowntimeMinutes:
-            type: number
-          totalDowntimeMinutes:
-            type: number
-          uptimePercentage:
-            type: number
-        required:
+      description: Downtime incident
+      example:
+        id: 1
+        accountId: 1
+        monitoringProfileId: 1
+        startedAt: "2026-06-12T06:09:29.988Z"
+        restoredAt: null
+        isResolved: false
+        notificationSent: false
+        restorationNotificationSent: false
+        createdAt: "2026-06-12T06:09:29.988Z"
+        updatedAt: "2026-06-12T06:09:29.988Z"
+    DowntimeStats:
+      type: object
+      properties:
+        totalIncidents:
+          type: number
+        unresolvedIncidents:
+          type: number
+        averageDowntimeMinutes:
+          type: number
+        totalDowntimeMinutes:
+          type: number
+        uptimePercentage:
+          type: number
+      required:
         - totalIncidents
         - unresolvedIncidents
         - averageDowntimeMinutes
         - totalDowntimeMinutes
         - uptimePercentage
-        description: Downtime stats
-        example:
-          totalIncidents: 100
-          unresolvedIncidents: 10
-          averageDowntimeMinutes: 10
-          totalDowntimeMinutes: 1000
-          uptimePercentage: 90
-      RegistrarData:
-        type: object
-        properties:
-          id:
-            type: integer
-          accountId:
-            type: integer
-          domain:
-            type: string
-          registrarRegistrationExpirationDate:
-            type: string
-          registrantName:
-            type: string
-          registrantOrganization:
-            type: string
-          registrantEmail:
-            type: string
-            format: email
-          registrantPhone:
-            type: string
-          registrantStreet:
-            type: string
-          registrantCity:
-            type: string
-          registrantStateProvince:
-            type: string
-          registrantPostalCode:
-            type: string
-          registrantCountry:
-            type: string
-          registrar:
-            type: string
-          registrarWhoisServer:
-            type: string
-          registrarAbuseContactEmail:
-            type: string
-            format: email
-          registrarAbuseContactPhone:
-            type: string
-          reseller:
-            type: string
-          createdAt:
-            type: string
-          updatedAt:
-            type: string
-        required:
+      description: Downtime stats
+      example:
+        totalIncidents: 100
+        unresolvedIncidents: 10
+        averageDowntimeMinutes: 10
+        totalDowntimeMinutes: 1000
+        uptimePercentage: 90
+    RegistrarData:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountId:
+          type: integer
+        domain:
+          type: string
+        registrarRegistrationExpirationDate:
+          type: string
+        registrantName:
+          type: string
+        registrantOrganization:
+          type: string
+        registrantEmail:
+          type: string
+        registrantPhone:
+          type: string
+        registrantStreet:
+          type: string
+        registrantCity:
+          type: string
+        registrantStateProvince:
+          type: string
+        registrantPostalCode:
+          type: string
+        registrantCountry:
+          type: string
+        registrar:
+          type: string
+        registrarWhoisServer:
+          type: string
+        registrarAbuseContactEmail:
+          type: string
+        registrarAbuseContactPhone:
+          type: string
+        reseller:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
         - id
         - accountId
         - domain
@@ -548,60 +456,59 @@
         - reseller
         - createdAt
         - updatedAt
-        description: RegistrarData represents domain registration information including
-          registrant and registrar details
-        example:
-          id: 1
-          accountId: 1
-          domain: example.com
-          registrarRegistrationExpirationDate: '2025-03-20T10:00:00.000Z'
-          registrantName: John Doe
-          registrantOrganization: Example Corp
-          registrantEmail: admin@example.com
-          registrantPhone: "+1.1234567890"
-          registrantStreet: 123 Main St
-          registrantCity: San Francisco
-          registrantStateProvince: CA
-          registrantPostalCode: '94105'
-          registrantCountry: US
-          registrar: GoDaddy.com, LLC
-          registrarWhoisServer: whois.godaddy.com
-          registrarAbuseContactEmail: abuse@godaddy.com
-          registrarAbuseContactPhone: "+1.4805058800"
-          reseller: GoDaddy
-          createdAt: '2024-03-20T10:00:00.000Z'
-          updatedAt: '2024-03-20T10:00:00.000Z'
-      WhoisData:
-        type: object
-        properties:
-          id:
-            type: integer
-          domainName:
-            type: string
-          registryDomainId:
-            type: string
-          updatedDate:
-            type: string
-          creationDate:
-            type: string
-          registrarRegistrationExpirationDate:
-            type: string
-          registrar:
-            type: string
-          domainStatus:
-            type: string
-          registrantName:
-            type: string
-          nameServer:
-            type: string
-          dnssec:
-            type: string
-          lastUpdateOfWhoisDatabase:
-            type: string
-        required:
+      description: RegistrarData represents domain registration information including registrant and registrar details
+      example:
+        id: 1
+        accountId: 1
+        domain: example.com
+        registrarRegistrationExpirationDate: "2025-03-20T10:00:00.000Z"
+        registrantName: John Doe
+        registrantOrganization: Example Corp
+        registrantEmail: admin@example.com
+        registrantPhone: "+1.1234567890"
+        registrantStreet: 123 Main St
+        registrantCity: San Francisco
+        registrantStateProvince: CA
+        registrantPostalCode: "94105"
+        registrantCountry: US
+        registrar: GoDaddy.com, LLC
+        registrarWhoisServer: whois.godaddy.com
+        registrarAbuseContactEmail: abuse@godaddy.com
+        registrarAbuseContactPhone: "+1.4805058800"
+        reseller: GoDaddy
+        createdAt: "2024-03-20T10:00:00.000Z"
+        updatedAt: "2024-03-20T10:00:00.000Z"
+    WhoisData:
+      type: object
+      properties:
+        id:
+          type: integer
+        domainName:
+          type: string
+        registryDomainId:
+          type: string
+          nullable: true
+        updatedDate:
+          type: string
+        creationDate:
+          type: string
+        registrarRegistrationExpirationDate:
+          type: string
+        registrar:
+          type: string
+        domainStatus:
+          type: string
+        registrantName:
+          type: string
+        nameServer:
+          type: string
+        dnssec:
+          type: string
+        lastUpdateOfWhoisDatabase:
+          type: string
+      required:
         - id
         - domainName
-        - registryDomainId
         - updatedDate
         - creationDate
         - registrarRegistrationExpirationDate
@@ -611,133 +518,234 @@
         - nameServer
         - dnssec
         - lastUpdateOfWhoisDatabase
-        description: WhoisData represents domain registration information including
-          registrant and registrar details
-        example:
-          id: 1
-          domainName: example.com
-          registryDomainId: '1234567890'
-          updatedDate: '2024-03-20T10:00:00.000Z'
-          creationDate: '2024-03-20T10:00:00.000Z'
-          registrarRegistrationExpirationDate: '2025-03-20T10:00:00.000Z'
-          registrar: GoDaddy.com, LLC
-          domainStatus: active
-          registrantName: John Doe
-          nameServer: ns1.example.com, ns2.example.com
-          dnssec: unsigned
-          lastUpdateOfWhoisDatabase: '2024-03-20T10:00:00.000Z'
-      CreateMonitoringProfile:
-        type: object
-        properties:
-          url:
+      description: WhoisData represents domain registration information including registrant and registrar details
+      example:
+        id: 1
+        domainName: example.com
+        registryDomainId: "1234567890"
+        updatedDate: "2024-03-20T10:00:00.000Z"
+        creationDate: "2024-03-20T10:00:00.000Z"
+        registrarRegistrationExpirationDate: "2025-03-20T10:00:00.000Z"
+        registrar: GoDaddy.com, LLC
+        domainStatus: active
+        registrantName: John Doe
+        nameServer: ns1.example.com, ns2.example.com
+        dnssec: unsigned
+        lastUpdateOfWhoisDatabase: "2024-03-20T10:00:00.000Z"
+    CreateMonitoringProfile:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        httpStatusChecks:
+          type: boolean
+          default: true
+        timeoutSeconds:
+          type: number
+          default: 5
+        intervalSeconds:
+          type: number
+          default: 30
+        healthyThresholdCount:
+          type: number
+          default: 3
+        unhealthyThresholdCount:
+          type: number
+          default: 5
+        domainExpiryCheck:
+          type: boolean
+          default: false
+        sslExpiryCheck:
+          type: boolean
+          default: false
+        contentChangeDetection:
+          type: boolean
+          default: false
+        description:
+          type: string
+        tags:
+          type: array
+          items:
             type: string
-            format: uri
-          httpStatusChecks:
-            type: boolean
-            default: true
-          timeoutSeconds:
-            type: number
-            default: 5
-          intervalSeconds:
-            type: number
-            default: 30
-          healthyThresholdCount:
-            type: number
-            default: 3
-          unhealthyThresholdCount:
-            type: number
-            default: 5
-          domainExpiryCheck:
-            type: boolean
-            default: false
-          sslExpiryCheck:
-            type: boolean
-            default: false
-          contentChangeDetection:
-            type: boolean
-            default: false
-          description:
-            type: string
-          tags:
-            type: array
-            items:
-              type: string
-          sendAlerts:
-            type: boolean
-            default: true
-        required:
+        sendAlerts:
+          type: boolean
+          default: true
+      required:
         - url
         - tags
-        description: Input schema for creating a new monitoring profile
-        example:
-          url: https://example.com
-          description: My Company Website Monitor
-          tags:
+      description: Input schema for creating a new monitoring profile
+      example:
+        url: https://example.com
+        description: My Company Website Monitor
+        tags:
           - production
           - website
-          intervalSeconds: 30
-          timeoutSeconds: 5
-          healthyThresholdCount: 3
-          unhealthyThresholdCount: 5
-          sendAlerts: true
-      UpdateMonitoringProfile:
-        type: object
-        properties:
-          url:
+        intervalSeconds: 30
+        timeoutSeconds: 5
+        healthyThresholdCount: 3
+        unhealthyThresholdCount: 5
+        sendAlerts: true
+    BulkImportAccepted:
+      type: object
+      properties:
+        jobId:
+          type: string
+        total:
+          type: integer
+        statusUrl:
+          type: string
+      required:
+        - jobId
+        - total
+        - statusUrl
+      description: Acknowledgement that a bulk import job has been queued
+      example:
+        jobId: "42"
+        total: 120
+        statusUrl: /monitoring-profile/bulk/42
+    BulkImportStatus:
+      type: object
+      properties:
+        jobId:
+          type: string
+        state:
+          type: string
+          enum:
+            - waiting
+            - active
+            - completed
+            - failed
+        progress:
+          type: object
+          properties:
+            done:
+              type: integer
+            total:
+              type: integer
+          required:
+            - done
+            - total
+        result:
+          oneOf:
+            - $ref: '#/components/schemas/BulkImportResult'
+            - type: "null"
+      required:
+        - jobId
+        - state
+        - progress
+        - result
+      description: Status and results of a bulk monitoring-profile import job
+      example:
+        jobId: "42"
+        state: completed
+        progress:
+          done: 120
+          total: 120
+        result:
+          total: 120
+          created: 118
+          skipped:
+            - url: https://a.com
+              reason: already_exists
+          failed:
+            - url: not-a-url
+              error: Invalid URL
+    BulkImportResult:
+      type: object
+      properties:
+        total:
+          type: integer
+        created:
+          type: integer
+        skipped:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+              reason:
+                type: string
+            required:
+              - url
+              - reason
+        failed:
+          type: array
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+              error:
+                type: string
+            required:
+              - url
+              - error
+      required:
+        - total
+        - created
+        - skipped
+        - failed
+      description: Per-row outcome of a bulk monitoring-profile import
+    UpdateMonitoringProfile:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+        httpStatusChecks:
+          type: boolean
+          default: true
+        timeoutSeconds:
+          type: number
+          default: 5
+        intervalSeconds:
+          type: number
+          default: 30
+        healthyThresholdCount:
+          type: number
+          default: 3
+        unhealthyThresholdCount:
+          type: number
+          default: 5
+        domainExpiryCheck:
+          type: boolean
+          default: false
+        sslExpiryCheck:
+          type: boolean
+          default: false
+        contentChangeDetection:
+          type: boolean
+          default: false
+        description:
+          type: string
+        tags:
+          type: array
+          items:
             type: string
-            format: uri
-          httpStatusChecks:
-            type: boolean
-            default: true
-          timeoutSeconds:
-            type: number
-            default: 5
-          intervalSeconds:
-            type: number
-            default: 30
-          healthyThresholdCount:
-            type: number
-            default: 3
-          unhealthyThresholdCount:
-            type: number
-            default: 5
-          domainExpiryCheck:
-            type: boolean
-            default: false
-          sslExpiryCheck:
-            type: boolean
-            default: false
-          contentChangeDetection:
-            type: boolean
-            default: false
-          description:
-            type: string
-          tags:
-            type: array
-            items:
-              type: string
-          sendAlerts:
-            type: boolean
-            default: true
-        description: Input schema for updating a monitoring profile
-      PlomerNotification:
-        type: object
-        properties:
-          id:
-            type: integer
-          accountId:
-            type: integer
-          monitoringProfileId:
-            type: integer
-            nullable: true
-          text:
-            type: string
-          source:
-            type: string
-            nullable: true
-          type:
-            type: string
-            enum:
+        sendAlerts:
+          type: boolean
+          default: true
+      description: Input schema for updating a monitoring profile
+    PlomerNotification:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountId:
+          type: integer
+        monitoringProfileId:
+          type: integer
+          nullable: true
+        text:
+          type: string
+        source:
+          type: string
+          nullable: true
+        type:
+          type: string
+          enum:
             - DOMAIN_EXPIRY
             - SSL_EXPIRY
             - WEBSITE_DOWN
@@ -747,14 +755,14 @@
             - WARNING
             - INFO
             - ERROR
-          read:
-            type: boolean
-            default: false
-          createdAt:
-            type: string
-          updatedAt:
-            type: string
-        required:
+        read:
+          type: boolean
+          default: false
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
         - id
         - accountId
         - text
@@ -762,454 +770,466 @@
         - read
         - createdAt
         - updatedAt
-        description: Plomer Notification represents a system message or alert for a
-          user
-        example:
-          id: 1
-          accountId: 1
-          monitoringProfileId: 1
-          text: Your domain example.com will expire in 30 days
-          type: DOMAIN_EXPIRY
-          read: false
-          source: SYSTEM
-          createdAt: '2024-03-20T10:00:00.000Z'
-          updatedAt: '2024-03-20T10:00:00.000Z'
-      Product:
-        type: string
-        enum:
+      description: Plomer Notification represents a system message or alert for a user
+      example:
+        id: 1
+        accountId: 1
+        monitoringProfileId: 1
+        text: Your domain example.com will expire in 30 days
+        type: DOMAIN_EXPIRY
+        read: false
+        source: SYSTEM
+        createdAt: "2024-03-20T10:00:00.000Z"
+        updatedAt: "2024-03-20T10:00:00.000Z"
+    Product:
+      type: string
+      enum:
         - PLOMER_WEEKLY
         - PLOMER_MONTHLY
         - PLOMER_YEARLY
-        description: The product to purchase
-        example: PLOMER_WEEKLY
-      ResponseTimes:
-        type: object
-        properties:
-          time:
-            type: string
-          monitoringProfileId:
-            type: integer
-          accountId:
-            type: integer
-          value:
-            type: number
-        required:
+      description: The product to purchase
+      example: PLOMER_WEEKLY
+    ResponseTimes:
+      type: object
+      properties:
+        time:
+          type: string
+        monitoringProfileId:
+          type: integer
+        accountId:
+          type: integer
+        value:
+          type: number
+      required:
         - time
         - monitoringProfileId
         - accountId
         - value
-        description: ResponseTimes represents a response time for a monitoring profile
-        example:
-          time: '2024-03-20T10:00:00.000Z'
-          monitoringProfileId: 1
-          accountId: 1
-          value: 100
-      UptimeItem:
-        type: object
-        properties:
-          accountId:
-            type: integer
-          date:
-            type: string
-          failedRequests:
-            type: integer
-          monitoringProfileId:
-            type: integer
-          p95:
-            type: number
-          successful:
-            type: integer
-          total:
-            type: integer
-        required:
+      description: ResponseTimes represents a response time for a monitoring profile
+      example:
+        time: "2024-03-20T10:00:00.000Z"
+        monitoringProfileId: 1
+        accountId: 1
+        value: 100
+    UptimeItem:
+      type: object
+      properties:
+        accountId:
+          type: integer
+        date:
+          type: string
+        failedRequests:
+          type: integer
+        monitoringProfileId:
+          type: integer
+        p95:
+          type: number
+        successful:
+          type: integer
+        total:
+          type: integer
+      required:
         - accountId
         - failedRequests
         - monitoringProfileId
         - p95
         - successful
         - total
-        description: UptimeItem represents a monitoring period's uptime statistics for
-          a website
-        example:
-          accountId: 1
-          date: '2024-03-20T00:00:00.000Z'
-          failedRequests: 2
-          monitoringProfileId: 123
-          p95: 350
-          successful: 98
-          total: 100
-  paths:
-    "/account/{appleId}":
-      get:
-        operationId: getAccountWithTokens
-        summary: Get account with tokens
-        tags:
+      description: UptimeItem represents a monitoring period's uptime statistics for a website
+      example:
+        accountId: 1
+        date: "2024-03-20T00:00:00.000Z"
+        failedRequests: 2
+        monitoringProfileId: 123
+        p95: 350
+        successful: 98
+        total: 100
+paths:
+  /account/{appleId}:
+    get:
+      operationId: getAccountWithTokens
+      summary: Get account with tokens
+      tags:
         - Account
-        description: Get account and generate authentication tokens
-        parameters:
+      description: Get account and generate authentication tokens
+      parameters:
         - schema:
             type: string
           in: path
           name: appleId
           required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/AccountWithTokens"
-          '404':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-    "/account":
-      post:
-        operationId: createAccount
-        summary: Create account
-        tags:
-        - Account
-        description: Create account
-        requestBody:
+      responses:
+        "200":
+          description: Default Response
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  appleId:
-                    type: string
-                  email:
-                    type: string
-                    format: email
-                  name:
-                    type: string
-                  enablePushNotifications:
-                    type: boolean
-                    default: false
-                  hasSubscription:
-                    type: boolean
-                    default: false
-                  identityToken:
-                    type: string
-                    nullable: true
-                  authCode:
-                    type: string
-                    nullable: true
-                required:
+                $ref: '#/components/schemas/AccountWithTokens'
+        "404":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /account:
+    post:
+      operationId: createAccount
+      summary: Create account
+      tags:
+        - Account
+      description: Create account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                appleId:
+                  type: string
+                email:
+                  type: string
+                  nullable: true
+                name:
+                  type: string
+                enablePushNotifications:
+                  type: boolean
+                  default: false
+                hasSubscription:
+                  type: boolean
+                  default: false
+                identityToken:
+                  type: string
+                  nullable: true
+                authCode:
+                  type: string
+                  nullable: true
+              required:
                 - appleId
-                - email
                 - name
                 - identityToken
                 - authCode
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/AccountWithTokens"
-      patch:
-        operationId: updateAccount
-        summary: Update account
-        tags:
+        required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountWithTokens'
+    patch:
+      operationId: updateAccount
+      summary: Update account
+      tags:
         - Account
-        description: Update account fields
-        requestBody:
+      description: Update account fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                hasSubscription:
+                  type: boolean
+                enablePushNotifications:
+                  type: boolean
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+        "401":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteAccount
+      summary: Delete account
+      tags:
+        - Account
+      description: Permanently delete the authenticated user's account and all associated data
+      responses:
+        "200":
+          description: Default Response
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  hasSubscription:
-                    type: boolean
-                  enablePushNotifications:
-                    type: boolean
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Account"
-          '401':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-          '404':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-      delete:
-        operationId: deleteAccount
-        summary: Delete account
-        tags:
-        - Account
-        description: Soft delete the authenticated user's account
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    message:
-                      type: string
-                  required:
-                  - message
-          '401':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-          '404':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-    "/account/refresh-token":
-      post:
-        operationId: refreshTokens
-        summary: Refresh authentication tokens
-        tags:
-        - Account
-        description: Generate new access and refresh tokens using a refresh token
-        requestBody:
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  refreshToken:
+                  message:
                     type: string
                 required:
+                  - message
+        "401":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /account/refresh-token:
+    post:
+      operationId: refreshTokens
+      summary: Refresh authentication tokens
+      tags:
+        - Account
+      description: Generate new access and refresh tokens using a refresh token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refreshToken:
+                  type: string
+              required:
                 - refreshToken
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/TokenResponse"
-          '401':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-    "/account/add-macos-push-token":
-      post:
-        operationId: addMacOsPushToken
-        summary: Add macOS push token
-        tags:
+        required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        "401":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /account/add-macos-push-token:
+    post:
+      operationId: addMacOsPushToken
+      summary: Add macOS push token
+      tags:
         - Account
-        description: Add macOS push token
-        requestBody:
+      description: Add macOS push token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+              required:
+                - token
+        required: true
+      responses:
+        "200":
+          description: Default Response
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  token:
+                  message:
                     type: string
                 required:
-                - token
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    message:
-                      type: string
-                  required:
                   - message
-          '401':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-          '404':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-    "/api-key":
-      post:
-        operationId: createApiKey
-        summary: Create API key
-        tags:
+        "401":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /api-key:
+    get:
+      operationId: getApiKeys
+      summary: Get API keys
+      tags:
         - ApiKey
-        requestBody:
+      responses:
+        "200":
+          description: Default Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/CreateApiKey"
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/ApiKey"
-          '401':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-    "/api-key/{id}":
-      delete:
-        operationId: deleteApiKey
-        summary: Delete API key
-        tags:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ApiKey'
+  /api-key/:
+    post:
+      operationId: createApiKey
+      summary: Create API key
+      tags:
         - ApiKey
-        parameters:
-        - schema:
-            type: number
-          in: path
-          name: id
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    message:
-                      type: string
-                  required:
-                  - message
-          '401':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-    /collection:
-      get:
-        operationId: getCollections
-        summary: Get collections
-        tags:
-        - Collection
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    "$ref": "#/components/schemas/Collection"
-    "/collection/{id}":
-      get:
-        operationId: getCollection
-        summary: Get collection with profiles
-        tags:
-        - Collection
-        parameters:
-        - schema:
-            type: number
-          in: path
-          name: id
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  oneOf:
-                  - "$ref": "#/components/schemas/CollectionWithProfiles"
-                  - type: 'null'
-      patch:
-        operationId: updateCollection
-        summary: Update collection
-        tags:
-        - Collection
-        requestBody:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApiKey'
+      responses:
+        "200":
+          description: Default Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/UpdateCollection"
-        parameters:
-        - schema:
-            type: number
-          in: path
-          name: id
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Collection"
-      delete:
-        operationId: deleteCollection
-        summary: Delete collection
-        tags:
-        - Collection
-        parameters:
-        - schema:
-            type: number
-          in: path
-          name: id
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    message:
-                      type: string
-                  required:
-                  - message
-    /collection/:
-      post:
-        operationId: createCollection
-        summary: Create collection
-        tags:
-        - Collection
-        requestBody:
+                $ref: '#/components/schemas/ApiKey'
+        "401":
+          description: Default Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/CreateCollection"
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Collection"
-    "/collection/{id}/profiles/{profileId}":
-      post:
-        operationId: addProfileToCollection
-        summary: Add monitoring profile to collection
-        tags:
+                $ref: '#/components/schemas/Error'
+  /api-key/{id}:
+    delete:
+      operationId: deleteApiKey
+      summary: Delete API key
+      tags:
+        - ApiKey
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+        "401":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /collection:
+    get:
+      operationId: getCollections
+      summary: Get collections
+      tags:
         - Collection
-        parameters:
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Collection'
+  /collection/{id}:
+    get:
+      operationId: getCollection
+      summary: Get collection with profiles
+      tags:
+        - Collection
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/CollectionWithProfiles'
+                  - type: "null"
+    patch:
+      operationId: updateCollection
+      summary: Update collection
+      tags:
+        - Collection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCollection'
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+    delete:
+      operationId: deleteCollection
+      summary: Delete collection
+      tags:
+        - Collection
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+  /collection/:
+    post:
+      operationId: createCollection
+      summary: Create collection
+      tags:
+        - Collection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCollection'
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Collection'
+  /collection/{id}/profiles/{profileId}:
+    post:
+      operationId: addProfileToCollection
+      summary: Add monitoring profile to collection
+      tags:
+        - Collection
+      parameters:
         - schema:
             type: number
           in: path
@@ -1220,24 +1240,24 @@
           in: path
           name: profileId
           required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    message:
-                      type: string
-                  required:
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
                   - message
-      delete:
-        operationId: removeProfileFromCollection
-        summary: Remove monitoring profile from collection
-        tags:
+    delete:
+      operationId: removeProfileFromCollection
+      summary: Remove monitoring profile from collection
+      tags:
         - Collection
-        parameters:
+      parameters:
         - schema:
             type: number
           in: path
@@ -1248,25 +1268,25 @@
           in: path
           name: profileId
           required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    message:
-                      type: string
-                  required:
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
                   - message
-    "/downtime/incidents":
-      get:
-        operationId: getDowntimeIncidents
-        summary: Get downtime incidents
-        tags:
+  /downtime/incidents:
+    get:
+      operationId: getDowntimeIncidents
+      summary: Get downtime incidents
+      tags:
         - Downtime
-        parameters:
+      parameters:
         - schema:
             type: string
           in: query
@@ -1283,7 +1303,7 @@
           name: endDate
         - schema:
             type: string
-            default: 'true'
+            default: "true"
           in: query
           name: includeResolved
         - schema:
@@ -1296,30 +1316,30 @@
             default: 0
           in: query
           name: offset
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    incidents:
-                      type: array
-                      items:
-                        "$ref": "#/components/schemas/DowntimeIncident"
-                    totalCount:
-                      type: number
-                  required:
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  incidents:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DowntimeIncident'
+                  totalCount:
+                    type: number
+                required:
                   - incidents
                   - totalCount
-    "/downtime/stats":
-      get:
-        operationId: getDowntimeStats
-        summary: Get downtime statistics
-        tags:
+  /downtime/stats:
+    get:
+      operationId: getDowntimeStats
+      summary: Get downtime statistics
+      tags:
         - Downtime
-        parameters:
+      parameters:
         - schema:
             type: number
           in: query
@@ -1329,296 +1349,304 @@
             default: 30
           in: query
           name: days
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/DowntimeStats"
-    "/downtime/active":
-      get:
-        operationId: getActiveDowntimeIncidents
-        summary: Get active downtime incidents
-        tags:
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DowntimeStats'
+  /downtime/active:
+    get:
+      operationId: getActiveDowntimeIncidents
+      summary: Get active downtime incidents
+      tags:
         - Downtime
-        parameters:
+      parameters:
         - schema:
             type: number
           in: query
           name: monitoringProfileId
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    "$ref": "#/components/schemas/DowntimeIncident"
-    "/monitoring-profile":
-      get:
-        operationId: getMonitoringProfiles
-        summary: Get monitoring profiles
-        tags:
-        - MonitoringProfile
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    "$ref": "#/components/schemas/MonitoringProfile"
-    "/monitoring-profile/{id}":
-      get:
-        operationId: getMonitoringProfile
-        summary: Get monitoring profile
-        tags:
-        - MonitoringProfile
-        parameters:
-        - schema:
-            type: number
-          in: path
-          name: id
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/MonitoringProfile"
-      patch:
-        operationId: updateMonitoringProfile
-        summary: Update monitoring profile
-        tags:
-        - MonitoringProfile
-        requestBody:
+      responses:
+        "200":
+          description: Default Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/UpdateMonitoringProfile"
-        parameters:
-        - schema:
-            type: number
-          in: path
-          name: id
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/MonitoringProfile"
-      delete:
-        operationId: deleteMonitoringProfile
-        summary: Delete monitoring profile
-        tags:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DowntimeIncident'
+  /monitoring-profile:
+    get:
+      operationId: getMonitoringProfiles
+      summary: Get monitoring profiles
+      tags:
         - MonitoringProfile
-        parameters:
-        - schema:
-            type: number
-          in: path
-          name: id
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    message:
-                      type: string
-                  required:
-                  - message
-    "/monitoring-profile/{id}/registrar-data":
-      get:
-        operationId: getMonitoringProfileRegistrarData
-        summary: Get monitoring profile registrar data
-        tags:
-        - MonitoringProfile
-        parameters:
-        - schema:
-            type: number
-          in: path
-          name: id
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/RegistrarData"
-    "/monitoring-profile/{id}/whois-data":
-      get:
-        operationId: getMonitoringProfileWhoisData
-        summary: Get monitoring profile whois data
-        tags:
-        - MonitoringProfile
-        parameters:
-        - schema:
-            type: number
-          in: path
-          name: id
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/WhoisData"
-    /monitoring-profile/:
-      post:
-        operationId: createMonitoringProfile
-        summary: Create monitoring profile
-        tags:
-        - MonitoringProfile
-        requestBody:
+      responses:
+        "200":
+          description: Default Response
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/CreateMonitoringProfile"
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/MonitoringProfile"
-    "/monitoring-profile/bulk":
-      post:
-        operationId: bulkImportMonitoringProfiles
-        summary: Bulk import monitoring profiles from a CSV of URLs
-        tags:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MonitoringProfile'
+  /monitoring-profile/{id}:
+    get:
+      operationId: getMonitoringProfile
+      summary: Get monitoring profile
+      tags:
         - MonitoringProfile
-        requestBody:
-          description: CSV body with one URL per line. An optional 'url' header line
-            is ignored. Max 500 rows.
-          content:
-            text/csv:
-              schema:
-                type: string
-                description: CSV body with one URL per line. An optional 'url' header
-                  line is ignored. Max 500 rows.
-                example: |-
-                  url
-                  https://example.com
-                  https://another.com
-        responses:
-          '202':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/BulkImportAccepted"
-          '400':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-          '413':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-    "/monitoring-profile/bulk/{jobId}":
-      get:
-        operationId: getBulkImportStatus
-        summary: Get the status of a bulk import job
-        tags:
-        - MonitoringProfile
-        parameters:
+      parameters:
         - schema:
-            type: string
+            type: number
           in: path
-          name: jobId
+          name: id
           required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/BulkImportStatus"
-          '404':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-    /notification:
-      post:
-        operationId: createNotification
-        summary: Create notification
-        tags:
-        - PlomerNotification
-        requestBody:
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitoringProfile'
+    patch:
+      operationId: updateMonitoringProfile
+      summary: Update monitoring profile
+      tags:
+        - MonitoringProfile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMonitoringProfile'
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitoringProfile'
+    delete:
+      operationId: deleteMonitoringProfile
+      summary: Delete monitoring profile
+      tags:
+        - MonitoringProfile
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  text:
+                  message:
                     type: string
-                  type:
-                    type: string
-                    enum:
+                required:
+                  - message
+  /monitoring-profile/{id}/registrar-data:
+    get:
+      operationId: getMonitoringProfileRegistrarData
+      summary: Get monitoring profile registrar data
+      tags:
+        - MonitoringProfile
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistrarData'
+        "404":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /monitoring-profile/{id}/whois-data:
+    get:
+      operationId: getMonitoringProfileWhoisData
+      summary: Get monitoring profile whois data
+      tags:
+        - MonitoringProfile
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhoisData'
+  /monitoring-profile/:
+    post:
+      operationId: createMonitoringProfile
+      summary: Create monitoring profile
+      tags:
+        - MonitoringProfile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMonitoringProfile'
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitoringProfile'
+  /monitoring-profile/bulk:
+    post:
+      operationId: bulkImportMonitoringProfiles
+      summary: Bulk import monitoring profiles from a CSV of URLs
+      tags:
+        - MonitoringProfile
+      requestBody:
+        content:
+          text/csv:
+            schema:
+              type: string
+              description: CSV body with one URL per line. An optional 'url' header line is ignored. Max 500 rows.
+              example: |-
+                url
+                https://example.com
+                https://another.com
+        description: CSV body with one URL per line. An optional 'url' header line is ignored. Max 500 rows.
+      responses:
+        "202":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkImportAccepted'
+        "400":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "413":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /monitoring-profile/bulk/{jobId}:
+    get:
+      operationId: getBulkImportStatus
+      summary: Get the status of a bulk import job
+      tags:
+        - MonitoringProfile
+      parameters:
+        - schema:
+            type: string
+          in: path
+          name: jobId
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkImportStatus'
+        "404":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /notification:
+    post:
+      operationId: createNotification
+      summary: Create notification
+      tags:
+        - PlomerNotification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                type:
+                  type: string
+                  enum:
                     - DOMAIN_EXPIRY
                     - SSL_EXPIRY
                     - WEBSITE_DOWN
                     - CONTENT_CHANGE
                     - SYSTEM
                     - WEBSITE_RESTORED
-                  sendNotification:
-                    type: boolean
-                    default: true
-                  source:
-                    type: string
-                required:
+                    - WARNING
+                    - INFO
+                    - ERROR
+                sendNotification:
+                  type: boolean
+                  default: true
+                source:
+                  type: string
+                  nullable: true
+              required:
                 - text
                 - type
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/PlomerNotification"
-          '400':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-          '401':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-          '404':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/Error"
-    /notification/:
-      get:
-        operationId: getNotifications
-        summary: Get notifications
-        tags:
+        required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlomerNotification'
+        "400":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "401":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /notification/:
+    get:
+      operationId: getNotifications
+      summary: Get notifications
+      tags:
         - PlomerNotification
-        parameters:
+      parameters:
         - schema:
             type: number
             default: 10
@@ -1629,130 +1657,130 @@
             default: 0
           in: query
           name: page
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        "$ref": "#/components/schemas/PlomerNotification"
-                    pagination:
-                      type: object
-                      properties:
-                        page:
-                          type: number
-                        totalPages:
-                          type: number
-                        totalItems:
-                          type: number
-                        hasMore:
-                          type: boolean
-                      required:
-                      - page
-                      - totalPages
-                      - totalItems
-                      - hasMore
-                  required:
-                  - data
-                  - pagination
-    /notification/{id}:
-      get:
-        operationId: getNotification
-        summary: Get notification
-        tags:
-        - PlomerNotification
-        parameters:
-        - schema:
-            type: number
-          in: path
-          name: id
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/PlomerNotification"
-      delete:
-        operationId: deleteNotification
-        summary: Delete notification
-        tags:
-        - PlomerNotification
-        parameters:
-        - schema:
-            type: number
-          in: path
-          name: id
-          required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    message:
-                      type: string
-                  required:
-                  - message
-      patch:
-        operationId: updateNotification
-        summary: Update notification
-        tags:
-        - PlomerNotification
-        requestBody:
+      responses:
+        "200":
+          description: Default Response
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  read:
-                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlomerNotification'
+                  pagination:
+                    type: object
+                    properties:
+                      page:
+                        type: number
+                      totalPages:
+                        type: number
+                      totalItems:
+                        type: number
+                      hasMore:
+                        type: boolean
+                    required:
+                      - page
+                      - totalPages
+                      - totalItems
+                      - hasMore
                 required:
-                - read
-          required: true
-        parameters:
+                  - data
+                  - pagination
+  /notification/{id}:
+    get:
+      operationId: getNotification
+      summary: Get notification
+      tags:
+        - PlomerNotification
+      parameters:
         - schema:
             type: number
           in: path
           name: id
           required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  "$ref": "#/components/schemas/PlomerNotification"
-    "/products":
-      get:
-        operationId: getProducts
-        summary: Get available products
-        tags:
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlomerNotification'
+    delete:
+      operationId: deleteNotification
+      summary: Delete notification
+      tags:
+        - PlomerNotification
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+    patch:
+      operationId: updateNotification
+      summary: Update notification
+      tags:
+        - PlomerNotification
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                read:
+                  type: boolean
+              required:
+                - read
+        required: true
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlomerNotification'
+  /products:
+    get:
+      operationId: getProducts
+      summary: Get available products
+      tags:
         - Products
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    "$ref": "#/components/schemas/Product"
-    "/response-times":
-      get:
-        operationId: getResponseTimes
-        summary: Get response times
-        tags:
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+  /response-times:
+    get:
+      operationId: getResponseTimes
+      summary: Get response times
+      tags:
         - ResponseTimes
-        parameters:
+      parameters:
         - schema:
             type: number
             default: 10
@@ -1768,44 +1796,44 @@
           in: query
           name: monitoringProfileId
           required: true
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: object
-                  properties:
-                    data:
-                      type: array
-                      items:
-                        "$ref": "#/components/schemas/ResponseTimes"
-                    pagination:
-                      type: object
-                      properties:
-                        page:
-                          type: number
-                        totalPages:
-                          type: number
-                        totalItems:
-                          type: number
-                        hasMore:
-                          type: boolean
-                      required:
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ResponseTimes'
+                  pagination:
+                    type: object
+                    properties:
+                      page:
+                        type: number
+                      totalPages:
+                        type: number
+                      totalItems:
+                        type: number
+                      hasMore:
+                        type: boolean
+                    required:
                       - page
                       - totalPages
                       - totalItems
                       - hasMore
-                  required:
+                required:
                   - data
                   - pagination
-    "/uptime":
-      get:
-        operationId: getUptime
-        summary: Get uptime
-        tags:
+  /uptime:
+    get:
+      operationId: getUptime
+      summary: Get uptime
+      tags:
         - Uptime
-        parameters:
+      parameters:
         - schema:
             type: number
           in: query
@@ -1818,26 +1846,27 @@
         - schema:
             type: string
             enum:
-            - hour
-            - day
+              - hour
+              - day
             default: day
           in: query
           name: granularity
-        responses:
-          '200':
-            description: Default Response
-            content:
-              application/json:
-                schema:
-                  type: array
-                  items:
-                    "$ref": "#/components/schemas/UptimeItem"
-  servers:
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UptimeItem'
+servers:
+  - url: http://localhost:8080
+    description: local server
   - url: https://devapi.plomer.app
     description: development server
   - url: https://api.plomer.app
     description: production server
-  security:
+security:
   - bearerAuth: []
     apiKey: []
-  

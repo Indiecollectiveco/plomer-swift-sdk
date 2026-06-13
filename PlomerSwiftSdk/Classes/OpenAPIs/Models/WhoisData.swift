@@ -15,7 +15,7 @@ public struct WhoisData: Codable, JSONEncodable, Hashable {
 
     public var id: Int
     public var domainName: String
-    public var registryDomainId: String
+    public var registryDomainId: String?
     public var updatedDate: String
     public var creationDate: String
     public var registrarRegistrationExpirationDate: String
@@ -26,7 +26,7 @@ public struct WhoisData: Codable, JSONEncodable, Hashable {
     public var dnssec: String
     public var lastUpdateOfWhoisDatabase: String
 
-    public init(id: Int, domainName: String, registryDomainId: String, updatedDate: String, creationDate: String, registrarRegistrationExpirationDate: String, registrar: String, domainStatus: String, registrantName: String, nameServer: String, dnssec: String, lastUpdateOfWhoisDatabase: String) {
+    public init(id: Int, domainName: String, registryDomainId: String? = nil, updatedDate: String, creationDate: String, registrarRegistrationExpirationDate: String, registrar: String, domainStatus: String, registrantName: String, nameServer: String, dnssec: String, lastUpdateOfWhoisDatabase: String) {
         self.id = id
         self.domainName = domainName
         self.registryDomainId = registryDomainId
@@ -62,7 +62,7 @@ public struct WhoisData: Codable, JSONEncodable, Hashable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(domainName, forKey: .domainName)
-        try container.encode(registryDomainId, forKey: .registryDomainId)
+        try container.encodeIfPresent(registryDomainId, forKey: .registryDomainId)
         try container.encode(updatedDate, forKey: .updatedDate)
         try container.encode(creationDate, forKey: .creationDate)
         try container.encode(registrarRegistrationExpirationDate, forKey: .registrarRegistrationExpirationDate)

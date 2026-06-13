@@ -13,14 +13,14 @@ import AnyCodable
 public struct CreateAccountRequest: Codable, JSONEncodable, Hashable {
 
     public var appleId: String
-    public var email: String
+    public var email: String?
     public var name: String
     public var enablePushNotifications: Bool? = false
     public var hasSubscription: Bool? = false
     public var identityToken: String?
     public var authCode: String?
 
-    public init(appleId: String, email: String, name: String, enablePushNotifications: Bool? = false, hasSubscription: Bool? = false, identityToken: String?, authCode: String?) {
+    public init(appleId: String, email: String? = nil, name: String, enablePushNotifications: Bool? = false, hasSubscription: Bool? = false, identityToken: String?, authCode: String?) {
         self.appleId = appleId
         self.email = email
         self.name = name
@@ -45,7 +45,7 @@ public struct CreateAccountRequest: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(appleId, forKey: .appleId)
-        try container.encode(email, forKey: .email)
+        try container.encodeIfPresent(email, forKey: .email)
         try container.encode(name, forKey: .name)
         try container.encodeIfPresent(enablePushNotifications, forKey: .enablePushNotifications)
         try container.encodeIfPresent(hasSubscription, forKey: .hasSubscription)

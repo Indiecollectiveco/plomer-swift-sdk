@@ -1,6 +1,6 @@
 # AccountAPI
 
-All URIs are relative to *https://devapi.plomer.app*
+All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -119,7 +119,7 @@ Name | Type | Description  | Notes
 
 Delete account
 
-Soft delete the authenticated user's account
+Permanently delete the authenticated user's account and all associated data
 
 ### Example
 ```swift
