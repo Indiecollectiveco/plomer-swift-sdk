@@ -13,15 +13,18 @@ import AnyCodable
 public struct GetEvents200Response: Codable, JSONEncodable, Hashable {
 
     public var data: [PlomerEvent]
+    public var unreadCount: Double
     public var pagination: GetNotifications200ResponsePagination
 
-    public init(data: [PlomerEvent], pagination: GetNotifications200ResponsePagination) {
+    public init(data: [PlomerEvent], unreadCount: Double, pagination: GetNotifications200ResponsePagination) {
         self.data = data
+        self.unreadCount = unreadCount
         self.pagination = pagination
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable {
         case data
+        case unreadCount
         case pagination
     }
 
@@ -30,6 +33,7 @@ public struct GetEvents200Response: Codable, JSONEncodable, Hashable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(data, forKey: .data)
+        try container.encode(unreadCount, forKey: .unreadCount)
         try container.encode(pagination, forKey: .pagination)
     }
 }

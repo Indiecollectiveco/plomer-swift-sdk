@@ -55,9 +55,11 @@ Class | Method | HTTP request | Description
 *MonitoringProfileAPI* | [**getMonitoringProfiles**](docs/MonitoringProfileAPI.md#getmonitoringprofiles) | **GET** /monitoring-profile | Get monitoring profiles
 *MonitoringProfileAPI* | [**updateMonitoringProfile**](docs/MonitoringProfileAPI.md#updatemonitoringprofile) | **PATCH** /monitoring-profile/{id} | Update monitoring profile
 *PlomerEventAPI* | [**createEvent**](docs/PlomerEventAPI.md#createevent) | **POST** /v1/events | Create event
+*PlomerEventAPI* | [**deleteAllEvents**](docs/PlomerEventAPI.md#deleteallevents) | **DELETE** /v1/events | Delete all events
 *PlomerEventAPI* | [**deleteEvent**](docs/PlomerEventAPI.md#deleteevent) | **DELETE** /v1/events/{id} | Delete event
 *PlomerEventAPI* | [**getEvent**](docs/PlomerEventAPI.md#getevent) | **GET** /v1/events/{id} | Get event
 *PlomerEventAPI* | [**getEvents**](docs/PlomerEventAPI.md#getevents) | **GET** /v1/events/ | Get events
+*PlomerEventAPI* | [**markAllEventsRead**](docs/PlomerEventAPI.md#markalleventsread) | **PATCH** /v1/events/read-all | Mark all events as read
 *PlomerEventAPI* | [**updateEvent**](docs/PlomerEventAPI.md#updateevent) | **PATCH** /v1/events/{id} | Update event
 *PlomerNotificationAPI* | [**createNotification**](docs/PlomerNotificationAPI.md#createnotification) | **POST** /notification | Create notification
 *PlomerNotificationAPI* | [**deleteNotification**](docs/PlomerNotificationAPI.md#deletenotification) | **DELETE** /notification/{id} | Delete notification
@@ -89,6 +91,7 @@ Class | Method | HTTP request | Description
  - [CreateMonitoringProfile](docs/CreateMonitoringProfile.md)
  - [CreateNotificationRequest](docs/CreateNotificationRequest.md)
  - [DeleteAccount200Response](docs/DeleteAccount200Response.md)
+ - [DeleteAllEvents200Response](docs/DeleteAllEvents200Response.md)
  - [DowntimeIncident](docs/DowntimeIncident.md)
  - [DowntimeStats](docs/DowntimeStats.md)
  - [GetDowntimeIncidents200Response](docs/GetDowntimeIncidents200Response.md)

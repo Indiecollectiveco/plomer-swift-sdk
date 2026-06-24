@@ -1873,6 +1873,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteAllEvents
+      summary: Delete all events
+      tags:
+        - PlomerEvent
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: number
+                required:
+                  - count
   /v1/events/:
     get:
       operationId: getEvents
@@ -1902,6 +1919,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/PlomerEvent'
+                  unreadCount:
+                    type: number
                   pagination:
                     type: object
                     properties:
@@ -1920,7 +1939,26 @@ paths:
                       - hasMore
                 required:
                   - data
+                  - unreadCount
                   - pagination
+  /v1/events/read-all:
+    patch:
+      operationId: markAllEventsRead
+      summary: Mark all events as read
+      tags:
+        - PlomerEvent
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: number
+                required:
+                  - count
   /v1/events/{id}:
     get:
       operationId: getEvent

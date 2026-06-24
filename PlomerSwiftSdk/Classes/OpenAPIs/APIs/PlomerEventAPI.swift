@@ -62,6 +62,53 @@ open class PlomerEventAPI {
     }
 
     /**
+     Delete all events
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func deleteAllEvents(apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeleteAllEvents200Response, ErrorResponse>) -> Void)) -> RequestTask {
+        return deleteAllEventsWithRequestBuilder().execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Delete all events
+     - DELETE /v1/events
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - returns: RequestBuilder<DeleteAllEvents200Response> 
+     */
+    open class func deleteAllEventsWithRequestBuilder() -> RequestBuilder<DeleteAllEvents200Response> {
+        let localVariablePath = "/v1/events"
+        let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<DeleteAllEvents200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "DELETE", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
      Delete event
      
      - parameter id: (path)  
@@ -218,6 +265,53 @@ open class PlomerEventAPI {
         let localVariableRequestBuilder: RequestBuilder<GetEvents200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
 
         return localVariableRequestBuilder.init(method: "GET", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
+    }
+
+    /**
+     Mark all events as read
+     
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - parameter completion: completion handler to receive the result
+     */
+    @discardableResult
+    open class func markAllEventsRead(apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue, completion: @escaping ((_ result: Swift.Result<DeleteAllEvents200Response, ErrorResponse>) -> Void)) -> RequestTask {
+        return markAllEventsReadWithRequestBuilder().execute(apiResponseQueue) { result in
+            switch result {
+            case let .success(response):
+                completion(.success(response.body))
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    /**
+     Mark all events as read
+     - PATCH /v1/events/read-all
+     - API Key:
+       - type: apiKey ApiKey (HEADER)
+       - name: apiKey
+     - Bearer Token:
+       - type: http
+       - name: bearerAuth
+     - returns: RequestBuilder<DeleteAllEvents200Response> 
+     */
+    open class func markAllEventsReadWithRequestBuilder() -> RequestBuilder<DeleteAllEvents200Response> {
+        let localVariablePath = "/v1/events/read-all"
+        let localVariableURLString = PlomerSwiftSdkAPI.basePath + localVariablePath
+        let localVariableParameters: [String: Any]? = nil
+
+        let localVariableUrlComponents = URLComponents(string: localVariableURLString)
+
+        let localVariableNillableHeaders: [String: Any?] = [
+            :
+        ]
+
+        let localVariableHeaderParameters = APIHelper.rejectNilHeaders(localVariableNillableHeaders)
+
+        let localVariableRequestBuilder: RequestBuilder<DeleteAllEvents200Response>.Type = PlomerSwiftSdkAPI.requestBuilderFactory.getBuilder()
+
+        return localVariableRequestBuilder.init(method: "PATCH", URLString: (localVariableUrlComponents?.string ?? localVariableURLString), parameters: localVariableParameters, headers: localVariableHeaderParameters, requiresAuthentication: true)
     }
 
     /**

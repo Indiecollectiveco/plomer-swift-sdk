@@ -5,9 +5,11 @@ All URIs are relative to *http://localhost:8080*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createEvent**](PlomerEventAPI.md#createevent) | **POST** /v1/events | Create event
+[**deleteAllEvents**](PlomerEventAPI.md#deleteallevents) | **DELETE** /v1/events | Delete all events
 [**deleteEvent**](PlomerEventAPI.md#deleteevent) | **DELETE** /v1/events/{id} | Delete event
 [**getEvent**](PlomerEventAPI.md#getevent) | **GET** /v1/events/{id} | Get event
 [**getEvents**](PlomerEventAPI.md#getevents) | **GET** /v1/events/ | Get events
+[**markAllEventsRead**](PlomerEventAPI.md#markalleventsread) | **PATCH** /v1/events/read-all | Mark all events as read
 [**updateEvent**](PlomerEventAPI.md#updateevent) | **PATCH** /v1/events/{id} | Update event
 
 
@@ -55,6 +57,50 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deleteAllEvents**
+```swift
+    open class func deleteAllEvents(completion: @escaping (_ data: DeleteAllEvents200Response?, _ error: Error?) -> Void)
+```
+
+Delete all events
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import PlomerSwiftSdk
+
+
+// Delete all events
+PlomerEventAPI.deleteAllEvents() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DeleteAllEvents200Response**](DeleteAllEvents200Response.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -193,6 +239,50 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetEvents200Response**](GetEvents200Response.md)
+
+### Authorization
+
+[apiKey](../README.md#apiKey), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **markAllEventsRead**
+```swift
+    open class func markAllEventsRead(completion: @escaping (_ data: DeleteAllEvents200Response?, _ error: Error?) -> Void)
+```
+
+Mark all events as read
+
+### Example
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import PlomerSwiftSdk
+
+
+// Mark all events as read
+PlomerEventAPI.markAllEventsRead() { (response, error) in
+    guard error == nil else {
+        print(error)
+        return
+    }
+
+    if (response) {
+        dump(response)
+    }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DeleteAllEvents200Response**](DeleteAllEvents200Response.md)
 
 ### Authorization
 
