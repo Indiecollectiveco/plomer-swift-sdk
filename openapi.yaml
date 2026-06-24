@@ -781,6 +781,59 @@ components:
         source: SYSTEM
         createdAt: "2024-03-20T10:00:00.000Z"
         updatedAt: "2024-03-20T10:00:00.000Z"
+    PlomerEvent:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountId:
+          type: integer
+        monitoringProfileId:
+          type: integer
+          nullable: true
+        text:
+          type: string
+        source:
+          type: string
+          nullable: true
+        type:
+          type: string
+          enum:
+            - DOMAIN_EXPIRY
+            - SSL_EXPIRY
+            - WEBSITE_DOWN
+            - CONTENT_CHANGE
+            - SYSTEM
+            - WEBSITE_RESTORED
+            - WARNING
+            - INFO
+            - ERROR
+        read:
+          type: boolean
+          default: false
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - accountId
+        - text
+        - type
+        - read
+        - createdAt
+        - updatedAt
+      description: Plomer Event represents a system message or alert for a user
+      example:
+        id: 1
+        accountId: 1
+        monitoringProfileId: 1
+        text: Your domain example.com will expire in 30 days
+        type: DOMAIN_EXPIRY
+        read: false
+        source: SYSTEM
+        createdAt: "2024-03-20T10:00:00.000Z"
+        updatedAt: "2024-03-20T10:00:00.000Z"
     Product:
       type: string
       enum:
@@ -1759,6 +1812,224 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlomerNotification'
+  /v1/events:
+    post:
+      operationId: createEvent
+      summary: Create event
+      tags:
+        - PlomerEvent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                    - DOMAIN_EXPIRY
+                    - SSL_EXPIRY
+                    - WEBSITE_DOWN
+                    - CONTENT_CHANGE
+                    - SYSTEM
+                    - WEBSITE_RESTORED
+                    - WARNING
+                    - INFO
+                    - ERROR
+                sendNotification:
+                  type: boolean
+                  default: true
+                source:
+                  type: string
+                  nullable: true
+              required:
+                - text
+                - type
+        required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlomerEvent'
+        "400":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "401":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        "404":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteAllEvents
+      summary: Delete all events
+      tags:
+        - PlomerEvent
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: number
+                required:
+                  - count
+  /v1/events/:
+    get:
+      operationId: getEvents
+      summary: Get events
+      tags:
+        - PlomerEvent
+      parameters:
+        - schema:
+            type: number
+            default: 10
+          in: query
+          name: limit
+        - schema:
+            type: number
+            default: 0
+          in: query
+          name: page
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlomerEvent'
+                  unreadCount:
+                    type: number
+                  pagination:
+                    type: object
+                    properties:
+                      page:
+                        type: number
+                      totalPages:
+                        type: number
+                      totalItems:
+                        type: number
+                      hasMore:
+                        type: boolean
+                    required:
+                      - page
+                      - totalPages
+                      - totalItems
+                      - hasMore
+                required:
+                  - data
+                  - unreadCount
+                  - pagination
+  /v1/events/read-all:
+    patch:
+      operationId: markAllEventsRead
+      summary: Mark all events as read
+      tags:
+        - PlomerEvent
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: number
+                required:
+                  - count
+  /v1/events/{id}:
+    get:
+      operationId: getEvent
+      summary: Get event
+      tags:
+        - PlomerEvent
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlomerEvent'
+    delete:
+      operationId: deleteEvent
+      summary: Delete event
+      tags:
+        - PlomerEvent
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                required:
+                  - message
+    patch:
+      operationId: updateEvent
+      summary: Update event
+      tags:
+        - PlomerEvent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                read:
+                  type: boolean
+              required:
+                - read
+        required: true
+      parameters:
+        - schema:
+            type: number
+          in: path
+          name: id
+          required: true
+      responses:
+        "200":
+          description: Default Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlomerEvent'
   /products:
     get:
       operationId: getProducts
