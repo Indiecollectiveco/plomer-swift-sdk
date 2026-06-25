@@ -18,8 +18,24 @@ extension MonitoringProfileAPI {
     /// which cannot send a `text/csv` request body — the generated Alamofire
     /// layer only encodes JSON / multipart / form bodies and traps on anything
     /// else. This method sends the raw CSV directly, reusing
-    /// `PlomerSwiftSdkAPI.basePath` and `PlomerSwiftSdkAPI.customHeaders` (where
-    /// the app configures its auth header), and decodes `BulkImportAccepted`.
+    /// `PlomerSwiftSdkAPI.basePath`, and decodes `BulkImportAccepted`.
+    ///
+    /// ## Authentication
+    ///
+    /// Because this method bypasses the `RequestBuilder` / Alamofire pipeline, it
+    /// is NOT touched by any auth interceptor the app installs via
+    /// `PlomerSwiftSdkAPI.requestBuilderFactory`. Pass the bearer token in
+    /// explicitly via `bearerToken` — the caller can read it fresh from its own
+    /// store (e.g. the Keychain) at call time, e.g.:
+    ///
+    /// ```swift
+    /// MonitoringProfileAPI.bulkImport(csv: csv, bearerToken: myAccessToken) { ... }
+    /// ```
+    ///
+    /// When `bearerToken` is provided it sets the `Authorization` header and takes
+    /// precedence over any `Authorization` in `PlomerSwiftSdkAPI.customHeaders`.
+    /// When it is `nil`, the method falls back to `PlomerSwiftSdkAPI.customHeaders`
+    /// for backward compatibility (which may be empty, yielding a 401).
     ///
     /// Poll `getBulkImportStatus(jobId:)` (generated, works as-is) for progress
     /// and results.
@@ -28,6 +44,8 @@ extension MonitoringProfileAPI {
     ///   - csv: CSV body, one URL per line. An optional `url` header line is
     ///     ignored. Blank lines are skipped and duplicates de-duplicated.
     ///     Maximum 500 rows.
+    ///   - bearerToken: bearer token to authenticate the request. When non-nil it
+    ///     is sent as `Authorization: Bearer <token>`, overriding `customHeaders`.
     ///   - urlSession: URLSession to use (defaults to `.shared`).
     ///   - apiResponseQueue: queue the completion handler is dispatched on.
     ///   - completion: `.success(BulkImportAccepted)` on HTTP 202, otherwise
@@ -37,6 +55,7 @@ extension MonitoringProfileAPI {
     @discardableResult
     public static func bulkImport(
         csv: String,
+        bearerToken: String? = nil,
         urlSession: URLSession = .shared,
         apiResponseQueue: DispatchQueue = PlomerSwiftSdkAPI.apiResponseQueue,
         completion: @escaping (Swift.Result<BulkImportAccepted, ErrorResponse>) -> Void
@@ -48,6 +67,9 @@ extension MonitoringProfileAPI {
         request.setValue("text/csv", forHTTPHeaderField: "Content-Type")
         for (header, value) in PlomerSwiftSdkAPI.customHeaders {
             request.setValue(value, forHTTPHeaderField: header)
+        }
+        if let bearerToken = bearerToken {
+            request.setValue("Bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
         }
         request.httpBody = csv.data(using: .utf8)
 
