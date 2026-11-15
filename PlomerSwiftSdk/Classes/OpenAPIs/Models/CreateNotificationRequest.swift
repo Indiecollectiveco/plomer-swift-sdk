@@ -12,7 +12,7 @@ import AnyCodable
 
 public struct CreateNotificationRequest: Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable {
+    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case domainExpiry = "DOMAIN_EXPIRY"
         case sslExpiry = "SSL_EXPIRY"
         case websiteDown = "WEBSITE_DOWN"
@@ -22,6 +22,7 @@ public struct CreateNotificationRequest: Codable, JSONEncodable, Hashable {
         case warning = "WARNING"
         case info = "INFO"
         case error = "ERROR"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public var text: String
     public var type: ModelType

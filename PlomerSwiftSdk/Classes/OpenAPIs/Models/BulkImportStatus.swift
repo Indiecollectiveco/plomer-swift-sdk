@@ -13,11 +13,12 @@ import AnyCodable
 /** Status and results of a bulk monitoring-profile import job */
 public struct BulkImportStatus: Codable, JSONEncodable, Hashable {
 
-    public enum State: String, Codable, CaseIterable {
+    public enum State: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case waiting = "waiting"
         case active = "active"
         case completed = "completed"
         case failed = "failed"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public var jobId: String
     public var state: State
