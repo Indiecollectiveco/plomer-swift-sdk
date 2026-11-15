@@ -13,7 +13,7 @@ import AnyCodable
 /** Plomer Notification represents a system message or alert for a user */
 public struct PlomerNotification: Codable, JSONEncodable, Hashable {
 
-    public enum ModelType: String, Codable, CaseIterable {
+    public enum ModelType: String, Codable, CaseIterable, CaseIterableDefaultsLast {
         case domainExpiry = "DOMAIN_EXPIRY"
         case sslExpiry = "SSL_EXPIRY"
         case websiteDown = "WEBSITE_DOWN"
@@ -23,6 +23,7 @@ public struct PlomerNotification: Codable, JSONEncodable, Hashable {
         case warning = "WARNING"
         case info = "INFO"
         case error = "ERROR"
+        case unknownDefaultOpenApi = "unknown_default_open_api"
     }
     public var id: Int
     public var accountId: Int

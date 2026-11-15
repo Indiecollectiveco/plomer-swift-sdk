@@ -11,8 +11,9 @@ import AnyCodable
 #endif
 
 /** The product to purchase */
-public enum Product: String, Codable, CaseIterable {
+public enum Product: String, Codable, CaseIterable, CaseIterableDefaultsLast {
     case plomerWeekly = "PLOMER_WEEKLY"
     case plomerMonthly = "PLOMER_MONTHLY"
     case plomerYearly = "PLOMER_YEARLY"
+    case unknownDefaultOpenApi = "unknown_default_open_api"
 }
